@@ -1,0 +1,28 @@
+.css-cajon {
+    height: 100%;
+    margin: 0.1em;
+    background-color: $content-cajon;
+    border: 1px solid $color-g-f1;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#seo_title_es_count,
+#seo_title_pt_count,
+#seo_title_en_count,
+#seo_description_es_count,
+#seo_description_pt_count,
+#seo_description_en_count {
+    float: right;
+    padding: 0.1rem 0 0 0;
+    font-size: 0.7rem;
+    color: $content-seo;
+}
+
+.checkbox label .toggle,
+.checkbox-inline .toggle {
+    margin-left: 1.25rem;
+    margin-right: 0;
+    margin-bottom: 10px;
+}

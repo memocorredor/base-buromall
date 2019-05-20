@@ -1,0 +1,113 @@
+.offside {
+    position: fixed;
+    width: $layout-offside-size;
+    height: 100%;
+    top: 0;
+    z-index: 9999;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    left: -$layout-offside-size;
+    background-color: $color-g-8d;
+}
+
+.offside--left {
+    left: -$layout-offside-size;
+}
+
+.offside--left.is-open,
+.offside-js--is-left .offside-sliding-element {
+    -webkit-transform: translate3d($layout-offside-size, 0, 0);
+    -moz-transform: translate3d($layout-offside-size, 0, 0);
+    -ms-transform: translate3d($layout-offside-size, 0, 0);
+    -o-transform: translate3d($layout-offside-size, 0, 0);
+    transform: translate3d($layout-offside-size, 0, 0);
+}
+
+.offside--right {
+    left: auto;
+    right: -$layout-offside-size;
+}
+
+.offside--right.is-open,
+.offside-js--is-right .offside-sliding-element {
+    -webkit-transform: translate3d(-$layout-offside-size, 0, 0);
+    -moz-transform: translate3d(-$layout-offside-size, 0, 0);
+    -ms-transform: translate3d(-$layout-offside-size, 0, 0);
+    -o-transform: translate3d(-$layout-offside-size, 0, 0);
+    transform: translate3d(-$layout-offside-size, 0, 0);
+}
+
+.site-overlay {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $layout-offside-overlay-color;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+
+    -webkit-transition: visibility 0s ease, opacity .2s ease;
+    -moz-transition: visibility 0s ease, opacity .2s ease;
+    -o-transition: visibility 0s ease, opacity .2s ease;
+    transition: visibility 0s ease, opacity .2s ease;
+}
+
+.offside-js--is-open .site-overlay {
+    visibility: visible;
+    opacity: .7;
+    -webkit-transition-delay: delay 0s;
+    -o-transition-delay: delay 0s;
+    transition-delay: delay 0s;
+}
+
+.offside-js--interact {
+
+    .offside,
+    .offside-sliding-element {
+        -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
+        -moz-transition: -moz-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
+        -o-transition: -o-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
+        transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
+        /* improves performance issues on mobile*/
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+    }
+}
+
+.offside-js--init {
+    overflow-x: hidden;
+}
+
+.no-csstransforms3d {
+    .offside {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .offside-sliding-element {
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .offside--left.is-open {
+        left: 0;
+    }
+
+    .offside--right.is-open {
+        right: 0;
+    }
+
+    > {
+        .offside-js--is-left .offside-sliding-element {
+            right: -$layout-offside-size;
+        }
+
+        .offside-js--is-right .offside-sliding-element {
+            left: -$layout-offside-size;
+        }
+    }
+}

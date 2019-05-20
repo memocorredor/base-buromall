@@ -11,6 +11,49 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        $this->call([
+            LocaleCountriesTableSeeder::class,
+            LocaleStatesTableSeeder::class,
+            LocaleCitiesTableSeeder::class,
+            CgBrandsTableSeeder::class,
+            CgDepartamentsTableSeeder::class,
+            StatusOrderTableSeeder::class,
+            StatusPaymentTableSeeder::class,
+            StatusProductTableSeeder::class,
+            StatusRefundTableSeeder::class,
+            StatusShippingTableSeeder::class,
+            StatusUserTableSeeder::class,
+            TypeAuctionTableSeeder::class,
+            TypeEventTableSeeder::class,
+            TypeIdentificationTableSeeder::class,
+            TypePaymentTableSeeder::class,
+            TypeShippingTableSeeder::class,
+            TypeStoreTableSeeder::class,
+            TypeTransactionTableSeeder::class,
+            UserGenderTableSeeder::class,
+            UserPlanTableSeeder::class,
+            UserRelationshipTableSeeder::class,
+            ScAboutUsesTableSeeder::class,
+            ScCancelationsTableSeeder::class,
+            ScCategorieFaqsTableSeeder::class,
+            ScCookiesTableSeeder::class,
+            ScEarnsTableSeeder::class,
+            ScGuaranteesTableSeeder::class,
+            ScIntPropiertiesTableSeeder::class,
+            ScMisionsTableSeeder::class,
+            ScObjectivesTableSeeder::class,
+            ScPrivaciesTableSeeder::class,
+            ScRechargesTableSeeder::class,
+            ScRefundsTableSeeder::class,
+            ScReturnsTableSeeder::class,
+            ScShippingsTableSeeder::class,
+            ScSocialsTableSeeder::class,
+            ScTermsTableSeeder::class,
+            ScVisionsTableSeeder::class,
+            WebSiteTableSeeder::class,
+            UsersTableSeeder::class
+        ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

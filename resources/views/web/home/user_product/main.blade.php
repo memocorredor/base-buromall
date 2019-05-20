@@ -1,0 +1,155 @@
+@extends('layouts.app')
+@section('content')
+<div class="layout-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col px-0">
+                <div class="layout-content-header-title my-flex-item"><i class="d-inline-block {{ $icon }}"></i>
+                    <h1 class="d-inline-block">{{ $title_view }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layout-content-base">
+    <div class="container-fluid">
+        <div class="row">
+            @if ($data_items)
+            @php
+            $url_title = 'url_title_' .$meta_lang;
+            $name = 'name_' .$meta_lang;
+            $title = 'title_' .$meta_lang;
+            $description = 'description_' .$meta_lang;
+            @endphp
+            @foreach ($data_items as $row_items)
+            @if ($row_items->enable === 1)
+            @php
+            $descount_apply = $row_items->descount;
+            $price_to_operation = $row_items->price;
+            $price_operation = $price_to_operation - ($price_to_operation * ($descount_apply / 100));
+            $price_to_apply = number_format($row_items->price, 2, ',', '.');
+            $price_descount = number_format($price_operation, 2, ',', '.');
+            @endphp
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-header-title">
+                            <i class="{{ $icon }}"></i>
+                            <span>{{ $item_name_base }}</span>
+                        </div>
+                        <div class="card-header-date">
+                            <i class="fas fa-calendar"></i>
+                            <span>{{ $row_items->created_at }}</span>
+                        </div>
+                    </div>
+                    <img class="card-img img-fluid" src="http://placehold.it/980x520" alt="Card image cap">
+                    <div class="card-item-price">
+                        <div class="row no-gutters">
+                            <div class="col-6 d-flex justify-content-center border-stat">
+                                <div class="item-descount">
+                                    <span class="card-descount">{{ $row_items->descount }}</span>
+                                    <i class="icon-descount fas fa-percentage"></i>
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-center">
+                                <div class="item-price-descount">
+                                    <i class="icon-price-descount fas fa-file-invoice-dollar"></i>
+                                    <span class="card-price-descount">{{ $price_to_apply }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-item-price">
+                        <div class="row no-gutters">
+                            <div class="col-6 d-flex justify-content-center border-stat">
+                                <div class="item-quantity">
+                                    <i class="icon-quantity {{ $quantity_icon }}"></i>
+                                    <span class="card-quantity">{{ $row_items->quantity }}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-center">
+                                <div class="item-price">
+                                    <i class="icon-price fas fa-file-invoice-dollar"></i>
+                                    <span class="card-price">{{ $price_descount }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="card-stats">
+                        <div class="row no-gutters">
+                            <div class="col-4 d-flex justify-content-center border-stat">
+                                <div class="align-items-center">
+                                    <i class="icon-like fas fa-heart"></i>
+                                    <span class="card-like">{{ $row_items->countLikesNumber() }}</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex justify-content-center border-stat">
+                                <div class="align-items-center">
+                                    <i class="icon-comment fas fa-comments"></i>
+                                    <span class="card-comment">{{ $row_items->countCommentsNumber() }}</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <div class="align-items-center">
+                                    <i class="icon-views fas fa-eye"></i>
+                                    <span class="card-views">{{ $row_items->countViewsNumber() }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">{{ $row_items->$title }}</h5>
+                        <p class="card-text">{{ $row_items->$description }}</p>
+
+                        <div class="card-info-bottom">
+                            <div class="card-info-bottom-img">
+                                <img class="img-fluid" src="http://placehold.it/150x150" alt="Card image cap">
+                            </div>
+                            <div class="card-info-bottom-publisher">
+                                <div class="card-info-bottom-user">
+                                    <span class="card-info-publisher">
+                                        <i class="fas fa-store-alt"></i>{{ $row_items->nameStore->name }}
+                                    </span>
+                                </div>
+                                <div class="card-info-bottom-catalog">
+                                    <span class="card-info-catalog">
+                                        <i class="fas fa-tag"></i>{{ $row_items->nameDepartament->$name }}
+                                    </span>
+                                    <span class="card-info-catalog">
+                                        <i class="fas fa-tags"></i>{{ $row_items->nameCategorie->$name }}
+                                    </span>
+                                    <span class="card-info-catalog">
+                                        <i class="fas fa-user-tag"></i>{{ $row_items->nameSubCategorie->$name }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a href="{{ route($item_url_base, $row_items->$url_title) }}"
+                        class="bg-info card-footer align-middle">
+                        <span class="btn-label-left">
+                            <i class="{{ $icon }}"></i>
+                        </span>
+                        <div class="btn-label-text">
+                            <span>@lang('web_layout.local_visit_cupon')</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            @endif
+            @endforeach
+            @endif
+        </div>
+    </div>
+</div>
+@endsection

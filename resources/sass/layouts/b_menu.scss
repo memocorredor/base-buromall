@@ -1,0 +1,45 @@
+// layout menu
+.layout-header-menu {
+    width: 100vw;
+    min-height: 40px;
+    background-color: $color-g-8d;
+
+    .header-menu-button {
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        font-size: 8px;
+        border: 0 solid transparent;
+        background-color: $color-g-8d;
+        padding-left: 1px;
+        padding-right: 1px;
+
+        &:hover {
+            background-color: $color-g-cc;
+            border-top: 0.002em solid $orange;
+        }
+
+        &:hover .header-menu-icon {
+            color: $color-blue;
+        }
+
+        &:hover .header-menu-text {
+            color: $color-g-6a;
+        }
+
+
+        .header-menu-icon {
+            width: 100%;
+            padding-top: 3px;
+            text-align: center;
+            color: $color-g-6a;
+        }
+
+        .header-menu-text {
+            width: 100%;
+            padding-top: 3px;
+            text-align: center;
+            color: $color-g-f1;
+        }
+    }
+}

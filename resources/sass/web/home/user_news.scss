@@ -1,0 +1,189 @@
+.layout-content-news {
+
+    .custom-card {
+        position: relative;
+        border-radius: 0.35rem;
+        background-color: $color-g-da;
+        margin: 5px;
+
+        .card-header {
+            background-color: $color-g-8d;
+            padding: 0.3rem 0.8rem;
+
+            .card-header-title {
+                display: inline-block;
+
+                i {
+                    color: $color-g-6a;
+                    font-size: 1.6em;
+                    margin-right: 5px;
+                }
+
+                span {
+                    color: $color-g-da;
+                    font-size: 1.4em;
+                }
+            }
+
+            .card-header-date {
+                display: inline-block;
+                float: right;
+                padding-top: 8px;
+
+                i {
+                    color: $color-g-6a;
+                    font-size: 0.8em;
+                }
+
+                span {
+                    color: $color-g-f1;
+                    font-size: 0.7em;
+                }
+            }
+
+
+        }
+
+        .card-stats {
+            width: 100%;
+            background-color: $color-g-cc;
+            border-top: 2px solid $color-g-da;
+            border-bottom: 2px solid $color-g-da;
+
+            .border-stat {
+                border-right: 1px solid $color-g-da;
+            }
+
+            .icon-like {
+                font-size: .9rem;
+                color: $red;
+            }
+
+            .card-like {
+                margin-left: 10px;
+                font-size: 1rem;
+                color: $color-g-52;
+                font-weight: 600;
+            }
+
+            .icon-comment {
+                font-size: .9rem;
+                color: $blue;
+            }
+
+            .card-comment {
+                margin-left: 10px;
+                font-size: 1rem;
+                color: $color-g-52;
+                font-weight: 600;
+            }
+
+            .icon-views {
+                font-size: .9rem;
+                color: $purple;
+            }
+
+            .card-views {
+                margin-left: 10px;
+                font-size: 1rem;
+                color: $color-g-52;
+                font-weight: 600;
+            }
+        }
+
+        .card-body {
+            background-color: $color-g-da;
+            padding: 1rem;
+
+            .card-title {
+                margin-top: 0.2rem;
+                margin-bottom: 0.2rem;
+                text-align: center;
+                font-size: 1.8rem;
+                color: $color-g-52;
+                font-weight: 600;
+            }
+
+            p {
+                margin-bottom: 0;
+            }
+
+            .card-text {
+                padding-top: 5px;
+                text-align: justify;
+                color: $color-g-52;
+                font-size: .95rem;
+
+            }
+
+            .card-info-bottom {
+                .card-info-bottom-img {
+                    float: left;
+                    padding-top: 6px;
+
+                    img {
+                        height: 42px
+                    }
+                }
+
+                .card-info-bottom-publisher {
+                    float: left;
+                    margin-left: 5px;
+                    padding-top: 3px;
+
+                    i {
+                        color: $color-blue;
+                        margin-right: 5px;
+                        font-size: 0.75em;
+                    }
+
+                    span {
+                        color: $color-g-52;
+                        font-size: 0.8em;
+                    }
+                }
+            }
+
+        }
+
+        .card-footer {
+            padding: 0px;
+            text-align: center;
+            height: 57px;
+            text-decoration: none;
+
+            .btn-label-left {
+                min-width: 48px;
+                height: 57px;
+                font-size: 1.3em;
+                line-height: 45px;
+                position: relative;
+                float: left;
+                display: inline-block;
+                padding: 6px 12px;
+                background: rgba(0, 0, 0, 0.15);
+                border-radius: 3px 0 0 3px;
+                color: $color-g-f1;
+            }
+
+            .btn-label-text {
+                margin: 0 auto;
+                padding: 0;
+                color: $color-g-f1;
+
+                span {
+                    font-weight: 800;
+                    line-height: 57px;
+                    font-size: 1.2em;
+                }
+            }
+        }
+
+
+
+    }
+
+
+
+
+}

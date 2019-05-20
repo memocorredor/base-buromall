@@ -1,0 +1,126 @@
+.layout-content-price {
+
+    .plan-card {
+        background: $color-g-f1;
+        transition: .5s;
+        border: 0;
+        border-radius: .55rem;
+        position: relative;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .plan-one {
+        width: 100%;
+        position: relative;
+
+        .pricing-header {
+            padding: 0;
+            margin-bottom: 0;
+            text-align: center;
+
+            .plan-title {
+                -webkit-border-radius: 10px 10px 0px 0px;
+                -moz-border-radius: 10px 10px 0px 0px;
+                border-radius: 10px 10px 0px 0px;
+                font-size: 1.2rem;
+                color: $color-g-f1;
+                padding: 10px 0;
+                font-weight: 600;
+                background: $color-blue;
+                margin: 0;
+            }
+
+            .plan-cost {
+                color: $color-g-f1;
+                background: #80a7d3;
+                padding: 15px 0;
+                font-size: 2.5rem;
+                font-weight: 700;
+            }
+
+            .plan-save {
+                color: $color-g-f1;
+                background: #8db6e6;
+                padding: 10px 0;
+                font-size: 1rem;
+                font-weight: 700;
+            }
+
+            &.highlight {
+                .plan-title {
+                    background: $orange;
+                }
+
+                .plan-cost {
+                    background: #f7ac62;
+                }
+
+                .plan-save {
+                    background: #f3a353;
+                }
+            }
+        }
+
+        .plan-features {
+            border: 1px solid $color-g-f1;
+            border-top: 0;
+            border-bottom: 0;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+
+            li {
+                padding: 10px;
+                margin: 3px 0;
+                overflow: hidden;
+
+                position: relative;
+                border-bottom: 1px solid $color-g-cc;
+                line-height: 100%;
+                p {
+                    color: $menu-offside-icon-base;
+                    text-align: center;
+                }
+                i{
+                    color: $color-blue;
+                    margin-left: 10px;
+                }
+                span {
+                    color: $menu-offside-icon-base;
+                    margin-left: 10px;
+                }
+                .item-value{
+                    text-align: right;
+                    width: 50px;
+                    float: right;
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        .plan-footer {
+            border: 1px solid $color-g-f1;
+            border-top: 0;
+            background: $color-g-f1;
+            -webkit-border-radius: 0 0 10px 10px;
+            -moz-border-radius: 0 0 10px 10px;
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+            padding: 10px 0 30px 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .plan-one .pricing-header {
+            text-align: center;
+
+            i {
+                display: block;
+                float: none;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

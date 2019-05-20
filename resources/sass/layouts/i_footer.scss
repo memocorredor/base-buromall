@@ -1,0 +1,147 @@
+// layout Footer
+.layout-footer {
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0;
+    background-color: $lh-footer;
+
+    .container-footer-social-links {
+        padding-top: 11px;
+        border-bottom: 1px solid #969696;
+
+        h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: $color-g-f1;
+        }
+
+        li {
+            margin-left: 5px;
+            margin-bottom: 2px;
+            text-align: left;
+
+            a, .layout-footer-counter {
+                text-decoration: none !important;
+                font-weight: 600;
+                font-size: 1rem;
+                color: $color-g-c1;
+                margin-left: 2px;
+
+                i {
+                    margin-left: 5px;
+                    margin-right: 7px;
+                    font-size: 1.1rem;
+                    color: $color-blue;
+                }
+            }
+
+            a:hover {
+                color: $color-g-6a;
+            }
+
+            &:hover i {
+                color: $color-g-f1;
+            }
+        }
+    }
+
+    .container-footer-social {
+        margin-top: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0;
+        border-bottom: 1px solid #969696;
+
+        h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: $color-g-f1;
+        }
+    }
+
+    .container-footer-social-info {
+        margin-top: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: .9rem;
+
+        h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: $color-g-f1;
+        }
+
+        dl {
+            margin-bottom: .3rem;
+
+            dt {
+                margin-left: 20px;
+                margin-right: 20px;
+                font-size: .95rem;
+                margin-bottom: .2rem;
+                color: $color-g-c1;
+            }
+
+            dd {
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-bottom: .2rem;
+                font-size: .9rem;
+                color: $color-g-6a;
+
+                a {
+                    text-decoration: none !important;
+                    font-size: .9rem;
+                    color: $color-g-6a;
+                }
+
+                a:hover {
+                    color: $color-g-f1;
+                }
+            }
+        }
+    }
+
+    .container-footer-logos {
+        margin-top: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0;
+
+        h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: $color-g-f1;
+        }
+
+        ul li a {
+            text-decoration: none !important;
+            color: $color-g-6a;
+
+            &:hover i {
+                color: $color-g-f1;
+                transform: translateY(-0.10em);
+            }
+        }
+
+        li i {
+            margin-left: 10px;
+            margin-right: 10px;
+            font-size: 2.8rem;
+            color: $color-g-6a;
+        }
+    }
+
+    .layout-footer-copyright {
+        width: 100%;
+        min-height: 40px;
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+        font-weight: 700;
+        font-size: .8rem;
+        line-height: 40px;
+        color: $color-g-c1;
+        background-color: $lh-footer-copy;
+    }
+}

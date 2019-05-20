@@ -1,0 +1,112 @@
+.offside-sidebar {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.offside-sidebar-nav {
+    width: 100%;
+    background-color: $menu-offside-base;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background-color: $menu-offside-open;
+    }
+
+    .metismenu {
+        display: flex;
+        flex-direction: column;
+        background-color: $menu-offside-base;
+
+        >li {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 0.01em solid $menu-offside-border;
+        }
+
+        a {
+            position: relative;
+            display: block;
+            padding: 8px 8px;
+            transition: all .3s ease-out;
+            text-decoration: none;
+            outline-width: 0;
+
+            i {
+                text-align: center;
+                width: 30px;
+                padding-left: 6px;
+                font-size: 1.1em;
+                color: $menu-offside-icon-base;
+            }
+
+            .menu-offside-span {
+                padding-left: 6px;
+                font-weight: 300;
+                font-size: .8em;
+                color: $menu-offside-txt-base;
+            }
+
+            .fa.arrow {
+                margin-right: 10px;
+                color: $orange;
+            }
+
+            &:hover {
+                border-top: 0.002em solid $orange;
+                background-color: $menu-offside-hover;
+
+                i {
+                    color: $color-blue;
+                }
+
+                .menu-offside-span {
+                    color: $color-g-6a;
+                }
+            }
+        }
+
+        ul {
+            a {
+                padding: 8px 8px 8px 10px;
+            }
+
+            ul a {
+                padding: 8px 8px 8px 20px;
+            }
+        }
+    }
+
+    ul .mm-show {
+        li {
+            border-bottom: 0.01em solid $menu-offside-border;
+        }
+
+        a {
+            i {
+                text-align: center;
+                width: 30px;
+                padding-left: 6px;
+                color: $menu-offside-txt-base;
+            }
+
+            .menu-offside-span {
+                padding-left: 6px;
+                color: $menu-offside-icon-base;
+            }
+        }
+    }
+
+    .metismenu a {
+
+        &:focus,
+        &:active {
+            text-decoration: none;
+            color: #f8f9fa;
+            background-color: $menu-offside-hover;
+        }
+    }
+}

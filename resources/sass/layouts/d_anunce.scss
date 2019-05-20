@@ -1,0 +1,65 @@
+.layout-header-anunce {
+    width: 100vw;
+    min-height: 20px;
+    color: $color-g-f1;
+    background-color: $color-blue;
+
+    .header-anunce-scroll-limit {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        line-height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+
+        .header-anunce-scrolling {
+            position: relative;
+            font-weight: 300;
+            font-size: .78em;
+            color: $color-g-f1;
+            -webkit-animation: scroll 20s infinite linear;
+            -moz-animation: scroll 20s infinite linear;
+            -o-animation: scroll 20s infinite linear;
+            animation: scroll 20s infinite linear;
+        }
+
+        @keyframes scroll {
+            0% {
+                left: 500px;
+            }
+
+            100% {
+                left: -950px;
+            }
+        }
+
+        @-webkit-keyframes scroll {
+            0% {
+                left: 500px;
+            }
+
+            100% {
+                left: -950px;
+            }
+        }
+    }
+
+    .header-anunce-clock {
+        width: 210px;
+        float: right;
+        margin: 0 auto;
+        padding: 0;
+        line-height: 22px;
+
+        .header-anunce-clock-time {
+            width: 100%;
+            text-align: left;
+            font-weight: 300;
+            font-size: .77em;
+            color: $color-g-f1;
+        }
+    }
+}

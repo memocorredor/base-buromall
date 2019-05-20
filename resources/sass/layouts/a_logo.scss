@@ -1,0 +1,11 @@
+// layout logo
+.layout-header-logo {
+    width: 100vw;
+    height: 65px;
+    text-align: center;
+    background-color: $color-g-cc;
+
+    img {
+        max-height: 64px;
+    }
+}

@@ -1,0 +1,59 @@
+.offside-layout-card-categorie {
+    margin: 0 auto;
+    width: $layout-offside-size;
+    height: 167px;
+    position: relative;
+}
+
+.offside-layout-card-categorie__info {
+    width: $layout-offside-size;
+    height: 167px;
+    background-color: $offside-aside-numerico;
+    color: $color-g-5f;
+}
+
+.offside-layout-card-categorie {
+    .offside-layout-card-categorie__info__section-3 {
+        float: left;
+        display: block;
+        width: 33.3%;
+        height: 100%;
+        position: relative;
+
+        &:last-child {
+            width: 33.3%;
+        }
+
+        &:nth-child(-n+3) .details-bottom {
+            border-left: 1px solid $color-g-5f;
+        }
+    }
+
+    .details-bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $color-g-6a;
+        border-bottom: 1px solid $color-g-6a;
+        background-color: $offside-aside-numerico;
+        -webkit-transition: background-color, 0.5s, ease-in-out;
+        -moz-transition: background-color, 0.5s, ease-in-out;
+        transition: background-color, 0.5s, ease-in-out;
+    }
+
+    .details__number {
+        display: block;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 1em;
+        padding-top: 5px;
+        font-weight: 900;
+    }
+
+    .details__text {
+        display: block;
+        text-align: center;
+        font-size: .7em;
+        padding-bottom: 6px;
+    }
+}

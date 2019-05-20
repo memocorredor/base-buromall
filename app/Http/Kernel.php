@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Buromall\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Buromall\Http\Middleware\TrustProxies::class,
+        \Buromall\Http\Middleware\SetLocale::class,
     ];
 
     /**
@@ -35,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Buromall\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
         ],
 
         'api' => [

@@ -1,0 +1,175 @@
+.layout-user-sistem {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 10px;
+
+        .css-user-op-box {
+            background-color: $color-g-f1;
+            float: none;
+            margin: 0 auto;
+            border: 1px solid $color-g-c1;
+            border-radius: 5px;
+
+            .op-box-form {
+                padding: 20px;
+
+                form {
+                    width: 100%;
+                    margin: 0 auto;
+                    padding: 0;
+                }
+
+                h1 {
+                    margin-top: 15px;
+                    width: 100%;
+                    font-weight: 700;
+                    font-size: 2em;
+                    text-align: center;
+                }
+
+                p {
+                    margin-top: 5px;
+                    margin-bottom: 15px;
+                    width: 100%;
+                    font-weight: 300;
+                    font-size: .78em;
+                    text-align: center;
+                }
+
+                .op-box-form-fields-login {
+                    max-width: 300px;
+                    float: none;
+                    margin: 0 auto;
+                    padding-bottom: 10px;
+                }
+
+                .op-box-form-fields-register {
+                    float: none;
+                    margin: 0 auto;
+                    padding-bottom: 10px;
+                }
+
+                .small-info {
+                    font-weight: 500;
+                    font-size: .9em;
+                    padding-top: 7px;
+                    padding-left: 12px;
+                }
+            }
+
+            .op-box-info {
+                background-color: $color-blue;
+                display: flex;
+
+                .op-box-info-container {
+                    margin: auto;
+                    align-items: center;
+                    text-align: center;
+                    color: $color-g-f1;
+
+                    h2 {
+                        margin-top: 15px;
+                        font-weight: 700;
+                        font-size: 1.5em;
+                    }
+
+                    p {
+                        margin-top: 15px;
+                        font-weight: 300;
+                        font-size: .85em;
+                        text-align: center;
+                    }
+
+                    .btn-warning {
+                        color: $color-g-f1;
+                    }
+                }
+            }
+
+            .for-in-info {
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+
+                .for-in-info-txt {
+                    font-weight: 500;
+                    font-size: .8em;
+
+                    a {
+                        font-weight: 600;
+                        font-size: .9em;
+                    }
+                }
+            }
+
+            .op-box-info .op-box-info-container-data {
+                margin: auto;
+                align-items: center;
+                text-align: center;
+                color: $color-g-f1;
+                width: 100%;
+
+                h2 {
+                    margin-top: 15px;
+                    font-weight: 700;
+                    font-size: 1.5em;
+                }
+
+                .container-info-container {
+                    margin-top: 25px;
+
+                    .contact-list {
+                        dt {
+                            text-align: left;
+                            margin-left: 8px;
+                            color: $color-g-6a;
+
+                            i {
+                                margin-right: 5px;
+                                color: $color-g-cc;
+                            }
+                        }
+
+                        dd {
+                            margin-top: 6px;
+                            font-weight: 100;
+
+                            a {
+                                text-decoration: none;
+                                color: $color-g-f1;
+
+                                &:hover {
+                                    text-decoration: none;
+                                    color: $color-g-cc;
+                                }
+                            }
+
+                            p {
+                                font-weight: 100;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .layout-user-sistem .container {
+        padding: 20px 30px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .layout-user-sistem .container .css-user-op-box {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {}

@@ -1,0 +1,154 @@
+.layout-admin-cruds {
+
+    .crud-card {
+        margin: 2px;
+    }
+
+    .card-header {
+        min-height: 85px;
+        padding: .56rem;
+    }
+
+    .app-panel-icon {
+        margin-left: 20px;
+        font-size: 3.1em;
+        color: $color-g-b5;
+    }
+
+    .app-panel-title {
+        margin-left: 20px;
+        color: $color-g-52;
+
+        .title-content-group {
+            margin-top: 12px;
+        }
+
+        h4 {
+            font-weight: 900;
+            font-size: 1.3em;
+            padding: 3px;
+            color: $color-g-52;
+        }
+
+        small {
+            margin-top: 3px;
+            font-size: .6em;
+            padding: 2px;
+            color: $color-g-8d;
+        }
+    }
+
+    .crud-card .app-crud-icons-list {
+        width: 100%;
+
+        .app-crud-li {
+            float: left;
+            padding-left: 1px;
+            padding-right: 2px;
+
+            .crud-table-btn {
+                width: 41px;
+                height: 35px;
+                text-align: center;
+
+                &:hover {
+                    opacity: .75;
+                    filter: alpha(opacity=75);
+                }
+            }
+        }
+    }
+
+    legend {
+        width: 100%;
+        color: $color-g-5f;
+        font-weight: 800;
+        font-size: 1.1em;
+        border-bottom: 1px solid $color-g-c1;
+
+        i {
+            font-size: 1.6em;
+            margin: 0 auto;
+            padding: 0;
+            margin-right: 5px;
+            color: $color-blue;
+        }
+    }
+
+    label {
+        font-weight: 400;
+        font-size: .87em;
+        color: $color-g-b5;
+        padding: 0;
+        margin-bottom: 0px;
+    }
+
+    .lang-label {
+        font-weight: 400;
+        font-size: .6rem;
+        margin-left: 3px;
+        color: $color-blue;
+    }
+
+    .profile_crud_img {
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+
+        img {
+            border: 3px solid $color-g-b5;
+            border-radius: 5px;
+        }
+    }
+}
+
+.tabbable {
+    margin-top: 20px;
+
+    nav {
+        a {
+            text-decoration: none;
+            height: 42px;
+            border: 1px solid $color-g-b5;
+            border-radius: 4px 4px 0 0;
+        }
+
+        i {
+            font-size: 1.5em;
+            margin: 0 auto;
+            padding: 0;
+            color: $color-blue;
+        }
+
+        a label {
+            font-weight: 500;
+            font-size: .7em;
+            color: $color-g-5f;
+            margin-left: 8px;
+            padding: 0;
+        }
+
+    }
+    .tab-content > .active {
+        padding: 7px;
+    }
+}
+
+.form-control {
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $color-g-c1;
+        opacity: 1;
+        /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: $color-g-c1;
+    }
+
+    &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: $color-g-c1;
+    }
+}

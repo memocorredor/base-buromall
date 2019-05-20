@@ -1,0 +1,1 @@
+<img src="http://placehold.it/980x520" class="img-fluid"/>

@@ -1,0 +1,44 @@
+.layout-content-item-detail{
+
+    .grilla-item-inline {
+        background-color: $content-cajon;
+        border: 1px solid $color-g-f1;
+    }
+
+    .grilla-item {
+        background-color: $content-cajon;
+        border: 1px solid $color-g-f1;
+
+        i {
+            color: $color-blue;
+            margin-right: 5px;
+            font-size: 1.2em;
+        }
+
+        label {
+            color: $color-g-52;
+            margin-top: 3px;
+            margin-bottom: 0.458rem;
+        }
+
+        .data-dt-value {
+            margin-top: 1px;
+            margin-bottom: 1px;
+            width: 100%;
+            text-align: right;
+
+            span {
+                text-align: right;
+                margin-right: 20px;
+                color: $color-g-8d;
+            }
+        }
+    }
+
+    .grilla-item-buy {
+        padding-top: 8px;
+        background-color: $content-cajon;
+        border: 1px solid $color-g-f1;
+    }
+
+}

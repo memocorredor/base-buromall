@@ -2,7 +2,7 @@
 
 namespace Buromall\Http\Controllers\Auth;
 
-use Buromall\User;
+use Buromall\Models\User;
 use Buromall\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,6 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'username' => 'required|string|max:20|unique:users',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -64,8 +66,19 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'status_user_id' => 2,
+            'profiles_id' => 1,
+            'plan_id' => 1,
+            'user_invite_id' => 1,
+            'gender_id' => 1,
+            'relationship_id' => 1,
+            'country_id' => 174,
+            'state_id' => 0,
+            'city_id' => 0,
             'name' => $data['name'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
     }

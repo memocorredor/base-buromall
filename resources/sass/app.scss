@@ -1,6 +1,13 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/v4-shims.scss';
 
 // Variables
 @import 'variables';
@@ -8,7 +15,63 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// Offside
+@import 'offside';
+
+// Summernote
+@import 'components/summernote';
+
+// Toastr
+@import "~toastr/toastr";
+
+// Sweetalert2
+@import "~sweetalert2/src/sweetalert2";
+
+// Select Picker
+@import "~bootstrap-select/sass/bootstrap-select";
+
+// File Imput
+@import "~bootstrap-fileinput/scss/fileinput";
+
+// Metismenu
+@import 'components/metismenu';
+
+// Bootstrap4-toggle
+@import "components/bootstrap4-toggle";
+
+// Touchspin
+@import 'components/touchspin';
+
+// Color Picker
+@import '~bootstrap-colorpicker/src/sass/colorpicker';
+
+// Date Time Picker
+@import '~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4';
+
+// Body
+@import 'layouts/app_body/body';
+@import 'layouts/app_body/body_complemets';
+
+// Generales
+@import 'layouts/a_logo';
+@import 'layouts/b_menu';
+@import 'layouts/c_control';
+@import 'layouts/d_anunce';
+@import 'layouts/e_aside';
+@import 'layouts/f_aside_categorie';
+@import 'layouts/g_aside_info';
+@import 'layouts/h_aside_user';
+@import 'layouts/i_footer';
+@import 'layouts/j_buttons';
+@import 'layouts/k_op_user';
+@import 'layouts/l_cruds';
+@import 'web/home/sc_content';
+@import 'web/home/sc_faqs';
+@import 'web/home/user_plan';
+@import 'web/home/user_store';
+@import 'web/home/user_news';
+@import 'web/home/user_item_base';
+@import 'web/home/item_detail';
+@import 'web/payments/cart';
+// @import 'web/home_store';
+// @import 'web/home_item';

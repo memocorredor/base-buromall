@@ -1,0 +1,157 @@
+.layout-offside-info-user {
+    width: $layout-offside-size;
+
+    .info-user-title {
+        h4 {
+            font-weight: 400;
+            font-size: .9em;
+            padding-top: 8px;
+            padding-left: 5px;
+            padding-right: 3px;
+            color: $offside-infouser-txt;
+        }
+
+        i {
+            font-size: 2.3em;
+            padding-right: 8px;
+            color: $offside-infouser-icon;
+        }
+    }
+
+    .data-user {
+        width: $layout-offside-size;
+        padding-bottom: 3px;
+
+        .data-user-info {
+            color: $color-g-c1;
+            display: inline-block;
+            font-size: 0.65em;
+
+            i {
+                font-size: 1.7em;
+                color: $offside-infouser-icon-sub;
+                width: 25px;
+                text-align: center;
+                margin-left: 5px;
+            }
+        }
+
+        .data-user-txt-uuid {
+            display: inline-block;
+            font-size: 0.56em;
+            color: $offside-infouser-txt;
+            padding-left: 1px;
+        }
+
+        .data-user-txt {
+            display: inline-block;
+            font-size: 0.7em;
+            color: $offside-infouser-txt;
+            padding-left: 1px;
+        }
+    }
+
+    .data_user_count {
+        margin-top: 5px;
+        text-align: center;
+        background-color: $aside-counters;
+        width: $layout-offside-size;
+
+        .data_user_time {
+            background-color: $aside-counters;
+
+            .num_ses_count {
+                float: left;
+                width: 25%;
+                background-color: $aside-counters;
+                border: 0.005em solid $color-g-5f;
+
+                .num_ses_count_num {
+                    font-weight: 600;
+                    font-size: 1.1em;
+                    color: $orange;
+                }
+
+                .num_ses_count_num_cero {
+                    font-weight: 600;
+                    font-size: 1.1em;
+                    color: $color-g-5f;
+                }
+
+                .num_ses_count_txt {
+                    font-weight: 400;
+                    font-size: 0.7em;
+                    color: $color-g-c1;
+                }
+            }
+        }
+    }
+
+
+    .nav-tabs {
+        width: $layout-offside-size;
+        background-color: $color-g-5f;
+        border-bottom: 1px solid $color-g-6a;
+
+        li {
+            float: left;
+            border-radius: 0;
+            margin: 0;
+            width: 50px;
+            height: 40px;
+
+            a {
+                border-radius: 0;
+                margin-right: 0;
+                border: 0;
+                background-color: $color-g-5f;
+                color: $color-g-cc;
+                text-align: center;
+                max-width: 50px;
+                max-height: 40px;
+
+                i {
+                    font-size: 19px;
+                }
+
+                &:hover {
+                    background-color: $color-g-cc;
+                    color: $color-g-5f;
+                }
+            }
+        }
+
+        .nav-item.show .nav-link,
+        .nav-link.active {
+            border: 0;
+            background-color: $color-g-cc;
+            color: $color-g-5f;
+        }
+
+        >li {
+            &.active>a {
+                border: 0;
+                background-color: $color-g-cc;
+                color: $color-g-5f;
+            }
+
+            .active>a {
+
+                &:hover,
+                &:focus {
+                    border: 0;
+                    background-color: $color-g-cc;
+                    color: $color-g-5f;
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        .container {
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+    }
+
+}

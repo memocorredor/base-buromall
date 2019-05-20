@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Buromall\User::class,
+            'model' => Buromall\Models\User::class,
         ],
 
         // 'users' => [

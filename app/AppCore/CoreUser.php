@@ -82,22 +82,22 @@ class CoreUser
         $code_currency_user = '';
         $isp_user = '';
 
-        $browser_locale = 0;//$session_data->language->preference;
-        $browser_user = 0;//$session_data->agent->browser;
-        $browser_user_fa = 0;//strtolower($browser_user);
-        $browser_version_user = 0;//$session_data->agent->browser_version;
-        $user_sistem = 0;//$session_data->device->model;
-        $version_sis_user = 0;//$session_data->device->platform_version;
+        $browser_locale = $session_data->language->preference;
+        $browser_user = $session_data->agent->browser;
+        $browser_user_fa = strtolower($browser_user);
+        $browser_version_user = $session_data->agent->browser_version;
+        $user_sistem = $session_data->device->model;
+        $version_sis_user = $session_data->device->platform_version;
         $is64_user = '';
 
-        $data_robot = 0;//$session_data->is_robot;
+        $data_robot = $session_data->is_robot;
         if($data_robot === 0){
             $isrobot_user = 'No';
         } else {
             $isrobot_user = 'Si';
         }
 
-        $data_ismobil = 0;//$session_data->device->is_mobile;
+        $data_ismobil = $session_data->device->is_mobile;
         if($data_ismobil === 0){
             $ismobil_user = 'No';
         } else {

@@ -20,6 +20,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "orangehill/iseed": "^2.6",
+        "pragmarx/countries": "^0.6.0",
         "pragmarx/tracker": "^3.3",
         "pusher/pusher-php-server": "~3.0"
     },

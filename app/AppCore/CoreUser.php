@@ -73,7 +73,7 @@ class CoreUser
         $countrie_user = '';
         $countrie_code_user = '';
         $state_user = '';
-        $city_user = '';
+        $city_user = $session_data->geoIp->city;
         $latitude_user = '';
         $longitude_user = '';
         $area_code_user = '';

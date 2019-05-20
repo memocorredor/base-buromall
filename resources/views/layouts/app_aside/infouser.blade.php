@@ -275,10 +275,10 @@
                     <div class="col no-gutters">
                         <div class="data-user">
                             <span class="data-user-info">
-                                <i class="fas fa-dollar-sign"></i>
-                                @lang('web_layout.local_aside_info_currency'):
+                                <i class="fas fa-money-bill-wave"></i>
+                                @lang('web_layout.local_aside_info_currency_code'):
                             </span>
-                            <span class="data-user-txt">{{ $user_sis['currency_user'] }}</span>
+                            <span class="data-user-txt">{{ $user_sis['code_currency_user'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -286,10 +286,10 @@
                     <div class="col no-gutters">
                         <div class="data-user">
                             <span class="data-user-info">
-                                <i class="fas fa-money-bill-wave"></i>
-                                @lang('web_layout.local_aside_info_currency_code'):
+                                <i class="fas fa-dollar-sign"></i>
+                                @lang('web_layout.local_aside_info_currency_sale'):
                             </span>
-                            <span class="data-user-txt">{{ $user_sis['code_currency_user'] }}</span>
+                            <span class="data-user-txt">{{ $user_sis['currency_user_sale'] }}</span>
                         </div>
                     </div>
                 </div>

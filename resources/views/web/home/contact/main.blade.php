@@ -13,7 +13,7 @@
                         </div>
                     @endif
 
-                    {!! $user_sis['data_country'] !!}
+                    {{ $user_sis['data_country'] }}
                 </div>
             </div>
         </div>

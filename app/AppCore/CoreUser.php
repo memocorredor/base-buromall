@@ -67,12 +67,12 @@ class CoreUser
 
         $session_data = Tracker::currentSession();
         if ($session_data) {
+            $countries = new Countries();
+
             $session_name = '';
             $session_cuser = ''; //current user
             $session_end = '';
             $type_user = '';
-            $timezone_user = '';
-
 
             if (!empty($session_data->geoIp->continent_code)) {
                 $continent_user =  $session_data->geoIp->continent_code;
@@ -90,12 +90,15 @@ class CoreUser
                 $countrie_code_user = '-';
             }
 
-            $countries = new Countries();
-            $result_country = $countries->where('name.common', $countrie_user)
-                ->first()
-                ->dialling->calling_code->first();
-            $fill_country = $result_country;
-            $data_country = $fill_country;
+            $result_timezone_user = $countries->where('name.common', $countrie_user)
+            ->first()
+            ->hydrateTimezones()
+            ->timezones->first()->zone_name;
+            if (!empty($result_timezone_user)) {
+                $timezone_user =  $result_timezone_user;
+            } else {
+                $timezone_user = '-';
+            }
 
             if (!empty($session_data->geoIp->region)) {
                 $state_user =  $session_data->geoIp->region;
@@ -123,7 +126,7 @@ class CoreUser
                 $result_area_code_user = $countries->where('name.common', $countrie_user)
                     ->first()
                     ->dialling->calling_code->first();
-                if($result_area_code_user) {
+                if(!empty($result_area_code_user)) {
                     $area_code_user = $result_area_code_user;
                 } else {
                     $area_code_user = '-';
@@ -134,8 +137,20 @@ class CoreUser
             } else {
                 $zip_code_user = '-';
             }
-            $currency_user = '';
-            $code_currency_user = '';
+
+            $result_currency_user = $countries->where('name.common', $countrie_user)->first()->hydrate('timezones')->currencies->first();
+            if (!empty($result_currency_user)) {
+                $code_currency_user =  $result_currency_user;
+            } else {
+                $code_currency_user = '';
+            }
+
+            if($code_currency_user === 'COP'){
+                $currency_user_sale = 'COP';
+            } else {
+                $currency_user_sale = 'USD';
+            }
+
             $isp_user = '';
 
             $browser_locale = $session_data->language->preference;
@@ -148,6 +163,11 @@ class CoreUser
 
             $data_robot = $session_data->is_robot;
             $data_ismobil = $session_data->device->is_mobile;
+
+            $result_country = $countries->where('name.common', 'Panama')->first()->hydrate('timezones');
+            $fill_country = $result_country->toJson();//zone_name
+            $data_country = $fill_country;
+
         } else { }
 
         if ($data_robot === 0) {
@@ -193,8 +213,8 @@ class CoreUser
             'longitude_user' => $longitude_user,
             'area_code_user' => $area_code_user,
             'zip_code_user' => $zip_code_user,
-            'currency_user' => $currency_user,
             'code_currency_user' => $code_currency_user,
+            'currency_user_sale' => $currency_user_sale,
             'isp_user' => $isp_user,
             'browser_locale' => $browser_locale,
             'browser_user_fa' => $browser_user_fa,

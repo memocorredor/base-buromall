@@ -20,7 +20,8 @@ use Tracker;
 
 class CoreUser
 {
-    public static function friendly_Url($str = '') {
+    public static function friendly_Url($str = '')
+    {
 
         $friendlyURL = htmlentities($str, ENT_COMPAT, "UTF-8", false);
         $friendlyURL = preg_replace('/&([a-z]{1,2})(?:acute|circ|lig|grave|ring|tilde|uml|cedil|caron);/i', '\1', $friendlyURL);
@@ -44,10 +45,10 @@ class CoreUser
             $data_c_friends = 0; //UserFriend::where('friend_one', '=', $user_id)->orWhere('friend_two', '=', $user_id)->count();
             $count_friends = coreNumbers::niceNumber($data_c_friends);
             //cuenta el numero de tiendas para menu usuario
-            $data_c_stores = UserStore::where('user_id','=',$user_id)->count();
+            $data_c_stores = UserStore::where('user_id', '=', $user_id)->count();
             $count_stores = coreNumbers::niceNumber($data_c_stores);
             //cuenta el numero de productos para menu usuario
-            $data_c_products = UserStoreProduct::where('user_id','=',$user_id)->count();
+            $data_c_products = UserStoreProduct::where('user_id', '=', $user_id)->count();
             $count_products = coreNumbers::niceNumber($data_c_products);
 
 
@@ -64,41 +65,48 @@ class CoreUser
         }
 
         $session_data = Tracker::currentSession();
-        $session_name = '';
-        $session_cuser = ''; //current user
-        $session_end = '';
-        $type_user = '';
-        $timezone_user = '';
-        $continent_user = '';
-        $countrie_user = '';
-        $countrie_code_user = '';
-        $state_user = '';
-        $city_user = $session_data->geoIp->city;
-        $latitude_user = '';
-        $longitude_user = '';
-        $area_code_user = '';
-        $zip_code_user = '';
-        $currency_user = '';
-        $code_currency_user = '';
-        $isp_user = '';
+        if ($session_data) {
+            $session_name = '';
+            $session_cuser = ''; //current user
+            $session_end = '';
+            $type_user = '';
+            $timezone_user = '';
+            $continent_user = $session_data->geoIp->continent_code;
+            $countrie_user = $session_data->geoIp->country_name;
+            $countrie_code_user = $session_data->geoIp->country_code;
+            $state_user = $session_data->geoIp->region;
+            $city_user = $session_data->geoIp->city;
+            $latitude_user = $session_data->geoIp->latitude;
+            $longitude_user = $session_data->geoIp->longitude;
+            $area_code_user = $session_data->geoIp->area_code;;
+            $zip_code_user = $session_data->geoIp->postal_code;
+            $currency_user = '';
+            $code_currency_user = '';
+            $isp_user = '';
 
-        $browser_locale = $session_data->language->preference;
-        $browser_user = $session_data->agent->browser;
-        $browser_user_fa = strtolower($browser_user);
-        $browser_version_user = $session_data->agent->browser_version;
-        $user_sistem = $session_data->device->model;
-        $version_sis_user = $session_data->device->platform_version;
-        $is64_user = '';
+            $browser_locale = $session_data->language->preference;
+            $browser_user = $session_data->agent->browser;
+            $browser_user_fa = strtolower($browser_user);
+            $browser_version_user = $session_data->agent->browser_version;
+            $user_sistem = $session_data->device->model;
+            $version_sis_user = $session_data->device->platform_version;
+            $is64_user = '';
 
-        $data_robot = $session_data->is_robot;
-        if($data_robot === 0){
+            $data_robot = $session_data->is_robot;
+            $data_ismobil = $session_data->device->is_mobile;
+
+        } else {
+
+        }
+
+        if ($data_robot === 0) {
             $isrobot_user = 'No';
         } else {
             $isrobot_user = 'Si';
         }
 
-        $data_ismobil = $session_data->device->is_mobile;
-        if($data_ismobil === 0){
+
+        if ($data_ismobil === 0) {
             $ismobil_user = 'No';
         } else {
             $ismobil_user = 'Si';

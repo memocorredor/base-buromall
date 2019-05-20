@@ -71,15 +71,51 @@ class CoreUser
             $session_end = '';
             $type_user = '';
             $timezone_user = '';
-            $continent_user = $session_data->geoIp->continent_code;
-            $countrie_user = $session_data->geoIp->country_name;
-            $countrie_code_user = $session_data->geoIp->country_code;
-            $state_user = $session_data->geoIp->region;
-            $city_user = $session_data->geoIp->city;
-            $latitude_user = $session_data->geoIp->latitude;
-            $longitude_user = $session_data->geoIp->longitude;
-            $area_code_user = $session_data->geoIp->area_code;;
-            $zip_code_user = $session_data->geoIp->postal_code;
+            if (!empty($session_data->geoIp->continent_code)) {
+                $continent_user =  $session_data->geoIp->continent_code;
+            } else {
+                $continent_user = '-';
+            }
+            if (!empty($session_data->geoIp->country_code)) {
+                $countrie_user =  $session_data->geoIp->country_name;
+            } else {
+                $countrie_user = '-';
+            }
+            if (!empty($session_data->geoIp->country_code)) {
+                $countrie_code_user =  $session_data->geoIp->country_code;
+            } else {
+                $countrie_code_user = '-';
+            }
+            if (!empty($session_data->geoIp->region)) {
+                $state_user =  $session_data->geoIp->region;
+            } else {
+                $state_user = '-';
+            }
+            if (!empty($session_data->geoIp->city)) {
+                $city_user =  $session_data->geoIp->city;
+            } else {
+                $city_user = '-';
+            }
+            if (!empty($session_data->geoIp->latitude)) {
+                $latitude_user =  $session_data->geoIp->latitude;
+            } else {
+                $latitude_user = '-';
+            }
+            if (!empty($session_data->geoIp->longitude)) {
+                $longitude_user =  $session_data->geoIp->longitude;
+            } else {
+                $longitude_user = '-';
+            }
+            if (!empty($session_data->geoIp->area_code)) {
+                $area_code_user =  $session_data->geoIp->area_code;
+            } else {
+                $area_code_user = '-';
+            }
+            if (!empty($session_data->geoIp->postal_code)) {
+                $zip_code_user =  $session_data->geoIp->postal_code;
+            } else {
+                $zip_code_user = '-';
+            }
             $currency_user = '';
             $code_currency_user = '';
             $isp_user = '';

@@ -16,6 +16,7 @@ use Buromall\Models\UserStore;
 use Buromall\Models\UserStoreProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use PragmaRX\Countries\Package\Countries;
 use Tracker;
 
 class CoreUser
@@ -71,6 +72,8 @@ class CoreUser
             $session_end = '';
             $type_user = '';
             $timezone_user = '';
+
+
             if (!empty($session_data->geoIp->continent_code)) {
                 $continent_user =  $session_data->geoIp->continent_code;
             } else {
@@ -79,13 +82,21 @@ class CoreUser
             if (!empty($session_data->geoIp->country_code)) {
                 $countrie_user =  $session_data->geoIp->country_name;
             } else {
-                $countrie_user = '-';
+                $countrie_user = 'Colombia';
             }
             if (!empty($session_data->geoIp->country_code)) {
                 $countrie_code_user =  $session_data->geoIp->country_code;
             } else {
                 $countrie_code_user = '-';
             }
+
+            $countries = new Countries();
+            $result_country = $countries->where('name.common', $countrie_user)
+                ->first()
+                ->dialling->calling_code->first();
+            $fill_country = $result_country;
+            $data_country = $fill_country;
+
             if (!empty($session_data->geoIp->region)) {
                 $state_user =  $session_data->geoIp->region;
             } else {
@@ -109,7 +120,14 @@ class CoreUser
             if (!empty($session_data->geoIp->area_code)) {
                 $area_code_user =  $session_data->geoIp->area_code;
             } else {
-                $area_code_user = '-';
+                $result_area_code_user = $countries->where('name.common', $countrie_user)
+                    ->first()
+                    ->dialling->calling_code->first();
+                if($result_area_code_user) {
+                    $area_code_user = $result_area_code_user;
+                } else {
+                    $area_code_user = '-';
+                }
             }
             if (!empty($session_data->geoIp->postal_code)) {
                 $zip_code_user =  $session_data->geoIp->postal_code;
@@ -130,10 +148,7 @@ class CoreUser
 
             $data_robot = $session_data->is_robot;
             $data_ismobil = $session_data->device->is_mobile;
-
-        } else {
-
-        }
+        } else { }
 
         if ($data_robot === 0) {
             $isrobot_user = 'No';
@@ -159,6 +174,7 @@ class CoreUser
             'count_products' => $count_products,
             'userpictutre' => $userpictutre,
             'session_data' => $session_data,
+            'data_country' => $data_country,
             'session_id' => $session_data->uuid,
             'session_name' => $session_name,
             'session_cuser' => $session_cuser,

@@ -12,7 +12,7 @@ try {
 
     require('bootstrap');
     require('summernote');
-} catch (e) {}
+} catch (e) { }
 
 // Moment
 window.moment = require('moment');
@@ -77,17 +77,17 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+// import Echo from 'laravel-echo'
 
-window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    wsHost: window.location.hostname,
-    wsPort: process.env.MIX_PUSHER_APP_PORT,
-    disableStats: process.env.MIX_PUSHER_APP_STATSH,
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     wsHost: window.location.hostname,
+//     wsPort: process.env.MIX_PUSHER_APP_PORT,
+//     disableStats: process.env.MIX_PUSHER_APP_STATSH,
+// });
 
 
 $(function () {
@@ -100,11 +100,11 @@ $(function () {
             debug: true, // Boolean: If true, print errors in console
             buttonsSelector: '.offside-op-admin', // String: Menu toggle buttons selectors
             slidingSide: 'right', // String: Off canvas menu on left or right
-            init: function () {}, // Function: After init callback
-            beforeOpen: function () {}, // Function: Before open callback
-            afterOpen: function () {}, // Function: After open callback
-            beforeClose: function () {}, // Function: Before close callback
-            afterClose: function () {}, // Function: After close callback
+            init: function () { }, // Function: After init callback
+            beforeOpen: function () { }, // Function: Before open callback
+            afterOpen: function () { }, // Function: After open callback
+            beforeClose: function () { }, // Function: Before close callback
+            afterClose: function () { }, // Function: After close callback
         });
     }
     var offsideMenu1 = offside('#offside-m-categories', {
@@ -112,11 +112,11 @@ $(function () {
         debug: true, // Boolean: If true, print errors in console
         buttonsSelector: '.offside-op-categories', // String: Menu toggle buttons selectors
         slidingSide: 'left', // String: Off canvas menu on left or right
-        init: function () {}, // Function: After init callback
-        beforeOpen: function () {}, // Function: Before open callback
-        afterOpen: function () {}, // Function: After open callback
-        beforeClose: function () {}, // Function: Before close callback
-        afterClose: function () {}, // Function: After close callback
+        init: function () { }, // Function: After init callback
+        beforeOpen: function () { }, // Function: Before open callback
+        afterOpen: function () { }, // Function: After open callback
+        beforeClose: function () { }, // Function: Before close callback
+        afterClose: function () { }, // Function: After close callback
     });
     const btncrm = document.querySelector(".offside-op-crm");
     if (typeof (btncrm) != 'undefined' && btncrm != null) {
@@ -125,11 +125,11 @@ $(function () {
             debug: true, // Boolean: If true, print errors in console
             buttonsSelector: '.offside-op-crm', // String: Menu toggle buttons selectors
             slidingSide: 'left', // String: Off canvas menu on left or right
-            init: function () {}, // Function: After init callback
-            beforeOpen: function () {}, // Function: Before open callback
-            afterOpen: function () {}, // Function: After open callback
-            beforeClose: function () {}, // Function: Before close callback
-            afterClose: function () {}, // Function: After close callback
+            init: function () { }, // Function: After init callback
+            beforeOpen: function () { }, // Function: Before open callback
+            afterOpen: function () { }, // Function: After open callback
+            beforeClose: function () { }, // Function: Before close callback
+            afterClose: function () { }, // Function: After close callback
         });
     }
     var offsideMenu1 = offside('#offside-m-infouser', {
@@ -137,22 +137,22 @@ $(function () {
         debug: true, // Boolean: If true, print errors in console
         buttonsSelector: '.offside-op-infouser', // String: Menu toggle buttons selectors
         slidingSide: 'right', // String: Off canvas menu on left or right
-        init: function () {}, // Function: After init callback
-        beforeOpen: function () {}, // Function: Before open callback
-        afterOpen: function () {}, // Function: After open callback
-        beforeClose: function () {}, // Function: Before close callback
-        afterClose: function () {}, // Function: After close callback
+        init: function () { }, // Function: After init callback
+        beforeOpen: function () { }, // Function: Before open callback
+        afterOpen: function () { }, // Function: After open callback
+        beforeClose: function () { }, // Function: Before close callback
+        afterClose: function () { }, // Function: After close callback
     });
     var offsideMenu1 = offside('#offside-m-menu', {
         slidingElementsSelector: '#offside', // String: Sliding elements selectors
         debug: true, // Boolean: If true, print errors in console
         buttonsSelector: '.offside-op-menu', // String: Menu toggle buttons selectors
         slidingSide: 'left', // String: Off canvas menu on left or right
-        init: function () {}, // Function: After init callback
-        beforeOpen: function () {}, // Function: Before open callback
-        afterOpen: function () {}, // Function: After open callback
-        beforeClose: function () {}, // Function: Before close callback
-        afterClose: function () {}, // Function: After close callback
+        init: function () { }, // Function: After init callback
+        beforeOpen: function () { }, // Function: Before open callback
+        afterOpen: function () { }, // Function: After open callback
+        beforeClose: function () { }, // Function: Before close callback
+        afterClose: function () { }, // Function: After close callback
     });
     const btnuser = document.querySelector(".offside-op-user");
     if (typeof (btnuser) != 'undefined' && btnuser != null) {
@@ -161,11 +161,11 @@ $(function () {
             debug: true, // Boolean: If true, print errors in console
             buttonsSelector: '.offside-op-user', // String: Menu toggle buttons selectors
             slidingSide: 'right', // String: Off canvas menu on left or right
-            init: function () {}, // Function: After init callback
-            beforeOpen: function () {}, // Function: Before open callback
-            afterOpen: function () {}, // Function: After open callback
-            beforeClose: function () {}, // Function: Before close callback
-            afterClose: function () {}, // Function: After close callback
+            init: function () { }, // Function: After init callback
+            beforeOpen: function () { }, // Function: Before open callback
+            afterOpen: function () { }, // Function: After open callback
+            beforeClose: function () { }, // Function: Before close callback
+            afterClose: function () { }, // Function: After close callback
         });
     }
 
@@ -398,12 +398,6 @@ $(function () {
             $('#switch-form-enable-deals').val('0');
         }
     });
-
-
-
-
-
-
 
     //////////////////
     //Summernote
@@ -953,3 +947,36 @@ $(function () {
     });
 
 });
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+function tick() {
+    //get the mins of the current time
+    var mins = new Date().getMinutes();
+    var second = new Date().getSeconds();
+    if (mins == "00") {
+        // set endpoint and your API key
+        endpoint = 'live';
+        access_key = 'a5c9db90b76a9b96b7afa2c6f9070b74';
+        // execute the conversion using the "convert" endpoint:
+        if (second == "00") {
+            $.ajax({
+                url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
+                dataType: 'jsonp',
+                context: this, //<-----
+                success: function (json) {
+                    $.ajax({
+                        url: 'new-currnecy',
+                        type: 'post',
+                        data: { _token: CSRF_TOKEN, usd_eur: json.quotes.USDEUR, usd_usd: json.quotes.USDUSD, usd_cop: json.quotes.USDCOP, usd_brl: json.quotes.USDBRL },
+                        success: function (response) {
+                            count = 1;
+                            $(this).data('requestRunning', false);
+                            console.log('currency update');
+                        }
+                    });
+                }
+            });
+        }
+    }
+}
+
+setInterval(function () { tick(); }, 1000);

@@ -14,6 +14,7 @@ use Buromall\Models\User;
 use Buromall\Models\UserFriend;
 use Buromall\Models\UserStore;
 use Buromall\Models\UserStoreProduct;
+use Buromall\Models\CurrencyDay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PragmaRX\Countries\Package\Countries;
@@ -51,7 +52,6 @@ class CoreUser
             //cuenta el numero de productos para menu usuario
             $data_c_products = UserStoreProduct::where('user_id', '=', $user_id)->count();
             $count_products = coreNumbers::niceNumber($data_c_products);
-
 
             $userpictutre = '';
         } else {

@@ -165,7 +165,6 @@ return [
     'local_updated_at' => 'Fecha de edición',
     'local_updated_at_ph' => 'Fecha cuando se edita el registro',
 
-
     'local_yes' => 'Si',
     'local_not' => 'No',
     'local_show' => 'Mostrar',
@@ -189,6 +188,9 @@ return [
     'local_stores' => 'Tiendas',
     'local_branchs' => 'Sucursales',
     'local_catalog' => 'catalogo',
+    'local_departament' => 'Departamento',
+    'local_categorie' => 'Categoria',
+    'local_categorie_sub' => 'Sub-Categoria',
     'local_products' => 'Productos',
     'local_cupon' => 'Cupon',
     'local_events' => 'Evento',

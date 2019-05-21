@@ -24,7 +24,6 @@
             @foreach ($data_items as $row_items)
             @if ($row_items->enable === 1)
             <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-
                 <div class="card custom-card">
                     <div class="card-header">
                         <div class="card-header-title">
@@ -88,7 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <a href="{{ route($item_url_base, $row_items->$url_title) }}"
                         class="bg-info card-footer align-middle">
@@ -119,6 +117,5 @@
         </div>
     </div>
     @endif
-
 </div>
 @endsection

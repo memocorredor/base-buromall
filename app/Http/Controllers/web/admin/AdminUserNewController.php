@@ -658,19 +658,4 @@ class AdminUserNewController extends Controller
             return redirect()->route($this->form_view)->with($notification);
         }
     }
-
-    // Borrar un registro
-    public static function getImagen($id)
-    {
-        $data_item = UserItemMedia::where('news_id', $id)->first();
-        if ($data_item != null) {
-
-            return $data_item->url;
-
-        } else {
-
-            return 'http://placehold.it/980x520';
-
-        }
-    }
 }

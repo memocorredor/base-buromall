@@ -26152,6 +26152,10 @@ header {
   font-size: 0.7em;
 }
 
+.layout-content-news .custom-card .card-img {
+  border-radius: 0;
+}
+
 .layout-content-news .custom-card .card-stats {
   width: 100%;
   background-color: #cccccc;
@@ -26208,9 +26212,9 @@ header {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: #525252;
-  font-weight: 600;
+  font-weight: 900;
 }
 
 .layout-content-news .custom-card .card-body p {
@@ -26221,7 +26225,7 @@ header {
   padding-top: 5px;
   text-align: justify;
   color: #525252;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .layout-content-news .custom-card .card-body .card-info-bottom .card-info-bottom-img {

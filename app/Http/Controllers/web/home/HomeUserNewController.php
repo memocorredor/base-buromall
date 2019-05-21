@@ -113,11 +113,19 @@ class HomeUserNewController extends Controller
         $departaments_id = CgDepartament::where('id', $data_view->departaments_id)->first();
         $departaments = $departaments_id->$name_items;
         //Carga el nombre de la categoria
-        $categories_id = CgCategorie::where('id', $data_view->categories_id)->first();
-        $categories = $categories_id->$name_items;
+        if ($data_view->categories_id) {
+            $categories_id = CgCategorie::where('id', $data_view->categories_id)->first();
+            $categories = $categories_id->$name_items;
+        } else {
+            $categories = '';
+        }
         //Carga el nombre de la sub categoria
-        $categories_sub_id = CgSubCategorie::where('id', $data_view->categories_sub_id)->first();
-        $categories_sub = $categories_sub_id->$name_items;
+        if ($data_view->categories_id) {
+            $categories_sub_id = CgSubCategorie::where('id', $data_view->categories_sub_id)->first();
+            $categories_sub = $categories_sub_id->$name_items;
+        } else {
+            $categories_sub = '';
+        }
         //Carga las imagenes
         $data_img_id = $data_view->id;
         $data_img = UserItemMedia::where($this->media_id, '=', $data_img_id)->get();

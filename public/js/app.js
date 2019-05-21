@@ -98041,7 +98041,20 @@ $(function () {
       theCount.css('font-weight', 'normal');
     }
   });
+  initMap();
 });
+var map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: -34.397,
+      lng: 150.644
+    },
+    zoom: 8
+  });
+}
+
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 function tick() {
@@ -98058,8 +98071,6 @@ function tick() {
       $.ajax({
         url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
         dataType: 'jsonp',
-        context: this,
-        //<-----
         success: function success(json) {
           $.ajax({
             url: 'new-currnecy',
@@ -98071,11 +98082,7 @@ function tick() {
               usd_cop: json.quotes.USDCOP,
               usd_brl: json.quotes.USDBRL
             },
-            success: function success(response) {
-              count = 1;
-              $(this).data('requestRunning', false);
-              console.log('currency update');
-            }
+            success: function success(response) {}
           });
         }
       });

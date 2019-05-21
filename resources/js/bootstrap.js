@@ -946,7 +946,19 @@ $(function () {
         }
     });
 
+
+    initMap();
+
 });
+
+var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 function tick() {
     //get the mins of the current time
@@ -961,16 +973,13 @@ function tick() {
             $.ajax({
                 url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
                 dataType: 'jsonp',
-                context: this, //<-----
                 success: function (json) {
                     $.ajax({
                         url: 'new-currnecy',
                         type: 'post',
                         data: { _token: CSRF_TOKEN, usd_eur: json.quotes.USDEUR, usd_usd: json.quotes.USDUSD, usd_cop: json.quotes.USDCOP, usd_brl: json.quotes.USDBRL },
                         success: function (response) {
-                            count = 1;
-                            $(this).data('requestRunning', false);
-                            console.log('currency update');
+
                         }
                     });
                 }

@@ -24,7 +24,6 @@ class CoreUser
 {
     public static function friendly_Url($str = '')
     {
-
         $friendlyURL = htmlentities($str, ENT_COMPAT, "UTF-8", false);
         $friendlyURL = preg_replace('/&([a-z]{1,2})(?:acute|circ|lig|grave|ring|tilde|uml|cedil|caron);/i', '\1', $friendlyURL);
         $friendlyURL = html_entity_decode($friendlyURL, ENT_COMPAT, "UTF-8");
@@ -105,21 +104,25 @@ class CoreUser
             } else {
                 $state_user = '-';
             }
+            //
             if (!empty($session_data->geoIp->city)) {
                 $city_user =  $session_data->geoIp->city;
             } else {
                 $city_user = '-';
             }
+            //
             if (!empty($session_data->geoIp->latitude)) {
                 $latitude_user =  $session_data->geoIp->latitude;
             } else {
                 $latitude_user = '-';
             }
+            //
             if (!empty($session_data->geoIp->longitude)) {
                 $longitude_user =  $session_data->geoIp->longitude;
             } else {
                 $longitude_user = '-';
             }
+            //
             if (!empty($session_data->geoIp->area_code)) {
                 $area_code_user =  $session_data->geoIp->area_code;
             } else {
@@ -132,19 +135,20 @@ class CoreUser
                     $area_code_user = '-';
                 }
             }
+            //
             if (!empty($session_data->geoIp->postal_code)) {
                 $zip_code_user =  $session_data->geoIp->postal_code;
             } else {
                 $zip_code_user = '-';
             }
-
+            //
             $result_currency_user = $countries->where('name.common', $countrie_user)->first()->hydrate('timezones')->currencies->first();
             if (!empty($result_currency_user)) {
                 $code_currency_user =  $result_currency_user;
             } else {
                 $code_currency_user = '';
             }
-
+            //
             if($code_currency_user === 'COP'){
                 $currency_user_sale = 'COP';
             } else {

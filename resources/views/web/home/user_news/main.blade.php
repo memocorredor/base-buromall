@@ -12,9 +12,9 @@
     </div>
 </div>
 <div class="layout-content-news">
+    @if ($data_items)
     <div class="container-fluid">
         <div class="row">
-            @if ($data_items)
             @php
             $url_title = 'url_title_' .$meta_lang;
             $name = 'name_' .$meta_lang;
@@ -71,7 +71,8 @@
                             <div class="card-info-bottom-publisher">
                                 <div class="card-info-bottom-user">
                                     <span class="card-info-publisher">
-                                        <i class="fas fa-user"></i>{{ $row_items->nameUser->name . ' '. $row_items->nameUser->lastname }}
+                                        <i
+                                            class="fas fa-user"></i>{{ $row_items->nameUser->name . ' '. $row_items->nameUser->lastname }}
                                     </span>
                                 </div>
                                 <div class="card-info-bottom-catalog">
@@ -102,8 +103,22 @@
             </div>
             @endif
             @endforeach
-            @endif
         </div>
     </div>
+    @else
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Noticias!</div>
+                    <div class="card-body">
+                        <h6 style="width: 100%; text-align: center;">Pronto tendremos noticias para ti!</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
 </div>
 @endsection

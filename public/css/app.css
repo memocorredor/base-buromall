@@ -24385,6 +24385,10 @@ header {
   margin-bottom: 10px;
 }
 
+#gomap-canvas {
+  height: 400px;
+}
+
 .layout-header-logo {
   width: 100vw;
   height: 65px;

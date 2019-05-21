@@ -589,8 +589,8 @@ class AdminUserNewController extends Controller
                         $newPhoto->product_id = 0;
                         $newPhoto->cupon_id = 0;
                         $newPhoto->event_id = 0;
-                        $newPhoto->classified_id = $next_news_id;
-                        $newPhoto->news_id = 0;
+                        $newPhoto->classified_id = 0;
+                        $newPhoto->news_id = $next_news_id;
                         $newPhoto->post_id = 0;
                         $newPhoto->order = $count;
                         $newPhoto->iframe = 0;
@@ -656,6 +656,21 @@ class AdminUserNewController extends Controller
                 'alert-type' => 'error'
             );
             return redirect()->route($this->form_view)->with($notification);
+        }
+    }
+
+    // Borrar un registro
+    public function getImagen($id)
+    {
+        $data_item = UserItemMedia::where('news_id', $id)->first();
+        if ($data_item != null) {
+
+            return $data_item->url;
+
+        } else {
+
+            return 'http://placehold.it/980x520';
+
         }
     }
 }

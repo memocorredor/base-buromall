@@ -30,15 +30,15 @@
                         @endphp
                         @foreach ($data_item as $row_items)
                         @php
-                        $data_categorie = $row_items->nameCategorie->$local_name;
+                        $data_categorie = $row_items->categories_id;
                         if($data_categorie){
-                            $res_categorie = $data_categorie;
+                            $res_categorie = $row_items->nameCategorie->$local_name;
                         } else {
                             $res_categorie = '-';
                         }
-                        $data_sub_categorie = $row_items->nameSubCategorie->$local_name;
+                        $data_sub_categorie = $row_items->categories_sub_id;
                         if($data_sub_categorie){
-                            $res_sub_categorie = $data_sub_categorie;
+                            $res_sub_categorie = $row_items->nameSubCategorie->$local_name;
                         } else {
                             $res_sub_categorie = '-';
                         }

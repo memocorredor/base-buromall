@@ -18,8 +18,8 @@ class coreImage {
     public static function imageNews($id) {
 
         $data_item = UserItemMedia::where('news_id', $id)->first();
-        $path = storage_path('public/' . $data_item);
-        $path_default = storage_path('public/imagens/news/default-news.png');
+        $path = $data_item;
+        $path_default ='imagens/news/default-news.png';
 
         if ($data_item != null) {
             if (File::exists($path)) {

@@ -1,1 +1,1 @@
-<img src="http://placehold.it/980x520" class="img-fluid"/>
+<img src="{{ $data_imagenes }}" class="img-fluid"/>

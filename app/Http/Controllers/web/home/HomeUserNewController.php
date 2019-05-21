@@ -11,6 +11,7 @@ use Buromall\Models\CgSubCategorie;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
+use Buromall\AppCore\coreImage;
 use Carbon\Carbon;
 use Buromall\AppCore\CoreUser;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
@@ -129,6 +130,7 @@ class HomeUserNewController extends Controller
         //Carga las imagenes
         $data_img_id = $data_view->id;
         $data_img = UserItemMedia::where($this->media_id, '=', $data_img_id)->get();
+        $data_imagenes = coreImage::imageNews($data_img_id);
         //Se envia a url segun idioma y carga la info de la pantalla
         if ($this->lang === 'pt') {
             $url_title = $data_view->url_title_pt;
@@ -196,6 +198,7 @@ class HomeUserNewController extends Controller
             'qr_type' => $qr_type,
             'qr_img' => $qr_img,
             'data_img' => $data_img,
+            'data_imagenes' => $data_imagenes,
             'data_url' => $data_url
         ]);
     }

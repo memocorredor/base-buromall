@@ -36,7 +36,7 @@
                             <span>{{ $row_items->created_at }}</span>
                         </div>
                     </div>
-                    <img class="card-img img-fluid" src="{{ json_encode(AdminUserNewController::getImagen(3),TRUE) }}" alt="Card image cap">
+                    <img class="card-img img-fluid" src="{{ AdminUserNewController::getImagen(3)->toJson() }}" alt="Card image cap">
                     <div class="card-stats">
                         <div class="row no-gutters">
                             <div class="col-4 d-flex justify-content-center border-stat">

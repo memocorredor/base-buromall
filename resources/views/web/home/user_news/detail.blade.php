@@ -49,7 +49,7 @@
                                     aria-labelledby="nav-item-text-tab" role="tabpanel">
                                     <div class="row">
                                         <div class="col">
-                                            <article>
+                                            <article style="text-align: justify;">
                                                 {!! html_entity_decode($text_view) !!}
                                             </article>
                                         </div>

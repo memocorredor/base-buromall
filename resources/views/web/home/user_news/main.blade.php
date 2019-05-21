@@ -78,12 +78,16 @@
                                     <span class="card-info-catalog">
                                         <i class="fas fa-tag"></i>{{ $row_items->nameDepartament->$name }}
                                     </span>
+                                    @if($row_items->categories_id)
                                     <span class="card-info-catalog">
                                         <i class="fas fa-tags"></i>{{ $row_items->nameCategorie->$name }}
                                     </span>
+                                    @endif
+                                    @if($row_items->categories_sub_id)
                                     <span class="card-info-catalog">
                                         <i class="fas fa-user-tag"></i>{{ $row_items->nameSubCategorie->$name }}
                                     </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

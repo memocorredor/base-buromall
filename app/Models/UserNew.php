@@ -73,6 +73,7 @@ class UserNew extends Model
     public function veryImage()
     {
         $data_count = $this->getImage()->count();
+        dd($data_count);
         if ($data_count > 0){
             return $this->getImage();
         } else {

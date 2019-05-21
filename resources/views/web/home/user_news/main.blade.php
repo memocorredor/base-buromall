@@ -22,10 +22,6 @@
             $description = 'description_' .$meta_lang;
             @endphp
             @foreach ($data_items as $row_items)
-            @php
-            $data_img = $row_items->veryImage()
-            dd($data_img)
-            @endphp
             @if ($row_items->enable === 1)
             <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                 <div class="card custom-card">
@@ -39,7 +35,7 @@
                             <span>{{ $row_items->created_at }}</span>
                         </div>
                     </div>
-                    <img class="card-img img-fluid" src="{!!  !!}" alt="Card image cap">
+                    <img class="card-img img-fluid" src="http://placehold.it/980x520" alt="Card image cap">
                     <div class="card-stats">
                         <div class="row no-gutters">
                             <div class="col-4 d-flex justify-content-center border-stat">

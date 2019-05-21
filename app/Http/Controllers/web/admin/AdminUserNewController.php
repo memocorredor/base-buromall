@@ -660,7 +660,7 @@ class AdminUserNewController extends Controller
     }
 
     // Borrar un registro
-    public function getImagen($id)
+    public static function getImagen($id)
     {
         $data_item = UserItemMedia::where('news_id', $id)->first();
         if ($data_item != null) {

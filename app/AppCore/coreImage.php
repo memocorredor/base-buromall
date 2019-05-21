@@ -11,7 +11,7 @@
 namespace Buromall\AppCore;
 
 use Buromall\Models\UserItemMedia;
-
+use File;
 class coreImage {
 
     // Imagen en News list

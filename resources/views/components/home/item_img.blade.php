@@ -1,1 +1,1 @@
-<img src="{{ $data_imagenes }}" class="img-fluid"/>
+<img src="{{ asset($data_imagenes) }}" class="img-fluid"/>

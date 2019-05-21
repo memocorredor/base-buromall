@@ -75,7 +75,7 @@ class UserNew extends Model
         $data_count = $this->getImage()->count();
         dd($data_count);
         if ($data_count > 0){
-            return $this->getImage();
+            return $this->getImage()->get();
         } else {
             return 'http://placehold.it/980x520';
         }

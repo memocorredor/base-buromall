@@ -234,7 +234,7 @@
                                 <i class="fas fa-compass"></i>
                                 @lang('web_layout.local_aside_info_latitude'):
                             </span>
-                            <span class="data-user-txt">{{ $user_sis['latitude_user'] }}</span>
+                            <span id="info-user-lat" class="data-user-txt">{{ $user_sis['latitude_user'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
                                 <i class="fas fa-compass"></i>
                                 @lang('web_layout.local_aside_info_longitude'):
                             </span>
-                            <span class="data-user-txt">{{ $user_sis['longitude_user'] }}</span>
+                            <span id="info-user-lon" class="data-user-txt">{{ $user_sis['longitude_user'] }}</span>
                         </div>
                     </div>
                 </div>

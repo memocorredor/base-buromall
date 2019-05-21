@@ -140,9 +140,9 @@
                                                 class="form-control {{ $errors->has('password_again') ? ' is-invalid' : '' }}"
                                                 placeholder="@lang('web_auth.local_password_again')" value=""
                                                 type="password" autocomplete="off" required>
-                                            @if ($errors->has('password_again'))
+                                            @if ($errors->has('password_confirmation'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password_again') }}</strong>
+                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
                                             </span>
                                             @endif
                                         </div>

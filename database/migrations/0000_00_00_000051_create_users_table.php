@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->collation = 'utf8_unicode_ci';
             $table->increments('id')->unsigned();
             $table->integer('enable')->unsigned()->default('0');
-            $table->integer('status_users_id')->unsigned()->default('0');
+            $table->integer('status_user_id')->unsigned()->default('0');
             $table->integer('plan_id')->unsigned()->default('0');
             $table->integer('user_invite_id')->unsigned()->default('0');
             $table->integer('gender_id')->unsigned()->default('0');
@@ -72,7 +72,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::table('users', function ($table) {
-            $table->foreign('status_users_id')->references('id')->on('status_users');
+            $table->foreign('status_user_id')->references('id')->on('status_users');
             $table->foreign('plan_id')->references('id')->on('user_plans');
             //$table->foreign('user_invite_id')->references('id')->on('users');
             $table->foreign('gender_id')->references('id')->on('user_genders');

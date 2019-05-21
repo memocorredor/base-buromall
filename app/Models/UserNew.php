@@ -65,6 +65,21 @@ class UserNew extends Model
         return coreNumbers::niceNumber($data_count);
     }
 
+    public function getImage()
+    {
+        return $this->hasMany(UserItemMedia::class, 'news_id');
+    }
+
+    public function veryImage()
+    {
+        $data_count = $this->getImage()->count();
+        if ($data_count > 0){
+            return $this->getImage();
+        } else {
+            return 'http://placehold.it/980x520';
+        }
+    }
+
 
 
     public function nameUser()

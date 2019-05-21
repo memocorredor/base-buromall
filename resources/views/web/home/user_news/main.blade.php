@@ -35,7 +35,7 @@
                             <span>{{ $row_items->created_at }}</span>
                         </div>
                     </div>
-                    <img class="card-img img-fluid" src="http://placehold.it/980x520" alt="Card image cap">
+                    <img class="card-img img-fluid" src="{{ $row_items->veryImage->url }}" alt="Card image cap">
                     <div class="card-stats">
                         <div class="row no-gutters">
                             <div class="col-4 d-flex justify-content-center border-stat">

@@ -30,6 +30,18 @@
                         @endphp
                         @foreach ($data_item as $row_items)
                         @php
+                        $data_categorie = $row_items->nameCategorie->$local_name;
+                        if($data_categorie){
+                            $res_categorie = $data_categorie;
+                        } else {
+                            $res_categorie = '-';
+                        }
+                        $data_sub_categorie = $row_items->nameSubCategorie->$local_name;
+                        if($data_sub_categorie){
+                            $res_sub_categorie = $data_sub_categorie;
+                        } else {
+                            $res_sub_categorie = '-';
+                        }
                         $counter++;
                         @endphp
                         <tr>
@@ -51,8 +63,8 @@
                             </td>
                             @endif
                             <td class="text-center">{{  $row_items->nameDepartament->$local_name }}</td>
-                            <td class="text-center">{{  $row_items->nameCategorie->$local_name }}</td>
-                            <td class="text-center">{{  $row_items->nameSubCategorie->$local_name }}</td>
+                            <td class="text-center">{{  $res_categorie }}</td>
+                            <td class="text-center">{{  $res_sub_categorie }}</td>
                             <td class="text-center">{{  $row_items->quantity }}</td>
                             <td class="text-center">{{  $row_items->$local_title }}</td>
                             @include('components.tables.buttons')

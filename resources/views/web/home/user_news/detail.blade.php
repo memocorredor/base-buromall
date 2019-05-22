@@ -18,12 +18,25 @@
                 @include('components.home.item_img')
             </div>
             <div class="col-xs-12 col-md-3 px-0">
-
                 @include('components.home.item_qr')
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-9 px-2">
+                    <div class="row">
+                            <div class="col-md-6 grilla-item">
+                                <i class="fas fa-calendar"></i><label>@lang('web_layout.local_created_at'):</label>
+                                <div class="data-dt-value">
+                                    <span>{{ $date_created }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 grilla-item">
+                                <i class="fas fa-id-card-alt"></i><label>@lang('web_layout.local_name_publiched'):</label>
+                                <div class="data-dt-value">
+                                    <span>{{ $publiced_by }}</span>
+                                </div>
+                            </div>
+                        </div>
                 <div class="row">
                     <div class="col-md-12 grilla-item">
                         <div class="tabbable">
@@ -70,32 +83,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 grilla-item">
-                        <i class="fas fa-calendar"></i><label>@lang('web_layout.local_created_at'):</label>
-                        <div class="data-dt-value">
-                            <span>{{ $date_created }}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 grilla-item">
-                        <i class="fas fa-id-card-alt"></i><label>@lang('web_layout.local_name_publiched'):</label>
-                        <div class="data-dt-value">
-                            <span>{{ $publiced_by }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12 grilla-item">
                         <i class="fas fa-person-booth"></i><label>@lang('web_layout.local_catalog'):</label>
                         <div class="data-dt-value">
                             <span class="saler-name-catalog-item">
                                 <i class="fas fa-tag"></i>{{ $departaments }}
                             </span>
+                            @if($categories)
                             <span class="saler-name-catalog-item">
                                 <i class="fas fa-tags"></i>{{ $categories }}
                             </span>
+                            @endif
+                            @if($categories_sub)
                             <span class="saler-name-catalog-item">
                                 <i class="fas fa-user-tag"></i>{{ $categories_sub }}
                             </span>
+                            @endif
                         </div>
                     </div>
                 </div>

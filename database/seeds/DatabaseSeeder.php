@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             LocaleCitiesTableSeeder::class,
             CgBrandsTableSeeder::class,
             CgDepartamentsTableSeeder::class,
+            CgCategoriesTableSeeder::class,
+            CgSubCategoriesTableSeeder::class,
             StatusOrderTableSeeder::class,
             StatusPaymentTableSeeder::class,
             StatusProductTableSeeder::class,
@@ -51,9 +53,12 @@ class DatabaseSeeder extends Seeder
             ScSocialsTableSeeder::class,
             ScTermsTableSeeder::class,
             ScVisionsTableSeeder::class,
+            ScFaqsTableSeeder::class,
             WebSiteTableSeeder::class,
+            PayTaxesTableSeeder::class,
             UsersTableSeeder::class
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        $this->call(PayTaxesTableSeeder::class);
     }
 }

@@ -200,9 +200,9 @@ class AdminCgSubCategorieController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $icon = '';
-        $departaments_id = 0;
-        $categories_id = 0;
+        $icon = $this->view_icon;
+        $departaments_id = 1;
+        $categories_id = 1;
         $url_name_es = '';
         $name_es = '';
         $title_es = '';
@@ -219,7 +219,7 @@ class AdminCgSubCategorieController extends Controller
         $description_pt = '';
         $keywords_pt = '';
         $url_img = '';
-        $color = '#FFFFFF';
+        $color = '#34F56B';
         // Carga de combos
         $data_departaments_id = CgDepartament::all();
         $data_categories_id = CgCategorie::all();
@@ -276,25 +276,20 @@ class AdminCgSubCategorieController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                //'enable' => 'required',
-                //'icon' => 'required',
-                'url_name_es' => 'required',
-                'name_es' => 'required',
-                'title_es' => 'required',
-                'description_es' => 'required',
+                'departaments_id' => 'required',
+                'categories_id' => 'required',
+                'name_es' => 'required|min:5|max:60',
+                'title_es' => 'required|min:5|max:60',
+                'description_es' => 'required|min:5|max:150',
                 'keywords_es' => 'required',
-                'url_name_en' => 'required',
-                'name_en' => 'required',
-                'title_en' => 'required',
-                'description_en' => 'required',
+                'name_en' => 'required|min:5|max:60',
+                'title_en' => 'required|min:5|max:60',
+                'description_en' => 'required|min:5|max:150',
                 'keywords_en' => 'required',
-                'url_name_pt' => 'required',
-                'name_pt' => 'required',
-                'title_pt' => 'required',
-                'description_pt' => 'required',
-                'keywords_pt' => 'required',
-                //'url_img' => 'required',
-                //'color' => 'required'
+                'name_pt' => 'required|min:5|max:60',
+                'title_pt' => 'required|min:5|max:60',
+                'description_pt' => 'required|min:5|max:150',
+                'keywords_pt' => 'required'
             ]);
             // Crea la instancia
             $data_field = new CgSubCategorie();
@@ -302,17 +297,17 @@ class AdminCgSubCategorieController extends Controller
             $data_field->icon = $request->get('icon');
             $data_field->departaments_id = $request->get('departaments_id');
             $data_field->categories_id = $request->get('categories_id');
-            $data_field->url_name_es = $request->get('url_name_es');
+            $data_field->url_name_es = CoreUser::friendly_Url($request->get('name_es'));
             $data_field->name_es = $request->get('name_es');
             $data_field->title_es = $request->get('title_es');
             $data_field->description_es = $request->get('description_es');
             $data_field->keywords_es = $request->get('keywords_es');
-            $data_field->url_name_en = $request->get('url_name_en');
+            $data_field->url_name_en = CoreUser::friendly_Url($request->get('name_en'));
             $data_field->name_en = $request->get('name_en');
             $data_field->title_en = $request->get('title_en');
             $data_field->description_en = $request->get('description_en');
             $data_field->keywords_en = $request->get('keywords_en');
-            $data_field->url_name_pt = $request->get('url_name_pt');
+            $data_field->url_name_pt = CoreUser::friendly_Url($request->get('name_pt'));
             $data_field->name_pt = $request->get('name_pt');
             $data_field->title_pt = $request->get('title_pt');
             $data_field->description_pt = $request->get('description_pt');
@@ -446,25 +441,20 @@ class AdminCgSubCategorieController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    //'enable' => 'required',
-                    //'icon' => 'required',
-                    'url_name_es' => 'required',
-                    'name_es' => 'required',
-                    'title_es' => 'required',
-                    'description_es' => 'required',
+                    'departaments_id' => 'required',
+                    'categories_id' => 'required',
+                    'name_es' => 'required|min:5|max:60',
+                    'title_es' => 'required|min:5|max:60',
+                    'description_es' => 'required|min:5|max:150',
                     'keywords_es' => 'required',
-                    'url_name_en' => 'required',
-                    'name_en' => 'required',
-                    'title_en' => 'required',
-                    'description_en' => 'required',
+                    'name_en' => 'required|min:5|max:60',
+                    'title_en' => 'required|min:5|max:60',
+                    'description_en' => 'required|min:5|max:150',
                     'keywords_en' => 'required',
-                    'url_name_pt' => 'required',
-                    'name_pt' => 'required',
-                    'title_pt' => 'required',
-                    'description_pt' => 'required',
-                    'keywords_pt' => 'required',
-                    //'url_img' => 'required',
-                    //'color' => 'required'
+                    'name_pt' => 'required|min:5|max:60',
+                    'title_pt' => 'required|min:5|max:60',
+                    'description_pt' => 'required|min:5|max:150',
+                    'keywords_pt' => 'required'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

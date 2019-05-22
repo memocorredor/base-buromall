@@ -23,7 +23,7 @@
                             <div class="row">
                                 @include('components.inputs.icon')
                                 <div class="col-md-6">
-                                    @include('components.in_cbo.in_cbo_sc.cbo_categorie_faqs')
+                                    @include('components.cbo.cbo_sc.categorie_faqs')
                                 </div>
                             </div>
                             <div class="tabbable">

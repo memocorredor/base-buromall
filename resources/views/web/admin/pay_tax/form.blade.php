@@ -43,16 +43,8 @@
                                 <div class="col-md-6">
                                     @include('components.cbo.cbo_locale.countries')
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     @include('components.cbo.cbo_catalog.departaments')
-                                </div>
-                                <div class="col-md-4">
-                                    @include('components.cbo.cbo_catalog.categories')
-                                </div>
-                                <div class="col-md-4">
-                                    @include('components.cbo.cbo_catalog.categories_sub')
                                 </div>
                             </div>
                             <div class="row">

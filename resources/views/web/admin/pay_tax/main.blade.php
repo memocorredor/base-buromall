@@ -19,8 +19,6 @@
                             <th class="text-center">@lang('web_layout.local_country')</th>
                             <th class="text-center">@lang('web_layout.local_name')</th>
                             <th class="text-center">@lang('app_fields.local_departaments')</th>
-                            <th class="text-center">@lang('app_fields.local_categories')</th>
-                            <th class="text-center">@lang('app_fields.local_categories_sub')</th>
                             <th class="text-center">@lang('app_fields.local_tax')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
@@ -64,8 +62,6 @@
                             <td class="text-center">{{  $row_items->nameCountry->name }}</td>
                             <td class="text-center">{{  $row_items->name }}</td>
                             <td class="text-center">{{  $row_items->nameDepartament->$local_name }}</td>
-                            <td class="text-center">{{  $row_items->nameCategorie->$local_name }}</td>
-                            <td class="text-center">{{  $row_items->nameSubCategorie->$local_name }}</td>
                             <td class="text-center">{{  $row_items->tax . ' %'}}</td>
                             @include('components.tables.buttons')
                         </tr>

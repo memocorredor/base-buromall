@@ -199,7 +199,7 @@ class AdminAcNoRequestController extends Controller
                 'status' => 'required',
                 'order_num' => 'required',
                 'no_item' => 'required',
-                'token' => 'required',
+                'token' => 'required'
             ]);
             // Crea la instancia
             $data_field = new AcNoRequest();
@@ -298,7 +298,7 @@ class AdminAcNoRequestController extends Controller
                     'status' => 'required',
                     'order_num' => 'required',
                     'no_item' => 'required',
-                    'token' => 'required',
+                    'token' => 'required'
                 ]);
                 //Compara la info
                 $data_item->status = $request->get('status');

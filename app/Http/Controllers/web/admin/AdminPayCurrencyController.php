@@ -168,7 +168,7 @@ class AdminPayCurrencyController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $default_f = '';
-        $country_id = '';
+        $country_id = 47;
         $simbole = '';
         $iso = '';
         $name = '';
@@ -212,9 +212,9 @@ class AdminPayCurrencyController extends Controller
         if ($request->get('process') === 'add') {
             $this->validate($request, [
                 'country_id' => 'required',
-                'simbole' => 'required',
-                'iso' => 'required',
-                'name' => 'required',
+                'simbole' => 'required|min:2|max:6',
+                'iso' => 'required|min:2|max:4',
+                'name' => 'required|min:2|max:60'
             ]);
             // Crea la instancia
             $data_field = new PayCurrency();
@@ -320,9 +320,9 @@ class AdminPayCurrencyController extends Controller
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
                     'country_id' => 'required',
-                    'simbole' => 'required',
-                    'iso' => 'required',
-                    'name' => 'required',
+                    'simbole' => 'required|min:2|max:6',
+                    'iso' => 'required|min:2|max:4',
+                    'name' => 'required|min:2|max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

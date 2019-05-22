@@ -20,7 +20,7 @@ class CreateCgBrandsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('enable')->unsigned()->default('0');
             $table->text('image')->nullable();
-            $table->string('name', 150)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
             $table->timestamps();
         });
     }

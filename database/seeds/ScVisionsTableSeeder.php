@@ -12,16 +12,16 @@ class ScVisionsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_visions')->delete();
         DB::table('sc_visions')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '#fff',
                 'title_es' => 'Nuestra Visión',
                 'text_es' => '<p style="text-align: justify; "><b>Buromall.com </b>busca convertirse en una corporación líder en el desarrollo de portales integrales de pagos y servicios afines, a través de una plataforma sencilla y segura que se ajuste a las necesidades emergentes de negociaciones comerciales y sociales.<br></p>',
@@ -37,10 +37,10 @@ class ScVisionsTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'vision.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

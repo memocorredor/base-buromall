@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'user_invite_id' => 1,
             'gender_id' => 1,
             'relationship_id' => 1,
-            'country_id' => 174,
+            'country_id' => 47,
             'state_id' => 0,
             'city_id' => 0,
             'name' => $data['name'],

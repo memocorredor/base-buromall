@@ -23,7 +23,7 @@ class CreatePayCurrenciesTable extends Migration
             $table->integer('country_id')->unsigned()->default('0');
             $table->string('simbole', 6)->nullable()->default('');
             $table->string('iso', 4)->nullable()->default('');
-            $table->string('name', 150)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
             $table->timestamps();
         });
 

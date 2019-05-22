@@ -12,157 +12,157 @@ class ScCategorieFaqsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_categorie_faqs')->delete();
-        
+
         DB::table('sc_categorie_faqs')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Barumall.com',
                 'name_en' => 'Barumall.com',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Tiendas',
                 'name_en' => 'Stores',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Productos',
                 'name_en' => 'Products',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Compras',
                 'name_en' => 'Buy',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Envios',
                 'name_en' => 'Shipping',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Garantias',
                 'name_en' => 'Warranties',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Devoluciones',
                 'name_en' => 'Returns',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Publicidad',
                 'name_en' => 'Advertising',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Recargas',
                 'name_en' => 'Recargas',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Pagos',
                 'name_en' => 'Payments',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Clasificados',
                 'name_en' => 'Classifieds',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 12,
                 'enable' => 1,
-                'icon' => '',
+                'icon' => 'fas fa-list',
                 'name_es' => 'Eventos',
                 'name_en' => 'Events',
                 'name_pt' => '',
-                'color' => '',
+                'color' => '#34F56B',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

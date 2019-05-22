@@ -12,17 +12,17 @@ class ScRefundsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_refunds')->delete();
-        
+
         DB::table('sc_refunds')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Reembolso',
                 'text_es' => '<p><span style="line-height: 1.53846;">Descripción: El reembolso es la solicitud de un cliente por recibir el monto que ha pagado por un artículo.
@@ -49,7 +49,7 @@ Los tiempos estimados para el procesamiento de un Reembolso una vez autorizado e
 </p><p>•	En caso de que se compruebe de que el cliente no haya podido utilizar el bien desde un inicio, encontrándose el mismo y sus empaques en buen estado se procederá al reemplazo por otro bien exactamente al adquirido por el comprador, de no ser posible el reemplazo,&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;procederá a la devolución de las sumas pagadas.
 Excepciones
 Las siguientes excepciones aplican para los reembolsos.
-</p><p>•	El producto adquirido no funciona correctamente y ha sido reportado dentro de los primeros 15 días de recepción del mismo, el cliente y&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;se comprometen a esperar por la revisión del artículo y la reparación del mismo, solo en caso de que no sea posible repararlo se podrá cambiar el producto por otro nuevo. 
+</p><p>•	El producto adquirido no funciona correctamente y ha sido reportado dentro de los primeros 15 días de recepción del mismo, el cliente y&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;se comprometen a esperar por la revisión del artículo y la reparación del mismo, solo en caso de que no sea posible repararlo se podrá cambiar el producto por otro nuevo.
 </p>',
                 'description_es' => 'Conoce los Políticas de Reembolso de Buromall',
                 'keywords_es' => 'políticas de reembolso, políticas, reembolso, Buromall',
@@ -81,7 +81,7 @@ Los tiempos estimados para el procesamiento de un Reembolso una vez autorizado e
 •	En caso de que se compruebe de que el cliente no haya podido utilizar el bien desde un inicio, encontrándose el mismo y sus empaques en buen estado se procederá al reemplazo por otro bien exactamente al adquirido por el comprador, de no ser posible el reemplazo, PASEOMALL.COM procederá a la devolución de las sumas pagadas.
 Excepciones
 Las siguientes excepciones aplican para los reembolsos.
-•	El producto adquirido no funciona correctamente y ha sido reportado dentro de los primeros 15 días de recepción del mismo, el cliente y PASEOMALL.COM se comprometen a esperar por la revisión del artículo y la reparación del mismo, solo en caso de que no sea posible repararlo se podrá cambiar el producto por otro nuevo. 
+•	El producto adquirido no funciona correctamente y ha sido reportado dentro de los primeros 15 días de recepción del mismo, el cliente y PASEOMALL.COM se comprometen a esperar por la revisión del artículo y la reparación del mismo, solo en caso de que no sea posible repararlo se podrá cambiar el producto por otro nuevo.
 ',
                 'description_en' => 'Know the Refund Policy of Buromall',
                 'keywords_en' => 'refund policy, refund, policy, Buromall',
@@ -91,10 +91,10 @@ Las siguientes excepciones aplican para los reembolsos.
                 'keywords_pt' => '',
                 'url_img' => 'politicas_reenvolso.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

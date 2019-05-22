@@ -12,17 +12,17 @@ class ScAboutUsesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_about_uses')->delete();
-        
+
         DB::table('sc_about_uses')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '#ffffff',
                 'title_es' => 'Conoce más de Nosotros',
                 'text_es' => '<p style="text-align: justify; "><b>Buromall.com</b> es un portal de fácil acceso donde realizar tus pagos se convierte en una operación sencilla, a través de sus dispositivos desde cualquier localidad.</p><p style="text-align: justify; ">Los Usuarios encontrarán en <span style="font-weight: bold;">Buromall.com, </span>una alternativa cómoda en la cual podrá ampliar sus canales de pagos, por medios seguros y fáciles.</p><p style="text-align: justify; ">En <b>Buromall.com</b> no necesitas de tarjeta de crédito, trabajamos mediante un sistema de monedero virtual recargable el cual te permitirá comprar on line, transferir a otros monederos, pagar tus servicios, condominios y mucho más. </p>',
@@ -38,10 +38,10 @@ class ScAboutUsesTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'nosotros.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

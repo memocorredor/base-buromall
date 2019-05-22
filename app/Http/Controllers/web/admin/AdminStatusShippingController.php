@@ -140,7 +140,7 @@ class AdminStatusShippingController extends Controller
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
-                'color' => $color,
+                'color' => $color
             ]);
         } else {
             $notification = array(
@@ -163,11 +163,11 @@ class AdminStatusShippingController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $icon = '';
+        $icon = $this->view_icon;
         $name_es = '';
         $name_en = '';
         $name_pt = '';
-        $color = '';
+        $color = '#34F56B';
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -195,7 +195,7 @@ class AdminStatusShippingController extends Controller
             'name_es' => $name_es,
             'name_en' => $name_en,
             'name_pt' => $name_pt,
-            'color' => $color,
+            'color' => $color
         ]);
     }
 
@@ -204,9 +204,9 @@ class AdminStatusShippingController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'name_es' => 'required',
-                'name_en' => 'required',
-                'name_pt' => 'required',
+                'name_es' => 'required|min:5|max:60',
+                'name_en' => 'required|min:5|max:60',
+                'name_pt' => 'required|min:5|max:60'
             ]);
             // Crea la instancia
             $data_field = new StatusShipping();
@@ -289,7 +289,7 @@ class AdminStatusShippingController extends Controller
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
-                'color' => $color,
+                'color' => $color
             ]);
         } else {
             $notification = array(
@@ -308,9 +308,9 @@ class AdminStatusShippingController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'name_es' => 'required',
-                    'name_en' => 'required',
-                    'name_pt' => 'required',
+                    'name_es' => 'required|min:5|max:60',
+                    'name_en' => 'required|min:5|max:60',
+                    'name_pt' => 'required|min:5|max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

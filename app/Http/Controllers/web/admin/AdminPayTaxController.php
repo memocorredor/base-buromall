@@ -5,8 +5,6 @@ namespace Buromall\Http\Controllers;
 use Buromall\Models\PayTax;
 use Buromall\Models\LocaleCountry;
 use Buromall\Models\CgDepartament;
-use Buromall\Models\CgCategorie;
-use Buromall\Models\CgSubCategorie;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
@@ -114,8 +112,6 @@ class AdminPayTaxController extends Controller
             $default_f = $data_item->default_f;
             $country_id = $data_item->country_id;
             $departaments_id = $data_item->departaments_id;
-            $categories_id = $data_item->categories_id;
-            $categories_sub_id = $data_item->categories_sub_id;
             $name = $data_item->name;
             $text_es = $data_item->text_es;
             $text_en = $data_item->text_en;
@@ -124,8 +120,6 @@ class AdminPayTaxController extends Controller
             // Carga de combos
             $data_country_id = LocaleCountry::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
             // Carga los metas en las variables
             $this->setMeta();
             // Carga los datos de la web
@@ -147,8 +141,6 @@ class AdminPayTaxController extends Controller
                 'data_item' => $data_item,
                 'data_country_id' => $data_country_id,
                 'data_departaments_id' => $data_departaments_id,
-                'data_categories_id' => $data_categories_id,
-                'data_categories_sub_id' => $data_categories_sub_id,
                 'id' => $id_sis,
                 'form_action' => __('app_messages.local_action_show'),
                 'created_at' => $date_created,
@@ -157,13 +149,11 @@ class AdminPayTaxController extends Controller
                 'default_f' => $default_f,
                 'country_id' => $country_id,
                 'departaments_id' => $departaments_id,
-                'categories_id' => $categories_id,
-                'categories_sub_id' => $categories_sub_id,
                 'name' => $name,
                 'text_es' => $text_es,
                 'text_en' => $text_en,
                 'text_pt' => $text_pt,
-                'tax' => $tax,
+                'tax' => $tax
             ]);
         } else {
             $notification = array(
@@ -187,10 +177,8 @@ class AdminPayTaxController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $default_f = 0;
-        $country_id = 0;
-        $departaments_id = 0;
-        $categories_id = 0;
-        $categories_sub_id = 0;
+        $country_id = 47;
+        $departaments_id = 1;
         $name = '';
         $text_es = '';
         $text_en = '';
@@ -199,8 +187,6 @@ class AdminPayTaxController extends Controller
         // Carga de combos
         $data_country_id = LocaleCountry::all();
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
-        $data_categories_sub_id = CgSubCategorie::all();
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -221,8 +207,6 @@ class AdminPayTaxController extends Controller
             'status_input' => $status_input,
             'data_country_id' => $data_country_id,
             'data_departaments_id' => $data_departaments_id,
-            'data_categories_id' => $data_categories_id,
-            'data_categories_sub_id' => $data_categories_sub_id,
             'id' => '',
             'form_action' => __('app_messages.local_action_new'),
             'created_at' => $date_created,
@@ -231,13 +215,11 @@ class AdminPayTaxController extends Controller
             'default_f' => $default_f,
             'country_id' => $country_id,
             'departaments_id' => $departaments_id,
-            'categories_id' => $categories_id,
-            'categories_sub_id' => $categories_sub_id,
             'name' => $name,
             'text_es' => $text_es,
             'text_en' => $text_en,
             'text_pt' => $text_pt,
-            'tax' => $tax,
+            'tax' => $tax
         ]);
     }
 
@@ -248,13 +230,11 @@ class AdminPayTaxController extends Controller
             $this->validate($request, [
                 'country_id' => 'required',
                 'departaments_id' => 'required',
-                'categories_id' => 'required',
-                'categories_sub_id' => 'required',
-                'name' => 'required',
-                'text_es' => 'required',
-                'text_en' => 'required',
-                'text_pt' => 'required',
-                'tax' => 'required',
+                'name' => 'required|min:2|max:60',
+                'text_es' => 'required|min:5|max:150',
+                'text_en' => 'required|min:5|max:150',
+                'text_pt' => 'required|min:5|max:150',
+                'tax' => 'required|min:5|max:6'
             ]);
             // Crea la instancia
             $data_field = new PayTax();
@@ -262,8 +242,6 @@ class AdminPayTaxController extends Controller
             $data_field->default_f = $request->get('default_f');
             $data_field->country_id = $request->get('country_id');
             $data_field->departaments_id = $request->get('departaments_id');
-            $data_field->categories_id = $request->get('categories_id');
-            $data_field->categories_sub_id = $request->get('categories_sub_id');
             $data_field->name = $request->get('name');
             $data_field->text_es = $request->get('text_es');
             $data_field->text_en = $request->get('text_en');
@@ -312,8 +290,6 @@ class AdminPayTaxController extends Controller
             $default_f = $data_item->default_f;
             $country_id = $data_item->country_id;
             $departaments_id = $data_item->departaments_id;
-            $categories_id = $data_item->categories_id;
-            $categories_sub_id = $data_item->categories_sub_id;
             $name = $data_item->name;
             $text_es = $data_item->text_es;
             $text_en = $data_item->text_en;
@@ -322,8 +298,6 @@ class AdminPayTaxController extends Controller
             // Carga de combos
             $data_country_id = LocaleCountry::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
             // Carga los metas en las variables
             $this->setMeta();
             // Carga los datos de la web
@@ -345,8 +319,6 @@ class AdminPayTaxController extends Controller
                 'data_item' => $data_item,
                 'data_country_id' => $data_country_id,
                 'data_departaments_id' => $data_departaments_id,
-                'data_categories_id' => $data_categories_id,
-                'data_categories_sub_id' => $data_categories_sub_id,
                 'id' => $id_sis,
                 'form_action' => __('app_messages.local_action_edit'),
                 'created_at' => $date_created,
@@ -355,13 +327,11 @@ class AdminPayTaxController extends Controller
                 'default_f' => $default_f,
                 'country_id' => $country_id,
                 'departaments_id' => $departaments_id,
-                'categories_id' => $categories_id,
-                'categories_sub_id' => $categories_sub_id,
                 'name' => $name,
                 'text_es' => $text_es,
                 'text_en' => $text_en,
                 'text_pt' => $text_pt,
-                'tax' => $tax,
+                'tax' => $tax
             ]);
         } else {
             $notification = array(
@@ -382,21 +352,17 @@ class AdminPayTaxController extends Controller
                 $this->validate($request, [
                     'country_id' => 'required',
                     'departaments_id' => 'required',
-                    'categories_id' => 'required',
-                    'categories_sub_id' => 'required',
-                    'name' => 'required',
-                    'text_es' => 'required',
-                    'text_en' => 'required',
-                    'text_pt' => 'required',
-                    'tax' => 'required',
+                    'name' => 'required|min:2|max:60',
+                    'text_es' => 'required|min:5|max:150',
+                    'text_en' => 'required|min:5|max:150',
+                    'text_pt' => 'required|min:5|max:150',
+                    'tax' => 'required|min:5|max:6'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
                 $data_item->default_f = $request->get('default_f');
                 $data_item->country_id = $request->get('country_id');
                 $data_item->departaments_id = $request->get('departaments_id');
-                $data_item->categories_id = $request->get('categories_id');
-                $data_item->categories_sub_id = $request->get('categories_sub_id');
                 $data_item->name = $request->get('name');
                 $data_item->text_es = $request->get('text_es');
                 $data_item->text_en = $request->get('text_en');

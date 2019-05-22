@@ -12,17 +12,17 @@ class ScMisionsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_misions')->delete();
-        
+
         DB::table('sc_misions')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '#fff',
                 'title_es' => 'Nuestra Misión',
                 'text_es' => '<p style="text-align: justify; ">Basados en una plataforma virtual<b>&nbsp;</b>en<b>&nbsp;Buromall.com</b> ofrecemos a nuestros clientes efectuar cualquier tipo de transacción de compras en líneas, pagos de servicios, condominios, transferencias de fondos a monederos en cualquier lugar o espacio de tiempo y desde la comodidad de sus dispositivos.</p>',
@@ -38,10 +38,10 @@ class ScMisionsTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'mision.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

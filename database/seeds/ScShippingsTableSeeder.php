@@ -12,17 +12,17 @@ class ScShippingsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_shippings')->delete();
-        
+
         DB::table('sc_shippings')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Envios',
                 'text_es' => '<p>Los pedidos se enviarán dentro de los dos días hábiles siguientes a la fecha de compra, con excepción de aquellos  que contengan artículos personalizados o con la leyenda de Producto sujeto a fabricación.
@@ -66,10 +66,10 @@ Semana Santa (durante la semana de Semana Santa)
                 'keywords_pt' => '',
                 'url_img' => 'politicas_envios.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

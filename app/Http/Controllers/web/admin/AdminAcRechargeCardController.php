@@ -252,7 +252,7 @@ class AdminAcRechargeCardController extends Controller
             $this->validate($request, [
                 'number' => 'required',
                 'value_card' => 'required',
-                'token' => 'required',
+                'token' => 'required'
             ]);
             // Crea la instancia
             $data_field = new AcRechargeCard();
@@ -383,7 +383,7 @@ class AdminAcRechargeCardController extends Controller
                     'user_create_id' => 'required',
                     'number' => 'required',
                     'value_card' => 'required',
-                    'token' => 'required',
+                    'token' => 'required'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

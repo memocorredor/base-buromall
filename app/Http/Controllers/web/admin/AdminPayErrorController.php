@@ -142,7 +142,7 @@ class AdminPayErrorController extends Controller
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
-                'color' => $color,
+                'color' => $color
             ]);
         } else {
             $notification = array(
@@ -199,7 +199,7 @@ class AdminPayErrorController extends Controller
             'name_es' => $name_es,
             'name_en' => $name_en,
             'name_pt' => $name_pt,
-            'color' => $color,
+            'color' => $color
         ]);
     }
 
@@ -208,10 +208,10 @@ class AdminPayErrorController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'error' => 'required',
-                'name_es' => 'required',
-                'name_en' => 'required',
-                'name_pt' => 'required',
+                'error' => 'required|min:2|max:10',
+                'name_es' => 'required|min:5|max:60',
+                'name_en' => 'required|min:5|max:60',
+                'name_pt' => 'required|min:5|max:60'
             ]);
             // Crea la instancia
             $data_field = new PayError();
@@ -297,7 +297,7 @@ class AdminPayErrorController extends Controller
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
-                'color' => $color,
+                'color' => $color
             ]);
         } else {
             $notification = array(
@@ -316,10 +316,10 @@ class AdminPayErrorController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'error' => 'required',
-                    'name_es' => 'required',
-                    'name_en' => 'required',
-                    'name_pt' => 'required',
+                    'error' => 'required|min:2|max:10',
+                    'name_es' => 'required|min:5|max:60',
+                    'name_en' => 'required|min:5|max:60',
+                    'name_pt' => 'required|min:5|max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

@@ -13,8 +13,6 @@ class PayTax extends Model
         'default_f',
         'country_id',
         'departaments_id',
-        'categories_id',
-        'categories_sub_id',
         'name',
         'text_es',
         'text_en',
@@ -30,15 +28,5 @@ class PayTax extends Model
     public function nameDepartament()
     {
         return $this->belongsTo(CgDepartament::class, 'departaments_id');
-    }
-
-    public function nameCategorie()
-    {
-        return $this->belongsTo(CgCategorie::class, 'categories_id');
-    }
-
-    public function nameSubCategorie()
-    {
-        return $this->belongsTo(CgSubCategorie::class, 'categories_sub_id');
     }
 }

@@ -168,7 +168,7 @@ class AdminScCookieController extends Controller
                 'text_pt' => $text_pt,
                 'description_pt' => $description_pt,
                 'keywords_pt' => $keywords_pt,
-                'url_img' => $url_img,
+                'url_img' => $url_img
             ]);
         } else {
             $notification = array(
@@ -191,9 +191,9 @@ class AdminScCookieController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $web_id = 1;
-        $country_id = 0;
-        $name_color = '';
+        $web_id = $this->web_sis;
+        $country_id = 47;
+        $name_color = '#ffffff';
         $title_es = '';
         $text_es = '';
         $description_es = '';
@@ -250,7 +250,7 @@ class AdminScCookieController extends Controller
             'text_pt' => $text_pt,
             'description_pt' => $description_pt,
             'keywords_pt' => $keywords_pt,
-            'url_img' => $url_img,
+            'url_img' => $url_img
         ]);
     }
 
@@ -262,18 +262,18 @@ class AdminScCookieController extends Controller
                 'web_id' => 'required',
                 'country_id' => 'required',
                 'name_color' => 'required',
-                'title_es' => 'required',
+                'title_es' => 'required|min:5|max:60',
                 'text_es' => 'required',
-                'description_es' => 'required',
+                'description_es' => 'required|min:5|max:155',
                 'keywords_es' => 'required',
-                'title_en' => 'required',
+                'title_en' => 'required|min:5|max:60',
                 'text_en' => 'required',
-                'description_en' => 'required',
+                'description_en' => 'required|min:5|max:155',
                 'keywords_en' => 'required',
-                'title_pt' => 'required',
-                'text_pt',
-                'description_pt' => 'required',
-                'keywords_pt' => 'required',
+                'title_pt' => 'required|min:5|max:60',
+                'text_pt' => 'required',
+                'description_pt' => 'required|min:5|max:155',
+                'keywords_pt' => 'required'
                 //'url_img' => 'required',
             ]);
             // Crea la instancia
@@ -395,7 +395,7 @@ class AdminScCookieController extends Controller
                 'text_pt' => $text_pt,
                 'description_pt' => $description_pt,
                 'keywords_pt' => $keywords_pt,
-                'url_img' => $url_img,
+                'url_img' => $url_img
             ]);
         } else {
             $notification = array(
@@ -417,18 +417,18 @@ class AdminScCookieController extends Controller
                     'web_id' => 'required',
                     'country_id' => 'required',
                     'name_color' => 'required',
-                    'title_es' => 'required',
+                    'title_es' => 'required|min:5|max:60',
                     'text_es' => 'required',
-                    'description_es' => 'required',
+                    'description_es' => 'required|min:5|max:155',
                     'keywords_es' => 'required',
-                    'title_en' => 'required',
+                    'title_en' => 'required|min:5|max:60',
                     'text_en' => 'required',
-                    'description_en' => 'required',
+                    'description_en' => 'required|min:5|max:155',
                     'keywords_en' => 'required',
-                    'title_pt' => 'required',
-                    'text_pt',
-                    'description_pt' => 'required',
-                    'keywords_pt' => 'required',
+                    'title_pt' => 'required|min:5|max:60',
+                    'text_pt' => 'required',
+                    'description_pt' => 'required|min:5|max:155',
+                    'keywords_pt' => 'required'
                     //'url_img' => 'required',
                 ]);
                 //Compara la info
@@ -499,5 +499,4 @@ class AdminScCookieController extends Controller
             return redirect()->route($this->form_view)->with($notification);
         }
     }
-
 }

@@ -12,17 +12,17 @@ class ScReturnsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_returns')->delete();
-        
+
         DB::table('sc_returns')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Devoluciones',
                 'text_es' => '<p><span style="line-height: 1.53846;">El producto deberá estar sin usar y ser devuelto con su material de empaque original. </span></p><p><span style="line-height: 1.53846;">Recibida la mercancía procederemos de inmediato al reembolso del importe pagado por la misma, utilizando el mismo medio de pago empleado para realizar la compra.</span><br></p><p>
@@ -41,7 +41,7 @@ El producto deberá estar sin usar y ser devuelto con su material de empaque ori
 El cliente tiene la opción de cambiar la mercancía en la tienda afiliada a PASEOMALL.COM, donde la adquirió, sin perjuicio de que podrá requerir que PASEOMALL.COM, proceda con tal devolución.
 
 Para hacer la devolución, el cliente deberá comunicarse a PASEOMALL.COM donde se le generará una guía prepagada para enviar el paquete de regreso. Con esta guía, el cliente podrá solicitar la recolección a la compañía de mensajería. El costo de dicho envío será absorbido por PASEOMALL.COM
-En caso de que el producto muestre rasgos de uso o abuso no procederá la devolución y la mercancía quedará a disposición del cliente. 
+En caso de que el producto muestre rasgos de uso o abuso no procederá la devolución y la mercancía quedará a disposición del cliente.
 
 El cliente cuenta con 30 días naturales para devolver un producto, que se cuentan a partir de la fecha de envío.',
                 'description_en' => 'Know our Returns Policy of Buromall',
@@ -52,10 +52,10 @@ El cliente cuenta con 30 días naturales para devolver un producto, que se cuent
                 'keywords_pt' => '',
                 'url_img' => 'politicas_devoluciones.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

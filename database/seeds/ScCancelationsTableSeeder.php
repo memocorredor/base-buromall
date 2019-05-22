@@ -12,17 +12,17 @@ class ScCancelationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_cancelations')->delete();
-        
+
         DB::table('sc_cancelations')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Cancelaciones',
             'text_es' => '<p><span style="line-height: 1.53846; font-weight: bold;">1. -</span><span style="line-height: 1.53846;"> Se podrá efectuar la cancelación total o parcial de una compra siempre y cuando la mercancía no haya sido cobrada o  bien dentro de las primeras 24 horas de haber sido cobrado el pedido. Si cuando recibamos tu comunicación la mercancía ya ha sido cobrada y/o enviada, es necesario realizar solicitud de reembolso. (Ver política de reembolso).</span><br></p><p><span style="font-weight: bold;">2. - </span>En caso de ya haber recibido la mercancía y el cliente desea proceder a un reembolso las cajas no deberán presentar alteración de su empaque original. Si la cancelación es por motivos personales esta llevará una <span style="font-weight: bold;">penalización del 10%</span>.
@@ -46,10 +46,10 @@ class ScCancelationsTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'politicas_cancelaciones.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

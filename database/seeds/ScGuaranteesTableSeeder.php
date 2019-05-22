@@ -12,17 +12,17 @@ class ScGuaranteesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_guarantees')->delete();
-        
+
         DB::table('sc_guarantees')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Garantias',
                 'text_es' => '<p><span style="line-height: 1.53846;">El proceso de garantía tiene los siguientes términos y condiciones:</span><br></p><p><span style="font-weight: bold;">1. -</span> La garantía de los productos vendidos por <span style="font-weight: bold; text-align: justify;">Buromall</span><span style="font-weight: bold;">, S.A.</span> estará escrita en su remisión o factura o bien mediante póliza del fabricante en donde establecerá el tiempo de garantía de acuerdo al producto y al proveedor.
@@ -66,10 +66,10 @@ El proceso de garantía tiene los siguientes términos y condiciones:
                 'keywords_pt' => '',
                 'url_img' => 'politicas_garantias.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

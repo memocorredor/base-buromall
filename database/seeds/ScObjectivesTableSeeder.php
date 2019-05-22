@@ -12,17 +12,17 @@ class ScObjectivesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_objectives')->delete();
-        
+
         DB::table('sc_objectives')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '#fff',
                 'title_es' => 'Nuestros Objetivos',
                 'text_es' => '<p style="text-align: justify; ">En <span style="font-weight: bold;">Buromall.com</span> con el apoyo de nuestros aliados buscamos:</p><p style="text-align: justify; ">Generar una plataforma de negocio divertida y dinámica donde nuestros clientes puedan socializar, generar comercios, negocios, ofertas y servicios en un solo espacio que brinde respuestas rápidas y fiables a cada necesidad.</p><p style="text-align: justify; ">Generar conjuntamente con nuestros aliados comerciales, sistemas de pagos integrales de manera fácil y segura a través de nuestras plataformas.</p><p style="text-align: justify; "><br></p>',
@@ -38,10 +38,10 @@ class ScObjectivesTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'objetivos.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

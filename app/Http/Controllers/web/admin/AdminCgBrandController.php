@@ -192,7 +192,7 @@ class AdminCgBrandController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'name' => 'required',
+                'name' => 'required|min:5|max:60'
             ]);
             // Crea la instancia
             $data_field = new CgBrand();
@@ -285,7 +285,7 @@ class AdminCgBrandController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'name' => 'required',
+                    'name' => 'required|min:5|max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

@@ -21,9 +21,9 @@ class CreatePayErrorCvvsTable extends Migration
             $table->integer('enable')->unsigned()->default('0');
             $table->string('icon', 30)->nullable()->default('');
             $table->string('error', 10)->nullable()->default('');
-            $table->string('name_es', 150)->nullable()->default('');
-            $table->string('name_en', 150)->nullable()->default('');
-            $table->string('name_pt', 150)->nullable()->default('');
+            $table->string('name_es', 60)->nullable()->default('');
+            $table->string('name_en', 60)->nullable()->default('');
+            $table->string('name_pt', 60)->nullable()->default('');
             $table->string('color', 60)->nullable()->default('');
             $table->timestamps();
         });

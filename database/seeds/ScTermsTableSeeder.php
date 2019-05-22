@@ -12,17 +12,17 @@ class ScTermsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('sc_terms')->delete();
-        
+
         \DB::table('sc_terms')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestros Términos y Condiciones',
                 'text_es' => '<p><span style="font-weight: bold;">TÉRMINOS Y CONDICIONES GENERALES: </span></p><p style="text-align: justify; ">Este contrato describe los términos y condiciones aplicables al uso de los servicios ofrecidos por <b>Buromall,</b><span style="font-weight: 700;"> S.A.</span>, dentro del sitio www.Buromall.com, en adelante denominado EL SITIO o/&nbsp;<span style="font-weight: 700;">Buromall.com</span>&nbsp;Mediante la aceptación de los Términos y Condiciones Generales en el momento del registro, el usuario acepta las políticas aquí contenidas.
@@ -64,7 +64,7 @@ Se encuentra prohibido utilizar el Servicio para el envío masivo de correo elec
 Se encuentra prohibido superar o alterar por cualquier medio las limitaciones técnicas del servicio.
 Se encuentra prohibido llevar a cabo cualquier tipo de acto tendiente a evitar los procedimientos de autenticación o seguridad, componente de red o cuenta de usuario con el fin de acceder a los datos, cuentas o servidores a los cuales el usuario no está expresamente autorizado. </p><p style="text-align: justify; ">Esta prohibición se aplica tanto en el caso que el intento sea exitoso o como también en el caso que el mismo sea fallido, e incluye el uso no autorizado de scanners u otras herramientas con el fin de lograr accesos no autorizados.
 Se encuentra terminantemente prohibido el monitoreo no autorizado de datos o de tráfico, así como también la utilización excesiva del ancho de banda mediante la utilización de programas, scripts o comandos para sobrecargar los sitios web de&nbsp;<span style="font-weight: 700;">Buromall.com</span>&nbsp;o cualquier otro.
-</p><p style="text-align: justify; ">El usuario no podrá utilizar los servicios de almacenamiento para fines que no sean el alojamiento y servidor de comercio electrónico de páginas de Internet a través de un navegador de Internet. El usuario tampoco podrá utilizar dichos servicios para almacenar información que no esté relacionada con las operaciones de la Tienda Virtual,&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;cuenta con políticas internas y puede limitar el número de descargas desde el sitio del usuario si la capacidad de procesamiento del servidor de&nbsp;<span style="font-weight: bold;">Buromall.com</span>, la memoria del servidor o los controles de abuso indican que el usuario 
+</p><p style="text-align: justify; ">El usuario no podrá utilizar los servicios de almacenamiento para fines que no sean el alojamiento y servidor de comercio electrónico de páginas de Internet a través de un navegador de Internet. El usuario tampoco podrá utilizar dichos servicios para almacenar información que no esté relacionada con las operaciones de la Tienda Virtual,&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;cuenta con políticas internas y puede limitar el número de descargas desde el sitio del usuario si la capacidad de procesamiento del servidor de&nbsp;<span style="font-weight: bold;">Buromall.com</span>, la memoria del servidor o los controles de abuso indican que el usuario
 
 está usando los servicios de almacenamiento con fines distintos a la satisfacción de las necesidades de comercio electrónico de una empresa pequeña/mediana e independiente.
 </p><p style="text-align: justify; ">El incumplimiento de cualquiera de las disposiciones de los presente Términos y Condiciones por parte del usuario constituirá una violación del presente y será causal de cancelación y/o extinción inmediata de la relación comercial con&nbsp;<span style="font-weight: bold;">Buromall.com</span></p><p style="text-align: justify; "><span style="font-weight: bold;">VIII.	TARIFAS:</span>&nbsp;El usuario pagará las tarifas correspondientes por la prestación de los servicios que solicite, de conformidad con la Política de Tarifas de&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;que se incorporan al presente por vía de referencia.&nbsp;<span style="font-weight: bold;">Buromall.com</span>&nbsp;podrá modificar la Política de Tarifas y las tarifas que cargue por sus Servicios en cualquier momento.
@@ -90,7 +90,7 @@ Mediante la aceptación de los Términos y Condiciones Generales en el momento d
 CUALQUIER PERSONA QUE NO ACEPTE ESTOS TÉRMINOS Y CONDICIONES GENERALES, LOS CUALES TIENEN UN CARÁCTER OBLIGATORIO Y VINCULANTE, DEBERÁ ABSTENERSE DE UTILIZAR EL SITIO Y/O LOS SERVICIOS.
 El usuario debe leer, entender y aceptar todas las condiciones establecidas en los Términos y Condiciones así como en los demás documentos incorporados a los mismos por referencia, previo a la utilización de paseomall.com
 I.	Objeto
-PASEOMALL.COM permite a los usuarios montar y administrar su propio negocio virtual a través de la utilización de un software desarrollado y de propiedad de PASEOMALL.COM, S.A.  que posibilita a los usuarios crear y diseñar su propio comercio electrónico. 
+PASEOMALL.COM permite a los usuarios montar y administrar su propio negocio virtual a través de la utilización de un software desarrollado y de propiedad de PASEOMALL.COM, S.A.  que posibilita a los usuarios crear y diseñar su propio comercio electrónico.
 II.	Licencia de Software
 Los Servicios que provee PASEOMALL.COM así como todos los derechos de propiedad intelectual inherentes al Software son propiedad exclusiva de PASEOMALL.COM, S.A. y se reserva todos los derechos sobre el Software que no se le otorgan expresamente al usuario por el presente.
 PASEOMALL.COM otorga al usuario una licencia limitada, revocable, no exclusiva e intransferible de acceso y uso remoto del Software, únicamente a los fines de desarrollar y mantener una tienda virtual alojada en los Servidores de PASEOMALL.COM donde el usuario ofrezca productos o servicios propios o de terceros ("Tienda Virtual").
@@ -142,7 +142,7 @@ Está prohibido utilizar el negocio virtual para hospedar en forma gratuita u on
 Se encuentra prohibido superar o alterar por cualquier medio las limitaciones técnicas del servicio.
 Se encuentra prohibido llevar a cabo cualquier tipo de acto tendiente a evitar los procedimientos de autenticación o seguridad, componente de red o cuenta de usuario con el fin de acceder a los datos, cuentas o servidores a los cuales el usuario no está expresamente autorizado. Esta prohibición se aplica tanto en el caso que el intento sea exitoso o como también en el caso que el mismo sea fallido, e incluye el uso no autorizado de scanners u otras herramientas con el fin de lograr accesos no autorizados.
 Se encuentra terminantemente prohibido el monitoreo no autorizado de datos o de tráfico, así como también la utilización excesiva del ancho de banda mediante la utilización de programas, scripts o comandos para sobrecargar los sitios web de PASEOMALL.COM o cualquier otro.
-El usuario no podrá utilizar los servicios de almacenamiento para fines que no sean el alojamiento y servidor de comercio electrónico de páginas de Internet a través de un navegador de Internet. El usuario tampoco podrá utilizar dichos servicios para almacenar información que no esté relacionada con las operaciones de la Tienda Virtual, PASEOMALL.COM cuenta con políticas internas y puede limitar el número de descargas desde el sitio del usuario si la capacidad de procesamiento del servidor de PASEOMALL.COM, la memoria del servidor o los controles de abuso indican que el usuario 
+El usuario no podrá utilizar los servicios de almacenamiento para fines que no sean el alojamiento y servidor de comercio electrónico de páginas de Internet a través de un navegador de Internet. El usuario tampoco podrá utilizar dichos servicios para almacenar información que no esté relacionada con las operaciones de la Tienda Virtual, PASEOMALL.COM cuenta con políticas internas y puede limitar el número de descargas desde el sitio del usuario si la capacidad de procesamiento del servidor de PASEOMALL.COM, la memoria del servidor o los controles de abuso indican que el usuario
 
 está usando los servicios de almacenamiento con fines distintos a la satisfacción de las necesidades de comercio electrónico de una empresa pequeña/mediana e independiente.
 El incumplimiento de cualquiera de las disposiciones de los presente Términos y Condiciones por parte del usuario constituirá una violación del presente y será causal de cancelación y/o extinción inmediata de la relación comercial con PASEOMALL.COM
@@ -179,10 +179,10 @@ PASEOMALL.COM considerará uso abusivo del Servicio cualquiera de las siguientes
                 'keywords_pt' => '',
                 'url_img' => 'terms.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

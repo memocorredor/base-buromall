@@ -12,17 +12,17 @@ class ScRechargesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_recharges')->delete();
-        
+
         DB::table('sc_recharges')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Como recargar mi monedero',
                 'text_es' => '<p>Para hacer tus recargas al monedero puedes hacerlo de la siguiente forma:</p><ul><li>Por medio de una transferencia bancaria.</li><li>Por medio de una transferencia Wester Union.</li><li>Consignación a nuestra cuenta corriente.</li></ul>',
@@ -38,10 +38,10 @@ class ScRechargesTableSeeder extends Seeder
                 'keywords_pt' => '',
                 'url_img' => 'recarga_wallet.jpg',
                 'created_at' => '2019-01-01 12:00:00',
-                'updated_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

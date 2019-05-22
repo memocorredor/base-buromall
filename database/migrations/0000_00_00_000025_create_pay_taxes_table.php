@@ -22,9 +22,7 @@ class CreatePayTaxesTable extends Migration
             $table->integer('default_f')->unsigned()->default('0');
             $table->integer('country_id')->unsigned()->default('0');
             $table->integer('departaments_id')->unsigned()->default('0');
-            $table->integer('categories_id')->unsigned()->default('0');
-            $table->integer('categories_sub_id')->unsigned()->default('0');
-            $table->string('name', 100)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
             $table->string('text_es', 150)->nullable()->default('');
             $table->string('text_en', 150)->nullable()->default('');
             $table->string('text_pt', 150)->nullable()->default('');
@@ -35,8 +33,6 @@ class CreatePayTaxesTable extends Migration
         Schema::table('pay_taxes', function ($table) {
             $table->foreign('country_id')->references('id')->on('locale_countries');
             $table->foreign('departaments_id')->references('id')->on('cg_departaments');
-            $table->foreign('categories_id')->references('id')->on('cg_categories');
-            $table->foreign('categories_sub_id')->references('id')->on('cg_sub_categories');
         });
     }
 

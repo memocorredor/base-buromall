@@ -12,23 +12,23 @@ class ScPrivaciesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('sc_privacies')->delete();
-        
+
         DB::table('sc_privacies')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
                 'web_id' => 1,
-                'country_id' => 174,
+                'country_id' => 47,
                 'name_color' => '',
                 'title_es' => 'Nuestras Políticas de Privacidad',
                 'text_es' => '<p><span style="line-height: 1.53846;">Tipo de información personal que se obtiene
 
 En&nbsp;</span><span style="font-weight: 700; text-align: justify;">Buromall</span><span style="font-weight: bold;">, S.A.&nbsp;</span>recogemos información de diferentes maneras desde varias áreas de nuestro sitio web.</p><p>Se encuentra sujeta a las normas de confidencialidad y privacidad toda aquella información personal que el usuario ingresa voluntariamente a nuestro sitio, la creación del perfil personal, la inscripción al servicio de notificación de ofertas especiales a través de correo electrónico, el registro a nuestros programas de lealtad, el envío de postales electrónicas, así como la información que ingresa durante su participación en los concursos, promociones y encuestas en línea que llevamos a cabo ocasionalmente. </p><p>Para cada uno de estos programas, la información que se solicita es distinta y se almacena en bases de datos separadas.
-</p><p> 
+</p><p>
 Contacto en línea: la información solicitada en esta sección permite a&nbsp;<span style="font-weight: 700; text-align: justify;">Buromall</span><span style="font-weight: bold;">, S.A.&nbsp;</span>contactar a los clientes cuando sea necesario. </p><p>Entre la información solicitada al usuario se encuentra: nombre, apellido, dirección, dirección de correo electrónico y número telefónico.
 
 Los usuarios pueden ser contactados por teléfono, correo o correo electrónico si se requiriera información adicional para completar alguna transacción. </p><p>Al comprar en línea, se solicitarán datos de tarjeta de crédito.
@@ -92,7 +92,7 @@ Derechos ARCO.
 Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, así como de oponerse al tratamiento de los mismos o revocar el consentimiento que para tal fin nos haya otorgado, a través de los procedimientos que hemos implementado.
 </p><p><b>
 Para conocer dichos procedimientos,  los requisitos y plazos, se puede poner en contacto con nuestro departamento de datos personales Torre Financial Center, Piso 35, Calle 50 y Elvira Méndez, El Paical, Ciudad de Panamá República de Panamá, al teléfono (507) 297-4757.
-</b></p><p> 
+</b></p><p>
 Cambios en el Aviso de Privacidad
 
 Nos reservamos el derecho de efectuar en cualquier momento modificaciones o actualizaciones al presente aviso de privacidad, para la atención de novedades legislativas o jurisprudenciales, políticas internas, nuevos requerimientos para la prestación u ofrecimiento de nuestros servicios o productos y prácticas del mercado.
@@ -195,7 +195,7 @@ Cambios en el Aviso de Privacidad
 
 Nos reservamos el derecho de efectuar en cualquier momento modificaciones o actualizaciones al presente aviso de privacidad, para la atención de novedades legislativas o jurisprudenciales, políticas internas, nuevos requerimientos para la prestación u ofrecimiento de nuestros servicios o productos y prácticas del mercado.
 
-Estas modificaciones estarán disponibles al público a través de los siguientes medios: en nuestra página de Internet  www.paseomall.com,  sección aviso de privacidad o se las haremos llegar al último correo electrónico que nos haya proporcionado.  
+Estas modificaciones estarán disponibles al público a través de los siguientes medios: en nuestra página de Internet  www.paseomall.com,  sección aviso de privacidad o se las haremos llegar al último correo electrónico que nos haya proporcionado.
 
 Aceptación de los términos
 
@@ -212,10 +212,10 @@ Si el usuario utiliza los servicios de PASEOMALL.COM en cualquiera de sus sitios
         'keywords_pt' => '',
         'url_img' => 'politicas_privacidad.jpg',
         'created_at' => '2019-01-01 12:00:00',
-        'updated_at' => '2019-01-01 12:00:00',
+        'updated_at' => '2019-01-01 12:00:00'
     ),
 ));
-        
-        
+
+
     }
 }

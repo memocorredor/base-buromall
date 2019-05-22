@@ -13,9 +13,8 @@ class TypeStoreTableSeeder extends Seeder
     {
         DB::table('type_stores')->delete();
 		$type = array(
-			array('enable' => '1', 'icon' => '', 'name_es' => 'N/A', 'name_en' => 'N/A', 'name_pt' => 'N/A', 'color' => ''),
-            array('enable' => '1',  'icon' => '', 'name_es' => 'Tienda', 'name_en' => 'Store', 'name_pt' => 'Loja', 'color' => ''),
-            array('enable' => '1',  'icon' => '', 'name_es' => 'Desde Casa', 'name_en' => 'From home', 'name_pt' => 'A partir de casa', 'color' => '')
+            array('enable' => '1', 'icon' => 'fas fa-store', 'name_es' => 'Tienda', 'name_en' => 'Store', 'name_pt' => 'Loja', 'color' => '#34F56B', 'created_at' => '2019-01-01 12:00:00', 'updated_at' => '2019-01-01 12:00:00'),
+            array('enable' => '1', 'icon' => 'fas fa-store', 'name_es' => 'Desde Casa', 'name_en' => 'From home', 'name_pt' => 'A partir de casa', 'color' => '#34F56B', 'created_at' => '2019-01-01 12:00:00', 'updated_at' => '2019-01-01 12:00:00')
         );
 		DB::table('type_stores')->insert($type);
     }

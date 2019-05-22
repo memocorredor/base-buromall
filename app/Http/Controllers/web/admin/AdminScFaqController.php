@@ -149,7 +149,7 @@ class AdminScFaqController extends Controller
                 'title_en' => $title_en,
                 'text_en' => $text_en,
                 'title_pt' => $title_pt,
-                'text_pt' => $text_pt,
+                'text_pt' => $text_pt
             ]);
         } else {
             $notification = array(
@@ -212,7 +212,7 @@ class AdminScFaqController extends Controller
             'title_en' => $title_en,
             'text_en' => $text_en,
             'title_pt' => $title_pt,
-            'text_pt' => $text_pt,
+            'text_pt' => $text_pt
         ]);
     }
 
@@ -222,12 +222,12 @@ class AdminScFaqController extends Controller
         if ($request->get('process') === 'add') {
             $this->validate($request, [
                 'categories_faq_id' => 'required',
-                'title_es' => 'required',
-                'text_es' => 'required',
-                'title_en' => 'required',
-                'text_en' => 'required',
-                'title_pt' => 'required',
-                'text_pt' => 'required',
+                'title_es' => 'required|min:5|max:150',
+                'text_es' => 'required|min:20',
+                'title_en' => 'required|min:5|max:150',
+                'text_en' => 'required|min:20',
+                'title_pt' => 'required|min:5|max:150',
+                'text_pt' => 'required|min:20'
                 //TODO:hay que verificar en los SC que falta tanto en edicion como en guradado haciones de verificacion
             ]);
             // Crea la instancia
@@ -321,7 +321,7 @@ class AdminScFaqController extends Controller
                 'title_en' => $title_en,
                 'text_en' => $text_en,
                 'title_pt' => $title_pt,
-                'text_pt' => $text_pt,
+                'text_pt' => $text_pt
             ]);
         } else {
             $notification = array(
@@ -341,12 +341,12 @@ class AdminScFaqController extends Controller
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
                     'categories_faq_id' => 'required',
-                    'title_es' => 'required',
-                    'text_es' => 'required',
-                    'title_en' => 'required',
-                    'text_en' => 'required',
-                    'title_pt' => 'required',
-                    'text_pt' => 'required',
+                    'title_es' => 'required|min:5|max:150',
+                    'text_es' => 'required|min:20',
+                    'title_en' => 'required|min:5|max:150',
+                    'text_en' => 'required|min:20',
+                    'title_pt' => 'required|min:5|max:150',
+                    'text_pt' => 'required|min:20'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

@@ -22,15 +22,15 @@ class CreateScRechargesTable extends Migration
             $table->integer('web_id')->unsigned()->default('0');
             $table->integer('country_id')->unsigned()->default('0');
             $table->string('name_color', 50)->nullable()->default('');
-            $table->string('title_es', 150)->nullable()->default('');
+            $table->string('title_es', 60)->nullable()->default('');
             $table->text('text_es')->nullable();
             $table->text('description_es')->nullable();
             $table->text('keywords_es')->nullable();
-            $table->string('title_en', 150)->nullable()->default('');
+            $table->string('title_en', 60)->nullable()->default('');
             $table->text('text_en')->nullable();
             $table->text('description_en')->nullable();
             $table->text('keywords_en')->nullable();
-            $table->string('title_pt', 150)->nullable()->default('');
+            $table->string('title_pt', 60)->nullable()->default('');
             $table->text('text_pt')->nullable();
             $table->text('description_pt')->nullable();
             $table->text('keywords_pt')->nullable();

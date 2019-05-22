@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             ScFaqsTableSeeder::class,
             WebSiteTableSeeder::class,
             PayTaxesTableSeeder::class,
-            UsersTableSeeder::class
+            //UsersTableSeeder::class
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $this->call(PayTaxesTableSeeder::class);

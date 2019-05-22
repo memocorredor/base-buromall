@@ -78,6 +78,7 @@ class CoreUser
             } else {
                 $continent_user = '-';
             }
+            
             if (!empty($session_data->geoIp->country_code)) {
                 $countrie_user =  $session_data->geoIp->country_name;
             } else {

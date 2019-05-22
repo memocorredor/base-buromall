@@ -181,6 +181,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -233,6 +234,7 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Tracker' => 'PragmaRX\Tracker\Vendor\Laravel\Facade',
         'Image' => Intervention\Image\Facades\Image::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
 
     ],
 

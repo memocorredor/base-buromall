@@ -22,7 +22,8 @@
         "orangehill/iseed": "^2.6",
         "pragmarx/countries": "^0.6.0",
         "pragmarx/tracker": "^3.3",
-        "pusher/pusher-php-server": "~3.0"
+        "pusher/pusher-php-server": "~3.0",
+        "torann/geoip": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

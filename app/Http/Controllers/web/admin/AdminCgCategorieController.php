@@ -511,4 +511,14 @@ class AdminCgCategorieController extends Controller
             return redirect()->route($this->form_view)->with($notification);
         }
     }
+
+    // Carga del los combos
+    public function getCategories(Request $request, $id)
+    {
+        if($request->ajax()) 
+        { 
+            $data_cambo = CgCategorie::where('departaments_id', $id)->get();
+            return response()->json($data_cambo); 
+        }
+    }
 }

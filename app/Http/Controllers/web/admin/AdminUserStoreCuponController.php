@@ -154,8 +154,8 @@ class AdminUserStoreCuponController extends Controller
             $data_user_id = User::all();
             $data_user_store_id = UserStore::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();
             $data_pictures = UserItemMedia::where('cupon_id', $id_a)->get();
@@ -242,9 +242,9 @@ class AdminUserStoreCuponController extends Controller
         $enable = 1;
         $user_id = Auth::user()->id;
         $store_id = 0;
-        $departaments_id = '';
-        $categories_id = '';
-        $categories_sub_id = '';
+        $departaments_id = 0;
+        $categories_id = 0;
+        $categories_sub_id = 0;
         $status_product_id = '';
         $type_transaction_id = '';
         $url_title_es = '';
@@ -272,8 +272,8 @@ class AdminUserStoreCuponController extends Controller
         $data_user_id = User::all();
         $data_user_store_id = UserStore::all();
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
-        $data_categories_sub_id = CgSubCategorie::all();
+        $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
+        $data_categories_sub_id = CgSubCategorie::where('categories_id', '1')->get();
         $data_status_product_id = StatusProduct::all();
         $data_type_transaction_id = TypeTransaction::all();
         $data_pictures = 0;
@@ -520,8 +520,8 @@ class AdminUserStoreCuponController extends Controller
             $data_user_id = User::all();
             $data_user_store_id = UserStore::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();
             $data_pictures = UserItemMedia::where('cupon_id', $id_a)->get();

@@ -188,8 +188,8 @@ class AdminUserStoreProductController extends Controller
             $data_status_product_id = StatusProduct::all();
             $data_cg_brand_id = CgBrand::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_type_transaction_id = TypeTransaction::all();
             $data_type_auction_id = TypeAuction::all();
             $data_pay_tax_id = PayTax::all();
@@ -375,8 +375,8 @@ class AdminUserStoreProductController extends Controller
         $data_status_product_id = StatusProduct::all();
         $data_cg_brand_id = CgBrand::all();
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
-        $data_categories_sub_id = CgSubCategorie::all();
+        $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
+        $data_categories_sub_id = CgSubCategorie::where('categories_id', '1')->get();
         $data_type_transaction_id = TypeTransaction::all();
         $data_type_auction_id = TypeAuction::all();
         $data_pay_tax_id = PayTax::all();
@@ -699,8 +699,8 @@ class AdminUserStoreProductController extends Controller
             $data_status_product_id = StatusProduct::all();
             $data_cg_brand_id = CgBrand::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_type_transaction_id = TypeTransaction::all();
             $data_type_auction_id = TypeAuction::all();
             $data_pay_tax_id = PayTax::all();

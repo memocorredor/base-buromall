@@ -142,8 +142,8 @@ class AdminUserNewController extends Controller
             // Carga de combos
             $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_pictures = UserItemMedia::where('news_id', $id_a)->get();
             // Carga los metas en las variables
             $this->setMeta();
@@ -216,9 +216,9 @@ class AdminUserNewController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $user_id = Auth::user()->id;
-        $departaments_id = '';
-        $categories_id = '';
-        $categories_sub_id = '';
+        $departaments_id = 0;
+        $categories_id = 0;
+        $categories_sub_id = 0;
         $url_title_es = '';
         $title_es = '';
         $text_es = '';
@@ -238,8 +238,8 @@ class AdminUserNewController extends Controller
         // Carga de combos
         $data_user_id = User::all();
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
-        $data_categories_sub_id = CgSubCategorie::all();
+        $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
+        $data_categories_sub_id = CgSubCategorie::where('categories_id', '1')->get();
         $data_pictures = 0;
         // Carga los metas en las variables
         $this->setMeta();
@@ -450,8 +450,8 @@ class AdminUserNewController extends Controller
             // Carga de combos
             $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_pictures = UserItemMedia::where('news_id', $id_a)->get();
             // Carga los metas en las variables
             $this->setMeta();

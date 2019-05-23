@@ -152,8 +152,8 @@ class AdminUserClassifiedController extends Controller
             // Carga de combos
             $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_country_id = LocaleCountry::all();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();
@@ -239,9 +239,9 @@ class AdminUserClassifiedController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $user_id = Auth::user()->id;
-        $departaments_id = '';
-        $categories_id = '';
-        $categories_sub_id = '';
+        $departaments_id = 0;
+        $categories_id = 0;
+        $categories_sub_id = 0;
         $country_id = '';
         $status_product_id = '';
         $type_transaction_id = '';
@@ -268,8 +268,8 @@ class AdminUserClassifiedController extends Controller
         // Carga de combos
         $data_user_id = User::all();
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
-        $data_categories_sub_id = CgSubCategorie::all();
+        $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
+        $data_categories_sub_id = CgSubCategorie::where('categories_id', '1')->get();
         $data_country_id = LocaleCountry::all();
         $data_status_product_id = StatusProduct::all();
         $data_type_transaction_id = TypeTransaction::all();
@@ -513,8 +513,8 @@ class AdminUserClassifiedController extends Controller
             // Carga de combos
             $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
-            $data_categories_sub_id = CgSubCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
+            $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
             $data_country_id = LocaleCountry::all();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();

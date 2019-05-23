@@ -131,7 +131,7 @@ class AdminCgSubCategorieController extends Controller
             $color = $data_item->color;
             // Carga de combos
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
             // Carga los metas en las variables
             $this->setMeta();
             // Carga los datos de la web
@@ -201,8 +201,8 @@ class AdminCgSubCategorieController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $icon = $this->view_icon;
-        $departaments_id = 1;
-        $categories_id = 1;
+        $departaments_id = 0;
+        $categories_id = 0;
         $url_name_es = '';
         $name_es = '';
         $title_es = '';
@@ -222,7 +222,7 @@ class AdminCgSubCategorieController extends Controller
         $color = '#34F56B';
         // Carga de combos
         $data_departaments_id = CgDepartament::all();
-        $data_categories_id = CgCategorie::all();
+        $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -376,7 +376,7 @@ class AdminCgSubCategorieController extends Controller
             $color = $data_item->color;
             // Carga de combos
             $data_departaments_id = CgDepartament::all();
-            $data_categories_id = CgCategorie::all();
+            $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
             // Carga los metas en las variables
             $this->setMeta();
             // Carga los datos de la web

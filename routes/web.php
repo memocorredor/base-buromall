@@ -691,7 +691,26 @@ Route::post(__('route_admin.admin_config_website_store'), 'AdminWebSiteControlle
 Route::get(__('route_admin.admin_config_website_edit').'{id}', 'AdminWebSiteController@edit')->name('admin.config_website.edit');
 Route::put(__('route_admin.admin_config_website_update').'{id}', 'AdminWebSiteController@update')->name('admin.config_website.update');
 Route::delete(__('route_admin.admin_config_website_delete').'{id}', 'AdminWebSiteController@destroy')->name('admin.config_website.delete');
-/* ROUTE SITE SAVE DATA CURRENCY */
-Route::post('/new-currnecy', 'CurrencyController@store')->name('new.currency');
+/*
+|--------------------------------------------------------------------------
+| Web Routes save currency
+|--------------------------------------------------------------------------
+|
+| Ruta para guardar valores de moneda del dia
+|
+*/
+Route::post('new-currnecy', 'CurrencyController@store')->name('new.currency');
+/*
+|--------------------------------------------------------------------------
+| Web Routes load data combos
+|--------------------------------------------------------------------------
+|
+| Rutas para carga de los combos por ajax
+|
+*/
+/* ROUTE COMBO CATEGORIE */
+Route::get('load-categorie/{id}', 'AdminCgCategorieController@getCategories');
+/* ROUTE COMBO SUB CATEGORIE */
+Route::get('load-subcategorie/{id}', 'AdminCgSubCategorieController@getSubCategories');
 
 

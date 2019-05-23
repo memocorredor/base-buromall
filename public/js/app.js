@@ -98041,6 +98041,22 @@ $(function () {
       theCount.css('font-weight', 'normal');
     }
   });
+  $('#field-form-departaments-id').on('change', function () {
+    $.ajax({
+      url: "../../load-categorie/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(response) {
+        $('#field-form-categories-id').html('');
+        $('#field-form-categories_sub-id').html('');
+        $("#field-form-categories-id").html('<option value="" selected="true"> Selecionar </option>');
+        response.forEach(function (element) {
+          $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+        });
+        $('#field-form-categories-id').trigger("chosen:update");
+      }
+    });
+  });
   var map_canvas = document.querySelector("#gomap-canvas");
 
   if (typeof map_canvas != 'undefined' && map_canvas != null) {

@@ -35,7 +35,7 @@
                             <span>{{ $row_items->created_at }}</span>
                         </div>
                     </div>
-                    <img class="card-img img-fluid" src="{{ asset(Buromall\AppCore\coreImage::imageNews(3)) }}" alt="imagen - noticias">
+                    <img class="card-img img-fluid" src="{{ asset(Buromall\AppCore\coreImage::imageNews($row_items->id)) }}" alt="imagen - noticias">
                     <div class="card-stats">
                         <div class="row no-gutters">
                             <div class="col-4 d-flex justify-content-center border-stat">

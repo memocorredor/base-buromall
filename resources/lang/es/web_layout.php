@@ -112,6 +112,7 @@ return [
      */
     'local_legen_records' => 'Informacion del registro',
     'local_legen_show_registro' => 'Mostrar registro',
+    'local_legen_show_registro_public' => 'Perfil publico',
     'local_legen_default_registro' => 'Registro por default',
     'local_legen_newsletter' => 'Recibir noticias',
     'local_legen_dates' => 'Fechas del registro',
@@ -190,6 +191,9 @@ return [
 
     'local_web' => 'Web',
     'local_country' => 'Pais',
+    'local_status_user' => 'Estado del usuario',
+    'local_plan_user' => 'Plan actual en sistema',
+    'local_gender_user' => 'Genero',
     'local_stores' => 'Tiendas',
     'local_branchs' => 'Sucursales',
     'local_catalog' => 'catalogo',

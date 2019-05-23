@@ -32,25 +32,25 @@
         <nav class="offside-sidebar-nav">
             <ul class="metismenu" id="user-side-menu">
                 <li>
-                    <a href="{{ route('profile.user', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user', Auth::user()->username) }}">
                         <i class="fas fa-user"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_info')</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_friends', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_friends', Auth::user()->username) }}">
                         <i class="fas fa-user-friends"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_friends')</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_edit', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_edit', Auth::user()->username) }}">
                         <i class="fas fa-user-cog"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_config_info')</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_notifications', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_notifications', Auth::user()->username) }}">
                         <i class="fas fa-user-shield"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_notify')</span>
                     </a>

@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('birthdate', 100)->nullable()->default('');
             $table->text('description_es')->nullable();
             $table->text('description_en')->nullable();
-            $table->text('description_pr')->nullable();
+            $table->text('description_pt')->nullable();
             $table->integer('country_id')->unsigned()->default('0');
             $table->integer('state_id')->unsigned()->default('0');
             $table->integer('city_id')->unsigned()->default('0');

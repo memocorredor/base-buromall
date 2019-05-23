@@ -12,12 +12,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('users')->delete();
-        
+
         DB::table('users')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 0,
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
                 'birthdate' => '',
                 'description_es' => '',
                 'description_en' => '',
-                'description_pr' => '',
+                'description_pt' => '',
                 'country_id' => 47,
                 'state_id' => 779,
                 'city_id' => 12688,
@@ -70,10 +70,10 @@ class UsersTableSeeder extends Seeder
                 'salt' => '',
                 'ip_joined' => '',
                 'joined' => '',
-                'created_at' => '2019-01-01 12:00:00', 
+                'created_at' => '2019-01-01 12:00:00',
                 'updated_at' => '2019-01-01 12:00:00'
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'enable' => 0,
@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
                 'birthdate' => '',
                 'description_es' => '',
                 'description_en' => '',
-                'description_pr' => '',
+                'description_pt' => '',
                 'country_id' => 47,
                 'state_id' => 779,
                 'city_id' => 12688,
@@ -126,11 +126,11 @@ class UsersTableSeeder extends Seeder
                 'salt' => '',
                 'ip_joined' => '',
                 'joined' => '',
-                'created_at' => '2019-01-01 12:00:00', 
+                'created_at' => '2019-01-01 12:00:00',
                 'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

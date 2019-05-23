@@ -31,6 +31,7 @@ return [
       |--------------------------------------------------------------------------
      */
     'local_msg_warning_id_null' => 'Error, no existe este registro!',
+    'local_msg_warning_id_no_mach' => 'Error, no concuerda la informacion de usuario!',
     /*
       |--------------------------------------------------------------------------
       |MESSAGES SUCCESS CRUD

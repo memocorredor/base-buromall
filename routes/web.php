@@ -716,5 +716,7 @@ Route::get('load-city/{id}', 'AdminLocaleCityController@getCity');
 Route::get('load-categorie/{id}', 'AdminCgCategorieController@getCategories');
 /* ROUTE COMBO SUB CATEGORIE */
 Route::get('load-subcategorie/{id}', 'AdminCgSubCategorieController@getSubCategories');
+/* ROUTE COMBO BRANCH */
+Route::get('load-branch/{id}', 'AdminUserStoreBranchController@getBranch');
 
 

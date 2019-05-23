@@ -98060,6 +98060,11 @@ $(function () {
 
   $('#field-form-categories-id').on('change', function () {
     cboLoadSubCategories($(this).val());
+  }); //////////////////
+  //Change branch combo
+
+  $('#field-form-store-id').on('change', function () {
+    cboLoadBranch($(this).val());
   });
   var map_canvas = document.querySelector("#gomap-canvas");
 
@@ -98132,6 +98137,22 @@ function cboLoadSubCategories(value) {
         $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
       });
       $("#field-form-categories_sub-id").selectpicker("refresh");
+    }
+  });
+}
+
+function cboLoadBranch(value) {
+  $.ajax({
+    url: "../../load-branch/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseBranc) {
+      $('#field-form-branch-id').html('');
+      $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');
+      responseBranc.forEach(function (element) {
+        $('#field-form-branch-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-branch-id").selectpicker("refresh");
     }
   });
 }

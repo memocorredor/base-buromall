@@ -708,6 +708,10 @@ Route::post('new-currnecy', 'CurrencyController@store')->name('new.currency');
 | Rutas para carga de los combos por ajax
 |
 */
+/* ROUTE COMBO COUNTRY */
+Route::get('load-state/{id}', 'AdminLocaleStateController@getStates');
+/* ROUTE COMBO STATE */
+Route::get('load-city/{id}', 'AdminLocaleCityController@getCity');
 /* ROUTE COMBO CATEGORIE */
 Route::get('load-categorie/{id}', 'AdminCgCategorieController@getCategories');
 /* ROUTE COMBO SUB CATEGORIE */

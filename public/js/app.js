@@ -98040,22 +98040,26 @@ $(function () {
     } else {
       theCount.css('font-weight', 'normal');
     }
-  });
+  }); //////////////////
+  //Change country combo
+
+  $('#field-form-country-id').on('change', function () {
+    cboLoadState($(this).val());
+  }); //////////////////
+  //Change state combo
+
+  $('#field-form-state-id').on('change', function () {
+    cboLoadCity($(this).val());
+  }); //////////////////
+  //Change departments combo
+
   $('#field-form-departaments-id').on('change', function () {
-    $.ajax({
-      url: "../../load-categorie/" + $(this).val(),
-      dataType: 'json',
-      method: 'GET',
-      success: function success(response) {
-        $('#field-form-categories-id').html('');
-        $('#field-form-categories_sub-id').html('');
-        $("#field-form-categories-id").html('<option value="" selected="true"> Selecionar </option>');
-        response.forEach(function (element) {
-          $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
-        });
-        $('#field-form-categories-id').trigger("chosen:update");
-      }
-    });
+    cboLoadCategories($(this).val());
+  }); //////////////////
+  //Change categorie combo
+
+  $('#field-form-categories-id').on('change', function () {
+    cboLoadSubCategories($(this).val());
   });
   var map_canvas = document.querySelector("#gomap-canvas");
 
@@ -98063,6 +98067,75 @@ $(function () {
     initMap();
   }
 });
+
+function cboLoadState(value) {
+  $.ajax({
+    url: "../../load-state/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseState) {
+      $('#field-form-state-id').html('');
+      $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
+      var first_element = responseState[0].id;
+      responseState.forEach(function (element) {
+        $('#field-form-state-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-state-id").selectpicker("refresh");
+      cboLoadCity(first_element);
+    }
+  });
+}
+
+function cboLoadCity(value) {
+  $.ajax({
+    url: "../../load-city/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseSCat) {
+      $('#field-form-city-id').html('');
+      $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+      responseSCat.forEach(function (element) {
+        $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-city-id").selectpicker("refresh");
+    }
+  });
+}
+
+function cboLoadCategories(value) {
+  $.ajax({
+    url: "../../load-categorie/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseCat) {
+      $('#field-form-categories-id').html('');
+      $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
+      var first_element = responseCat[0].id;
+      responseCat.forEach(function (element) {
+        $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+      });
+      $("#field-form-categories-id").selectpicker("refresh");
+      cboLoadSubCategories(first_element);
+    }
+  });
+}
+
+function cboLoadSubCategories(value) {
+  $.ajax({
+    url: "../../load-subcategorie/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseSCat) {
+      $('#field-form-categories_sub-id').html('');
+      $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+      responseSCat.forEach(function (element) {
+        $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+      });
+      $("#field-form-categories_sub-id").selectpicker("refresh");
+    }
+  });
+}
+
 var map, infoWindow;
 
 function initMap() {

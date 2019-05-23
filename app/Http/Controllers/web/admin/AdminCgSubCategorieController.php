@@ -528,4 +528,14 @@ class AdminCgSubCategorieController extends Controller
             return redirect()->route($this->form_view)->with($notification);
         }
     }
+
+    // Carga del los combos
+    public function getSubCategories(Request $request, $id)
+    {
+        if($request->ajax())
+        {
+            $data_cambo = CgSubCategorie::where('categories_id', $id)->get();
+            return response()->json($data_cambo);
+        }
+    }
 }

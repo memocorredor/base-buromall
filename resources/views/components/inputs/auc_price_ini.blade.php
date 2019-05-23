@@ -1,5 +1,5 @@
 <label for="field-form-price-ini">
-    @lang('app_fields.local_price_ini')
+    @lang('web_layout.local_price_ini')
 </label>
 <div class="form-group">
     <input id="field-form-price-ini" name="price_ini" type="text" value="{{ old('price_ini', $price_ini ?? '0.00') }}"

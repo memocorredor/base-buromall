@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <label for="field-form-time-zone">
-            @lang('app_fields.local_time_zone')
+            @lang('web_layout.local_time_zone')
         </label>
         <div class="form-group input-group">
             <div class="input-group-prepend">

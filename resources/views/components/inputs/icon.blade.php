@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <label for="field-form-icon">
-        @lang('app_fields.local_icon')
+        @lang('web_layout.local_icon')
     </label>
     <div class="form-group input-group">
         <div class="input-group-prepend">

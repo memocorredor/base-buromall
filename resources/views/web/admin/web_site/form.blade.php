@@ -16,7 +16,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-google-analitic">
-                                        @lang('app_fields.local_google_analitic')
+                                        @lang('web_layout.local_google_analytic')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-url-web">
-                                        @lang('app_fields.local_url_web')
+                                        @lang('web_layout.local_url_web')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -87,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-no-ruc">
-                                        @lang('app_fields.local_no_ruc')
+                                        @lang('web_layout.local_no_ruc')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -97,7 +97,7 @@
                                         </div>
                                         <input id="field-form-no-ruc" name="no_ruc" type="text"
                                             value="{{ old('no_ruc', $no_ruc ?? '') }}"
-                                            placeholder="@lang('app_fields.local_no_ruc_ph')"
+                                            placeholder="@lang('web_layout.local_no_ruc_ph')"
                                             class="form-control {{ $errors->has('no_ruc') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('no_ruc'))
@@ -234,7 +234,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-android">
-                                        @lang('app_fields.local_android')
+                                        @lang('web_layout.local_android')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -244,7 +244,7 @@
                                         </div>
                                         <input id="field-form-android" name="android" type="text"
                                             value="{{ old('android', $android ?? '') }}"
-                                            placeholder="@lang('app_fields.local_android_ph')"
+                                            placeholder="@lang('web_layout.local_android_ph')"
                                             class="form-control lowercase_set {{ $errors->has('android') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('android'))
@@ -258,8 +258,8 @@
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-android-enable" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ( $android_enable === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -270,7 +270,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-itunes">
-                                        @lang('app_fields.local_itunes')
+                                        @lang('web_layout.local_itunes')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -280,7 +280,7 @@
                                         </div>
                                         <input id="field-form-itunes" name="itunes" type="text"
                                             value="{{ old('itunes', $itunes ?? '') }}"
-                                            placeholder="@lang('app_fields.local_itunes_ph')"
+                                            placeholder="@lang('web_layout.local_itunes_ph')"
                                             class="form-control lowercase_set {{ $errors->has('itunes') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('itunes'))
@@ -294,8 +294,8 @@
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-itunes-enable" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ( $itunes_enable === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -306,7 +306,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-windows">
-                                        @lang('app_fields.local_windows')
+                                        @lang('web_layout.local_windows')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -316,7 +316,7 @@
                                         </div>
                                         <input id="field-form-windows" name="windows" type="text"
                                             value="{{ old('windows', $windows ?? '') }}"
-                                            placeholder="@lang('app_fields.local_windows_ph')"
+                                            placeholder="@lang('web_layout.local_windows_ph')"
                                             class="form-control lowercase_set {{ $errors->has('windows') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('windows'))
@@ -330,8 +330,8 @@
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-windows-enable" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ( $windows_enable === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -342,7 +342,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-author">
-                                        @lang('app_fields.local_author')
+                                        @lang('web_layout.local_author')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -352,7 +352,7 @@
                                         </div>
                                         <input id="field-form-author" name="author" type="text"
                                             value="{{ old('author', $author ?? '') }}"
-                                            placeholder="@lang('app_fields.local_author_ph')"
+                                            placeholder="@lang('web_layout.local_author_ph')"
                                             class="form-control letters_first {{ $errors->has('author') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('author'))
@@ -366,7 +366,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-copyright">
-                                        @lang('app_fields.local_copyright')
+                                        @lang('web_layout.local_copyright')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -376,7 +376,7 @@
                                         </div>
                                         <input id="field-form-copyright" name="copyright" type="text"
                                             value="{{ old('copyright', $copyright ?? '') }}"
-                                            placeholder="@lang('app_fields.local_copyright_ph')"
+                                            placeholder="@lang('web_layout.local_copyright_ph')"
                                             class="form-control letters_first {{ $errors->has('copyright') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('copyright'))

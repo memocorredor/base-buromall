@@ -1,5 +1,5 @@
 <label for="field-form-prod-high">
-    @lang('app_fields.local_prod_high')
+    @lang('web_layout.local_prod_high')
 </label>
 <div class="form-group">
     <input id="field-form-prod-high" name="prod_high" type="text" value="{{ old('prod_high', $prod_high ?? '0.00') }}"

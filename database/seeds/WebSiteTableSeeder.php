@@ -57,7 +57,9 @@ class WebSiteTableSeeder extends Seeder
             'google_analitic' => 'UA-134625329-1',
             'name_page' => 'Buromall',
             'url_web' => 'www.buromall.com',
-            'no_ruc' => '1'
+            'no_ruc' => '1',
+            'created_at' => '2019-01-01 12:00:00',
+            'updated_at' => '2019-01-01 12:00:00'
         ]);
     }
 }

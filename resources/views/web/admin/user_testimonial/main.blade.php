@@ -42,7 +42,7 @@
                             </td>
                             @else
                             <td class="text-center" style="width: 60px;" class="hidden-xs">
-                                <span class="label label-danger">@lang('app_fields.local_no_show')</span>
+                                <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
                             <td class="text-center">{{  $row_items->name }}</td>

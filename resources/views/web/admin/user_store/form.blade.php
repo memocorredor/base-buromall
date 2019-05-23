@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="field-form-url-name">
-                                        @lang('web_layout.local_url_name')
+                                        @lang('web_layout.local_url_name_name')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -77,7 +77,7 @@
                                         </div>
                                         <input id="field-form-url-name" name="url_name" type="text"
                                             value="{{ old('url_name', $url_name ?? '') }}"
-                                            placeholder="@lang('web_layout.local_url_name_ph')"
+                                            placeholder="@lang('web_layout.local_url_name_name_ph')"
                                             class="form-control letters_first {{ $errors->has('url_name') ? ' is-invalid' : '' }}"
                                             disabled autocomplete="off">
                                         @if ( $errors->has('url_name'))

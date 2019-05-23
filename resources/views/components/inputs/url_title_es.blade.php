@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <label for="field-form-url-title-es">@lang('app_fields.local_url_destine')
+        <label for="field-form-url-title-es">@lang('web_layout.local_url_destine')
             <span class="lang-label">
                 @lang('web_layout.local_lang_es_label')
             </span>

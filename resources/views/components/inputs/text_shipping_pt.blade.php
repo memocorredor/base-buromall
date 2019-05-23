@@ -11,7 +11,7 @@
                     <i class="fas fa-file-alt"></i>
                 </span>
             </div>
-            <textarea id="field-form-shipping-description-pt" name="shipping_description_pt" placeholder="@lang('app_fields.local_shipping_description_ph')"
+            <textarea id="field-form-shipping-description-pt" name="shipping_description_pt" placeholder="@lang('web_layout.local_shipping_description_ph')"
                 class="form-control {{ $errors->has('shipping_description_pt') ? ' is-invalid' : '' }}" {{ $status_input }}
                 autocomplete="off">{{ old('shipping_description_pt', $shipping_description_pt ?? '') }}</textarea>
             @if ( $errors->has('shipping_description_pt'))

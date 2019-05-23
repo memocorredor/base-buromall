@@ -22,7 +22,7 @@
                             @include('components.forms.legend_detail')
                             <div class="row">
                                 <div class="col-md-6">
-                                    @include('components.in_cbo.in_cbo_website.cbo_website')
+                                    @include('components.cbo.cbo_website.website')
                                 </div>
                                 <div class="col-md-6">
                                     @include('components.cbo.cbo_locale.countries')
@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-name-color">
-                                        @lang('app_fields.local_color')
+                                        @lang('web_layout.local_color')
                                     </label>
                                     <div id="input-color" class="input-group">
                                         <div class="input-group-prepend">

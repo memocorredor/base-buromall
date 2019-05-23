@@ -77,7 +77,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-no-ref">
-                                        @lang('app_fields.local_no_ref')
+                                        @lang('web_layout.local_no_ref')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -87,7 +87,7 @@
                                         </div>
                                         <input id="field-form-no-ref" name="no_ref" type="text"
                                             value="{{ old('no_ref', $no_ref ?? '') }}"
-                                            placeholder="@lang('app_fields.local_no_ref_ph')"
+                                            placeholder="@lang('web_layout.local_no_ref_ph')"
                                             class="form-control letters_first {{ $errors->has('no_ref') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('no_ref'))
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-no-ean">
-                                        @lang('app_fields.local_no_ean')
+                                        @lang('web_layout.local_no_ean')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -109,7 +109,7 @@
                                         </div>
                                         <input id="field-form-no-ean" name="no_ean" type="text"
                                             value="{{ old('no_ean', $no_ean ?? '') }}"
-                                            placeholder="@lang('app_fields.local_no_ean_ph')"
+                                            placeholder="@lang('web_layout.local_no_ean_ph')"
                                             class="form-control letters_first {{ $errors->has('no_ean') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('no_ean'))

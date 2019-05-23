@@ -1,5 +1,5 @@
 <label for="field-form-price-reserve">
-    @lang('app_fields.local_price_reserve')
+    @lang('web_layout.local_price_reserve')
 </label>
 <div class="form-group">
     <input id="field-form-price-reserve" name="price_reserve" type="text" value="{{ old('price_reserve', $price_reserve ?? '0.00') }}"

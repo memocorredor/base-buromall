@@ -1,5 +1,5 @@
 <label for="field-form-min-biders">
-        @lang('app_fields.local_min_biders')
+        @lang('web_layout.local_min_biders')
     </label>
     <div class="form-group">
         <input id="field-form-min-biders" name="min_biders" type="text" value="{{ old('min_biders', $min_biders ?? '0') }}"

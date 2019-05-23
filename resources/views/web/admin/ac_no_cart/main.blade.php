@@ -12,9 +12,9 @@
                         <tr>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_id')</th>
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_created_at')</th>
-                            <th class="text-center" style="width: 40px;">@lang('app_fields.local_tb_status')</th>
-                            <th class="text-center" style="width: 120px;">@lang('app_fields.local_order_num')</th>
-                            <th class="text-center" style="width: 120px;">@lang('app_fields.local_no_item')</th>
+                            <th class="text-center" style="width: 40px;">@lang('web_layout.local_tb_status')</th>
+                            <th class="text-center" style="width: 120px;">@lang('web_layout.local_order_num')</th>
+                            <th class="text-center" style="width: 120px;">@lang('web_layout.local_no_item')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
                     </thead>

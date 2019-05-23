@@ -49,15 +49,15 @@
                             </div>
                             <legend>
                                 <i class="far fa-newspaper position-left"></i>
-                                @lang('app_fields.local_legen_newsletter')
+                                @lang('web_layout.local_legen_newsletter')
                             </legend>
                             <div class="row">
                                 <div class="input-group col-md-6 offset-md-8">
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-con-newsletter-enable" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ($con_newsletter === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-lastname">
-                                        @lang('app_fields.local_lastname')
+                                        @lang('web_layout.local_lastname')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -117,7 +117,7 @@
                                         </div>
                                         <input id="field-form-lastname" name="lastname" type="text"
                                             value="{{ old('lastname', $lastname ?? '') }}"
-                                            placeholder="@lang('web_layout.local_name')"
+                                            placeholder="@lang('web_layout.local_lastname')"
                                             class="form-control letters_first {{ $errors->has('lastname') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('lastname'))
@@ -131,7 +131,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-birthdate">
-                                        @lang('app_fields.local_birthdate')
+                                        @lang('web_layout.local_birthdate')
                                     </label>
                                     <div class="form-group">
                                         <div class="input-group date" id="user_Birthday" data-target-input="nearest">

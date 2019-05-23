@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-status">
-                                        @lang('app_fields.local_status')
+                                        @lang('web_layout.local_status')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -32,7 +32,7 @@
                                         </div>
                                         <input id="field-form-status" name="status" type="text"
                                             value="{{ old('status', $status ?? '') }}"
-                                            placeholder="@lang('app_fields.local_status_ph')"
+                                            placeholder="@lang('web_layout.local_status_ph')"
                                             class="form-control letters_first {{ $errors->has('status') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('status'))
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-order-num">
-                                        @lang('app_fields.local_order_num')
+                                        @lang('web_layout.local_order_num')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-no-item">
-                                        @lang('app_fields.local_no_item')
+                                        @lang('web_layout.local_no_item')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -77,7 +77,7 @@
                                         </div>
                                         <input id="field-form-no-item" name="no_item" type="text"
                                             value="{{ old('no_item', $no_item ?? '') }}"
-                                            placeholder="@lang('app_fields.local_no_item_ph')"
+                                            placeholder="@lang('web_layout.local_no_item_ph')"
                                             class="form-control letters_first {{ $errors->has('no_item') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('no_item'))
@@ -90,7 +90,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="field-form-token">@lang('app_fields.local_token'):
+                                    <label for="field-form-token">@lang('web_layout.local_token'):
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">

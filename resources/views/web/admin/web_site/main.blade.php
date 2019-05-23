@@ -15,7 +15,7 @@
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_created_at')</th>
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_updated_at')</th>
                             <th class="text-center" style="width: 90px;">@lang('web_layout.local_name')</th>
-                            <th class="text-center" style="width: 90px;">@lang('app_fields.URL')</th>
+                            <th class="text-center" style="width: 90px;">@lang('web_layout.local_url_name')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
                     </thead>

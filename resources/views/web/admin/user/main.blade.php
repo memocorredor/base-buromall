@@ -18,7 +18,7 @@
                             <th class="text-center">@lang('web_layout.local_user')</th>
                             <th class="text-center">@lang('web_layout.local_name')</th>
                             <th class="text-center">@lang('web_layout.local_country')</th>
-                            <th class="text-center">@lang('app_fields.local_tb_plan')</th>
+                            <th class="text-center">@lang('web_layout.local_plan')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
                     </thead>
@@ -46,7 +46,7 @@
                             </td>
                             @else
                             <td class="text-center" style="width: 60px;" class="hidden-xs">
-                                <span class="label label-danger">@lang('app_fields.local_no_show')</span>
+                                <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
                             <td class="text-center">{{  $row_items->username }}</td>

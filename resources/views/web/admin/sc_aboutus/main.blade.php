@@ -15,7 +15,7 @@
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_created_at')</th>
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_updated_at')</th>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_show')</th>
-                            <th class="text-center">@lang('app_fields.local_tb_web')</th>
+                            <th class="text-center">@lang('web_layout.local_web')</th>
                             <th class="text-center">@lang('web_layout.local_country')</th>
                             <th class="text-center">@lang('web_layout.local_title')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
@@ -45,7 +45,7 @@
                             </td>
                             @else
                             <td class="text-center" style="width: 20px;" class="hidden-xs">
-                                <span class="label label-danger">@lang('app_fields.local_no_show')</span>
+                                <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
                             <td class="text-center">{{  $row_items->nameWebSite->name_page }}</td>

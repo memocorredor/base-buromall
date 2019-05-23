@@ -16,11 +16,11 @@
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_updated_at')</th>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_show')</th>
                             <th class="text-center">@lang('web_layout.local_user_create')</th>
-                            <th class="text-center">@lang('app_fields.local_departaments')</th>
-                            <th class="text-center">@lang('app_fields.local_categories')</th>
-                            <th class="text-center">@lang('app_fields.local_categories_sub')</th>
+                            <th class="text-center">@lang('web_layout.local_departament')</th>
+                            <th class="text-center">@lang('web_layout.local_categorie')</th>
+                            <th class="text-center">@lang('web_layout.local_categorie_sub')</th>
                             <th class="text-center">@lang('web_layout.local_name')</th>
-                            <th class="text-center">@lang('app_fields.local_tb_date_campain_end')</th>
+                            <th class="text-center">@lang('web_layout.local_tb_date_campain_end')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                             </td>
                             @else
                             <td class="text-center" style="width: 20px;" class="hidden-xs">
-                                <span class="label label-danger">@lang('app_fields.local_no_show')</span>
+                                <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
                             <td class="text-center">{{  $row_items->nameUser->name }}</td>

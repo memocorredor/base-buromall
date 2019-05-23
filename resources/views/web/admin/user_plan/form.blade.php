@@ -14,15 +14,15 @@
                             @include('components.forms.switch_enable')
                             <legend>
                                 <i class="fas fa-lightbulb position-left"></i>
-                                @lang('app_fields.local_legen_highlight')
+                                @lang('web_layout.local_legen_highlight')
                             </legend>
                             <div class="row">
                                 <div class="input-group col-md-6 offset-md-8">
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-highlight" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ($highlight === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -33,15 +33,15 @@
                             </div>
                             <legend>
                                 <i class="fas fa-user-cog position-left"></i>
-                                @lang('app_fields.local_legen_enable_profile')
+                                @lang('web_layout.local_legen_enable_profile')
                             </legend>
                             <div class="row">
                                 <div class="input-group col-md-6 offset-md-8">
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-enable-profile" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ($enable_profile === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -208,12 +208,12 @@
                             </div>
                             <legend>
                                 <i class="fas fa-indent position-left"></i>
-                                @lang('app_fields.local_legen_enable_plans_sis')
+                                @lang('web_layout.local_legen_enable_plans_sis')
                             </legend>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-days-recu">
-                                        @lang('app_fields.local_nu_days_recu')
+                                        @lang('web_layout.local_nu_days_recu')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-days-recu" name="nu_days_recu" type="text"
@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-price">
-                                        @lang('app_fields.local_price')
+                                        @lang('web_layout.local_price')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-price" name="price" type="text"
@@ -247,7 +247,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-stores">
-                                        @lang('app_fields.local_nu_stores')
+                                        @lang('web_layout.local_nu_stores')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-stores" name="nu_stores" type="text"
@@ -263,7 +263,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-nu-branch">
-                                        @lang('app_fields.local_nu_branch')
+                                        @lang('web_layout.local_nu_branch')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-branch" name="nu_branch" type="text"
@@ -281,7 +281,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-employes">
-                                        @lang('app_fields.local_nu_employes')
+                                        @lang('web_layout.local_nu_employes')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-employes" name="nu_employes" type="text"
@@ -297,7 +297,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-nu-products">
-                                        @lang('app_fields.local_nu_products')
+                                        @lang('web_layout.local_nu_products')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-products" name="nu_products" type="text"
@@ -315,7 +315,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-auction">
-                                        @lang('app_fields.local_nu_auction')
+                                        @lang('web_layout.local_nu_auction')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-auction" name="nu_auction" type="text"
@@ -333,7 +333,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-smedia">
-                                        @lang('app_fields.local_nu_smedia')
+                                        @lang('web_layout.local_nu_smedia')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-smedia" name="nu_smedia" type="text"
@@ -351,7 +351,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-geolocation">
-                                        @lang('app_fields.local_nu_geolocation')
+                                        @lang('web_layout.local_nu_geolocation')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-geolocation" name="nu_geolocation" type="text"
@@ -369,7 +369,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-nu-banners">
-                                        @lang('app_fields.local_nu_banners')
+                                        @lang('web_layout.local_nu_banners')
                                     </label>
                                     <div class="form-group">
                                         <input id="field-form-nu-banners" name="nu_banners" type="text"

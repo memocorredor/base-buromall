@@ -1,13 +1,13 @@
 <legend>
     <i class="fas fa-user-secret position-left"></i>
-    @lang('app_fields.local_private_auction')
+    @lang('web_layout.local_private_auction')
 </legend>
 <div class="row">
     <div class="input-group col-md-6">
         <div class="checkbox">
             <label>
-                <input id="toggle-event-private-auction" type="checkbox" data-on="@lang('app_fields.local_yes')"
-                    data-off="@lang('app_fields.local_not')" data-onstyle="success" data-offstyle="danger"
+                <input id="toggle-event-private-auction" type="checkbox" data-on="@lang('web_layout.local_yes')"
+                    data-off="@lang('web_layout.local_not')" data-onstyle="success" data-offstyle="danger"
                     data-width="80" data-height="37" {{ ($private_auction === 1) ? 'checked' : '' }}
                     {{ $status_input }}>
             </label>

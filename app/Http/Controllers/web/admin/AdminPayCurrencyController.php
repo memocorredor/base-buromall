@@ -48,7 +48,7 @@ class AdminPayCurrencyController extends Controller
         $this->form_new = 'admin.pay_currency.new';
         $this->form_create = 'admin.pay_currency.store';
         $this->form_edit = 'admin.pay_currency.edit';
-        $this->form_update = 'admin.pay_currency.edit';
+        $this->form_update = 'admin.pay_currency.update';
         $this->form_delete = 'admin.pay_currency.delete';
     }
 

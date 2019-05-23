@@ -1,10 +1,10 @@
 <legend class="text-semibold">
-    <i class="fas fa-map-marked-alt position-left"></i>@lang('app_fields.local_legen_geolocation')
+    <i class="fas fa-map-marked-alt position-left"></i>@lang('web_layout.local_legen_geolocation')
 </legend>
 <div class="row">
     <div class="col-md-6">
         <label for="field-form-latitude">
-            @lang('app_fields.local_latitude')
+            @lang('web_layout.local_latitude')
         </label>
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-6">
         <label for="field-form-longitude">
-            @lang('app_fields.local_longitude')
+            @lang('web_layout.local_longitude')
         </label>
         <div class="form-group input-group">
             <div class="input-group-prepend">

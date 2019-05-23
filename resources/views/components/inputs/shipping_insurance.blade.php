@@ -1,5 +1,5 @@
 <label for="field-form-insurance">
-    @lang('app_fields.local_insurance')
+    @lang('web_layout.local_insurance')
 </label>
 <div class="form-group">
     <input id="field-form-insurance" name="insurance" type="text" value="{{ old('insurance', $insurance ?? '0.00') }}"

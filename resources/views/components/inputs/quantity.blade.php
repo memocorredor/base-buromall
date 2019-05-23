@@ -1,5 +1,5 @@
 <label for="field-form-quantity">
-    @lang('app_fields.local_quantity')
+    @lang('web_layout.local_quantity')
 </label>
 <div class="form-group">
     <input id="field-form-quantity" name="quantity" type="text" value="{{ old('quantity', $quantity ?? '0') }}"

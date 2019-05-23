@@ -36,7 +36,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label for="field-form-url-name-es">
-                                                    @lang('app_fields.local_url_name')
+                                                    @lang('web_layout.local_url_name')
                                                 </label>
                                                 <div class="form-group input-group">
                                                     <div class="input-group-prepend">
@@ -46,9 +46,9 @@
                                                     </div>
                                                     <input id="field-form-url-name-es" name="url_name_es" type="text"
                                                         value="{{ old('url_name_es', $url_name_es ?? '') }}"
-                                                        placeholder="@lang('app_fields.local_url_name_ph')"
+                                                        placeholder="@lang('web_layout.local_url_name_ph')"
                                                         class="form-control letters_first {{ $errors->has('url_name_es') ? ' is-invalid' : '' }}"
-                                                        {{ $status_input }} autocomplete="off">
+                                                        disabled autocomplete="off">
                                                     @if ( $errors->has('url_name_es'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('url_name_es') }}</strong>
@@ -70,7 +70,7 @@
                                         aria-labelledby="nav-locale-pt-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="field-form-url-name-pt">@lang('app_fields.local_url_name')
+                                                <label for="field-form-url-name-pt">@lang('web_layout.local_url_name')
                                                     <span class="lang-label">
                                                         @lang('web_layout.local_lang_pt_label')
                                                     </span>
@@ -83,9 +83,9 @@
                                                     </div>
                                                     <input id="field-form-url-name-pt" name="url_name_pt" type="text"
                                                         value="{{ old('url_name_pt', $url_name_pt ?? '') }}"
-                                                        placeholder="@lang('app_fields.local_url_name_ph')"
+                                                        placeholder="@lang('web_layout.local_url_name_ph')"
                                                         class="form-control letters_first {{ $errors->has('url_name_pt') ? ' is-invalid' : '' }}"
-                                                        {{ $status_input }} autocomplete="off">
+                                                        disabled autocomplete="off">
                                                     @if ( $errors->has('url_name_pt'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('url_name_pt') }}</strong>
@@ -107,7 +107,7 @@
                                         aria-labelledby="nav-locale-en-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="field-form-url-name-en">@lang('app_fields.local_url_name')
+                                                <label for="field-form-url-name-en">@lang('web_layout.local_url_name')
                                                     <span class="lang-label">
                                                         @lang('web_layout.local_lang_en_label')
                                                     </span>
@@ -120,9 +120,9 @@
                                                     </div>
                                                     <input id="field-form-url-name-en" name="url_name_en" type="text"
                                                         value="{{ old('url_name_en', $url_name_en ?? '') }}"
-                                                        placeholder="@lang('app_fields.local_url_name_ph')"
+                                                        placeholder="@lang('web_layout.local_url_name_ph')"
                                                         class="form-control letters_first {{ $errors->has('url_name_en') ? ' is-invalid' : '' }}"
-                                                        {{ $status_input }} autocomplete="off">
+                                                        disabled autocomplete="off">
                                                     @if ( $errors->has('url_name_en'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('url_name_en') }}</strong>

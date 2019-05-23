@@ -1,5 +1,5 @@
 <label for="field-form-shipping-price">
-        @lang('app_fields.local_shipping_price')
+        @lang('web_layout.local_shipping_price')
     </label>
     <div class="form-group">
         <input id="field-form-shipping-price" name="shipping_price" type="text" value="{{ old('shipping_price', $shipping_price ?? '0.00') }}"

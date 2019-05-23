@@ -1,5 +1,5 @@
 <label for="field-form-descount">
-    @lang('app_fields.local_descount')
+    @lang('web_layout.local_descount')
 </label>
 <div class="form-group">
     <input id="field-form-descount" name="descount" type="text" value="{{ old('descount', $descount ?? '0.00') }}"

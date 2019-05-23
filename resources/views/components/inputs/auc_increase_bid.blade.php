@@ -1,5 +1,5 @@
 <label for="field-form-increase-bid">
-    @lang('app_fields.local_increase_bid')
+    @lang('web_layout.local_increase_bid')
 </label>
 <div class="form-group">
     <input id="field-form-increase-bid" name="increase_bid" type="text"

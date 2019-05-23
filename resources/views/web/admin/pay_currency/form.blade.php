@@ -14,15 +14,15 @@
                             @include('components.forms.switch_enable')
                             <legend>
                                 <i class="fas fa-magic position-left"></i>
-                                @lang('app_fields.local_legen_default_registro')
+                                @lang('web_layout.local_legen_default_registro')
                             </legend>
                             <div class="row">
                                 <div class="input-group col-md-6 offset-md-8">
                                     <div class="checkbox">
                                         <label>
                                             <input id="toggle-event-default" type="checkbox"
-                                                data-on="@lang('app_fields.local_yes')"
-                                                data-off="@lang('app_fields.local_not')" data-onstyle="success"
+                                                data-on="@lang('web_layout.local_yes')"
+                                                data-off="@lang('web_layout.local_not')" data-onstyle="success"
                                                 data-offstyle="danger" data-width="80" data-height="37"
                                                 {{ ($default_f === 1) ? 'checked' : '' }} {{ $status_input }}>
                                         </label>
@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-simbole">
-                                        @lang('app_fields.local_simbole')
+                                        @lang('web_layout.local_simbole')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="field-form-iso">
-                                        @lang('app_fields.local_iso')
+                                        @lang('web_layout.local_iso')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -78,7 +78,7 @@
                                         </div>
                                         <input id="field-form-iso" name="iso" type="text"
                                             value="{{ old('iso', $iso ?? '') }}"
-                                            placeholder="@lang('app_fields.local_iso_ph')"
+                                            placeholder="@lang('web_layout.local_iso_ph')"
                                             class="form-control letters_first {{ $errors->has('iso') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('iso'))

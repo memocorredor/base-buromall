@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="field-form-error">
-                                        @lang('app_fields.local_error')
+                                        @lang('web_layout.local_error')
                                     </label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
@@ -37,7 +37,7 @@
                                         </div>
                                         <input id="field-form-error" name="error" type="text"
                                             value="{{ old('error', $error ?? '') }}"
-                                            placeholder="@lang('app_fields.local_error_ph')"
+                                            placeholder="@lang('web_layout.local_error_ph')"
                                             class="form-control letters_first {{ $errors->has('error') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('error'))

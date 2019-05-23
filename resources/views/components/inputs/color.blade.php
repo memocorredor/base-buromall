@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <label for="field-form-name-color">
-        @lang('app_fields.local_color')
+        @lang('web_layout.local_color')
     </label>
     <div id="input-color" class="form-group input-group">
         <div class="input-group-prepend">

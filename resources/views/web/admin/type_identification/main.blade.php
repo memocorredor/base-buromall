@@ -15,7 +15,7 @@
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_created_at')</th>
                             <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_updated_at')</th>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_show')</th>
-                            <th class="text-center" style="width: 20px;">@lang('app_fields.local_tb_icon')</th>
+                            <th class="text-center" style="width: 20px;">@lang('web_layout.local_icon')</th>
                             <th class="text-center">@lang('web_layout.local_name')
                                 <span class="lang-label">
                                     @lang('web_layout.local_lang_es_label')
@@ -58,7 +58,7 @@
                             </td>
                             @else
                             <td class="text-center" style="width: 60px;" class="hidden-xs">
-                                <span class="label label-danger">@lang('app_fields.local_no_show')</span>
+                                <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
                             <td class="text-center" {!! $data_color !!}><i class="{{ $row_items->icon }}"></i></td>

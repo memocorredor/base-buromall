@@ -1,5 +1,5 @@
 <label for="field-form-prod-weight">
-    @lang('app_fields.local_prod_weight')
+    @lang('web_layout.local_prod_weight')
 </label>
 <div class="form-group">
     <input id="field-form-prod-weight" name="prod_weight" type="text" value="{{ old('prod_weight', $prod_weight ?? '0.00') }}"

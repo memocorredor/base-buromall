@@ -472,7 +472,7 @@ return [
      */
     'local_admin_user_store_branch_title' => 'Admin - listado de sucursales',
     'local_admin_user_store_branch_description' => 'listado de sucursales en la web',
-    'local_admin_user_store_branch_keywords' => 'administador, listado de sucursales, configuracion, listado', 'sucursales',
+    'local_admin_user_store_branch_keywords' => 'administador, listado de sucursales, configuracion, listado, sucursales',
     /*
       |--------------------------------------------------------------------------
       |SEO IN ADMIN USERS STORES
@@ -480,7 +480,7 @@ return [
      */
     'local_admin_user_store_title' => 'Admin - listado de tiendas',
     'local_admin_user_store_description' => 'listado de tiendas en la web',
-    'local_admin_user_store_keywords' => 'administador, listado de tiendas, configuracion, listado', 'tiendas',
+    'local_admin_user_store_keywords' => 'administador, listado de tiendas, configuracion, listado, tiendas',
     /*
       |--------------------------------------------------------------------------
       |SEO IN ADMIN USERS STORES CUPONS

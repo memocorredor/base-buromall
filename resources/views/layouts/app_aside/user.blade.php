@@ -32,7 +32,7 @@
         <nav class="offside-sidebar-nav">
             <ul class="metismenu" id="user-side-menu">
                 <li>
-                    <a href="{{ route('profile.user', Auth::user()->username) }}">
+                    <a href="{{ route('home', Auth::user()->username) }}">
                         <i class="fas fa-user"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_info')</span>
                     </a>

@@ -305,8 +305,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <legend class="text-semibold">
                                 <i class="fas fa-share-alt"></i>@lang('web_layout.local_legen_detail_contact')
                             </legend>
@@ -430,10 +428,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             @include('components.group.contact_social')
                         </fieldset>
                     </div>

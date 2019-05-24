@@ -80,8 +80,8 @@ Route::get(__('route_home.home_user_contact'), 'HomeUserContactController@index'
 | Rutas de Aside Profile
 |
 */
-Route::get(__('route_profile.profile_user').'{id}', 'ProfileUserController@index')->name('profile.user');
-Route::get(__('route_profile.profile_store').'{id}', 'ProfileStoreController@index')->name('profile.store');
+Route::get(__('route_profile.profile_main_user').'{id}', 'ProfileUserController@index')->name('profile.main_user');
+Route::get(__('route_profile.profile_main_store').'{id}', 'ProfileStoreController@index')->name('profile.main_store');
 Route::get(__('route_profile.profile_user_friends').'{id}', 'ProfileUserFriendsController@index')->name('profile.user_friends');
 Route::get(__('route_profile.profile_user_edit').'{id}', 'ProfileUserConfigController@index')->name('profile.user_edit');
 Route::put(__('route_profile.profile_user_update').'{id}', 'ProfileUserConfigController@update')->name('profile.user_update');

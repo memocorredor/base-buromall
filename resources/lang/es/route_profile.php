@@ -2,8 +2,8 @@
 
 return [
 
-    'profile_user' => 'perfil/usuario/',
-    'profile_store' => 'perfil/tienda/',
+    'profile_main_user' => 'perfil/inicio/usuario/',
+    'profile_main_store' => 'perfil/inicio/tienda/',
     'profile_user_friends' => 'perfil/usuario/mis-amigos/',
     'profile_user_edit' => 'perfil/usuario/editar/',
     'profile_user_update' => 'perfil/usuario/editar/guardar/',
@@ -13,13 +13,13 @@ return [
       |LOCALE ROUTE PROFILE USERS STORES
       |--------------------------------------------------------------------------
      */
-    'profile_user_store' => 'perfil/usuario/tiendas/',
-    'profile_user_store_show' => 'perfil/usuario/tienda/mostar/',
-    'profile_user_store_new' => 'perfil/usuario/tienda/nuevo/',
-    'profile_user_store_store' => 'perfil/usuario/tienda/crear/',
-    'profile_user_store_edit' => 'perfil/usuario/tienda/actualizar/',
-    'profile_user_store_update' => 'perfil/usuario/tienda/editar/',
-    'profile_user_store_delete' => 'perfil/usuario/tienda/borrar/',
+    'profile_user_store' => 'perfil/usuario/mis-tiendas/',
+    'profile_user_store_show' => 'perfil/usuario/mi-tienda/mostar/',
+    'profile_user_store_new' => 'perfil/usuario/mi-tienda/nuevo/',
+    'profile_user_store_store' => 'perfil/usuario/mi-tienda/crear/',
+    'profile_user_store_edit' => 'perfil/usuario/mi-tienda/actualizar/',
+    'profile_user_store_update' => 'perfil/usuario/mi-tienda/editar/',
+    'profile_user_store_delete' => 'perfil/usuario/mi-tienda/borrar/',
     /*
       |--------------------------------------------------------------------------
       |LOCALE ROUTE PROFILE USERS BRANCH

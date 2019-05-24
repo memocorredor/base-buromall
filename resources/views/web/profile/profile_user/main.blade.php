@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard profile user</div>
+                <div class="card-header">Test Dashboard profile user</div>
 
 
             </div>

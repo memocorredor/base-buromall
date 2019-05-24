@@ -401,7 +401,7 @@ class AdminUserStoreController extends Controller
             $data_field = new UserStore();
             $data_field->enable = $request->get('enable');
             $data_field->time_zone = $request->get('time_zone');
-            $data_field->url_name = $request->get('url_name');
+            $data_field->url_name = CoreUser::friendly_Url($request->get('url_name'));
             $data_field->user_id = $request->get('user_id');
             $data_field->type_store_id = $request->get('type_store_id');
             $data_field->image = $request->get('image');

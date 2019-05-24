@@ -710,5 +710,4 @@ class AdminUserStoreEventController extends Controller
             return redirect()->route($this->form_view)->with($notification);
         }
     }
-
 }

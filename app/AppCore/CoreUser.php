@@ -78,7 +78,7 @@ class CoreUser
             } else {
                 $continent_user = '-';
             }
-            
+
             if (!empty($session_data->geoIp->country_code)) {
                 $countrie_user =  $session_data->geoIp->country_name;
             } else {
@@ -169,7 +169,7 @@ class CoreUser
             $data_robot = $session_data->is_robot;
             $data_ismobil = $session_data->device->is_mobile;
 
-            $result_country = $countries->where('name.common', 'Panama')->first()->hydrate('timezones');
+            $result_country = $countries->where('name.common', $countrie_user)->first()->hydrate('timezones');
             $fill_country = $result_country->toJson();//zone_name
             $data_country = $fill_country;
 

@@ -256,18 +256,28 @@ class AdminUserStoreController extends Controller
         $route_form = $this->form_create;
         $action_form = 'add';
         $status_input = '';
+        // Carga los datos del usuario
+        $user_data = CoreUser::getUser();
+        $this->user_sis = $user_data;
+
+        $filter_country = $user_data['countrie_code_user'];
+        $data_country = LocaleCountry::where('code', $filter_country)->first();
+
+        $filter_city = $user_data['city_user'];
+        $data_city = LocaleCity::where('name', $filter_city)->first();
+
         // Carga data para el view
         $mytime = Carbon::now();
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $time_zone = '';
+        $time_zone = $user_data['timezone'];
         $url_name = '';
         $user_id = '';
         $type_store_id = '';
-        $image = '';
-        $profile_background = '';
-        $profile_background_position = '';
+        $image = 'imagens/stores/default-store.png';
+        $profile_background = 'imagens/stores/default-background.png';
+        $profile_background_position = '0px';
         $name = '';
         $description_es = '';
         $keywords_es = '';
@@ -276,16 +286,16 @@ class AdminUserStoreController extends Controller
         $description_pt = '';
         $keywords_pt = '';
         $email = '';
-        $country_id = 0;
-        $state_id = 0;
-        $city_id = 0;
-        $zipcode = '';
+        $country_id = $data_country->id;
+        $state_id = $data_city->state_id;
+        $city_id = $data_city->id;
+        $zipcode = $user_data['zip_code_user'];
         $address = '';
-        $areacode = '';
+        $areacode = $user_data['area_code_user'];
         $phone = '';
         $mobile = '';
-        $porcent_pay = '';
-        $cent_pay = '';
+        $porcent_pay = env('APP_PORCENT_PAY');
+        $cent_pay = env('APP_CENT_PAY');
         $no_company = '';
         $merchant = '';
         $name_bank = '';
@@ -311,14 +321,12 @@ class AdminUserStoreController extends Controller
         $data_user_id = User::all();
         $data_type_store_id = TypeStore::all();
         $data_country_id = LocaleCountry::all();
-        $data_state_id = LocaleState::where('country_id', 47)->get();
-        $data_city_id = LocaleCity::where('state_id', 775)->get();
+        $data_state_id = LocaleState::where('country_id', $country_id)->get();
+        $data_city_id = LocaleCity::where('state_id', $state_id)->get();
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
         $for_meta_sis = $this->meta_sis;
-        // Carga los datos del usuario
-        $this->user_sis = CoreUser::getUser();
         // Render del view
         return view('web.admin.user_store.form', [
             'meta_lang' => $this->lang,
@@ -395,7 +403,35 @@ class AdminUserStoreController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'name' => 'required',
+                'time_zone' => 'required',
+                'type_store_id' => 'required',
+                'name' => 'required|min:5|max:60',
+                'description_es' => 'required|min:5|max:150',
+                'keywords_es' => 'required',
+                'description_en' => 'required|min:5|max:150',
+                'keywords_en' => 'required',
+                'description_pt' => 'required|min:5|max:150',
+                'keywords_pt' => 'required',
+                'email' => 'required',
+                'country_id' => 'required',
+                'state_id' => 'required',
+                'city_id' => 'required',
+                'zipcode' => 'required',
+                'address' => 'required',
+                'areacode' => 'required',
+                'phone' => 'required',
+                'mobile' => 'required',
+                'no_company' => 'required',
+                'name_bank' => 'required',
+                'name_acount' => 'required',
+                'no_acount' => 'required',
+                'facebook' => 'min:5|max:60',
+                'twitter' => 'min:5|max:60',
+                'instagram' => 'min:5|max:60',
+                'pinterest' => 'min:5|max:60',
+                'youtube' => 'min:5|max:60',
+                'linkedin' => 'min:5|max:60',
+                'skype' => 'min:5|max:60'
             ]);
             // Crea la instancia
             $data_field = new UserStore();
@@ -631,7 +667,35 @@ class AdminUserStoreController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'name' => 'required',
+                    'time_zone' => 'required',
+                    'type_store_id' => 'required',
+                    'name' => 'required|min:5|max:60',
+                    'description_es' => 'required|min:5|max:150',
+                    'keywords_es' => 'required',
+                    'description_en' => 'required|min:5|max:150',
+                    'keywords_en' => 'required',
+                    'description_pt' => 'required|min:5|max:150',
+                    'keywords_pt' => 'required',
+                    'email' => 'required',
+                    'country_id' => 'required',
+                    'state_id' => 'required',
+                    'city_id' => 'required',
+                    'zipcode' => 'required',
+                    'address' => 'required',
+                    'areacode' => 'required',
+                    'phone' => 'required',
+                    'mobile' => 'required',
+                    'no_company' => 'required',
+                    'name_bank' => 'required',
+                    'name_acount' => 'required',
+                    'no_acount' => 'required',
+                    'facebook' => 'min:5|max:60',
+                    'twitter' => 'min:5|max:60',
+                    'instagram' => 'min:5|max:60',
+                    'pinterest' => 'min:5|max:60',
+                    'youtube' => 'min:5|max:60',
+                    'linkedin' => 'min:5|max:60',
+                    'skype' => 'min:5|max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');

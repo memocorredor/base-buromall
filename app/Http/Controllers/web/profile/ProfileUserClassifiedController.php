@@ -77,15 +77,11 @@ class ProfileUserClassifiedController extends Controller
         $this->meta_sis = CoreMeta::MetaTags($send_meta_data, $send_lang, $send_meta_title, $send_meta_description, $send_meta_keywords, $send_meta_robot);
     }
 
-    //Para calga del index home
-    public function viewIndex()
-    { }
-
     // Mostar tabla con datos
     public function index()
     {
         // Carga data para el view
-        $data_item = UserClassified::paginate(7);
+        $data_item = UserClassified::where('user_id', Auth::user()->id)->paginate(7);
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -116,13 +112,13 @@ class ProfileUserClassifiedController extends Controller
         $action_form = 'show';
         $status_input = 'disabled';
         // Carga data para el view
-        $data_item = UserClassified::find($id_a);
+        $data_item = UserClassified::where('id', $id_a)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $id_sis = $data_item->id;
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $departaments_id = $data_item->departaments_id;
             $categories_id = $data_item->categories_id;
             $categories_sub_id = $data_item->categories_sub_id;
@@ -150,7 +146,6 @@ class ProfileUserClassifiedController extends Controller
             $longitude = $data_item->longitude;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
             $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
             $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
@@ -177,7 +172,6 @@ class ProfileUserClassifiedController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_departaments_id' => $data_departaments_id,
                 'data_categories_id' => $data_categories_id,
                 'data_categories_sub_id' => $data_categories_sub_id,
@@ -189,7 +183,7 @@ class ProfileUserClassifiedController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'departaments_id' => $departaments_id,
                 'categories_id' => $categories_id,
                 'categories_sub_id' => $categories_sub_id,
@@ -238,7 +232,6 @@ class ProfileUserClassifiedController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $user_id = Auth::user()->id;
         $departaments_id = 0;
         $categories_id = 0;
         $categories_sub_id = 0;
@@ -266,7 +259,6 @@ class ProfileUserClassifiedController extends Controller
         $longitude = '';
         $token = '';
         // Carga de combos
-        $data_user_id = User::all();
         $data_departaments_id = CgDepartament::all();
         $data_categories_id = CgCategorie::where('departaments_id', '1')->get();
         $data_categories_sub_id = CgSubCategorie::where('categories_id', '1')->get();
@@ -292,7 +284,6 @@ class ProfileUserClassifiedController extends Controller
             'route_form' => $route_form,
             'action_form' => $action_form,
             'status_input' => $status_input,
-            'data_user_id' => $data_user_id,
             'data_departaments_id' => $data_departaments_id,
             'data_categories_id' => $data_categories_id,
             'data_categories_sub_id' => $data_categories_sub_id,
@@ -304,7 +295,7 @@ class ProfileUserClassifiedController extends Controller
             'created_at' => $date_created,
             'updated_at' => $date_edit,
             'enable' => $enable,
-            'user_id' => $user_id,
+            'user_id' => Auth::user()->username,
             'departaments_id' => $departaments_id,
             'categories_id' => $categories_id,
             'categories_sub_id' => $categories_sub_id,
@@ -339,7 +330,6 @@ class ProfileUserClassifiedController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'user_id' => 'required',
                 'departaments_id' => 'required',
                 'categories_id' => 'required',
                 'categories_sub_id' => 'required',
@@ -367,7 +357,7 @@ class ProfileUserClassifiedController extends Controller
             // Crea la instancia
             $data_field = new UserClassified();
             $data_field->enable = $request->get('enable');
-            $data_field->user_id = $request->get('user_id');
+            $data_field->user_id = Auth::user()->id;
             $data_field->departaments_id = $request->get('departaments_id');
             $data_field->categories_id = $request->get('categories_id');
             $data_field->categories_sub_id = $request->get('categories_sub_id');
@@ -472,7 +462,8 @@ class ProfileUserClassifiedController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserClassified::find($id_a);
+        $data_item = UserClassified::where('id', $id_a)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -483,7 +474,6 @@ class ProfileUserClassifiedController extends Controller
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $departaments_id = $data_item->departaments_id;
             $categories_id = $data_item->categories_id;
             $categories_sub_id = $data_item->categories_sub_id;
@@ -511,7 +501,6 @@ class ProfileUserClassifiedController extends Controller
             $longitude = $data_item->longitude;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
             $data_departaments_id = CgDepartament::all();
             $data_categories_id = CgCategorie::where('departaments_id', $departaments_id)->get();
             $data_categories_sub_id = CgSubCategorie::where('categories_id', $categories_id)->get();
@@ -538,7 +527,6 @@ class ProfileUserClassifiedController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_departaments_id' => $data_departaments_id,
                 'data_categories_id' => $data_categories_id,
                 'data_categories_sub_id' => $data_categories_sub_id,
@@ -550,7 +538,7 @@ class ProfileUserClassifiedController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'departaments_id' => $departaments_id,
                 'categories_id' => $categories_id,
                 'categories_sub_id' => $categories_sub_id,
@@ -591,11 +579,11 @@ class ProfileUserClassifiedController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserClassified::find($id);
+        $data_item = UserClassified::where('id', $id)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'user_id' => 'required',
                     'departaments_id' => 'required',
                     'categories_id' => 'required',
                     'categories_sub_id' => 'required',
@@ -622,7 +610,7 @@ class ProfileUserClassifiedController extends Controller
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
-                $data_item->user_id = $request->get('user_id');
+                $data_item->user_id = Auth::user()->username;
                 $data_item->departaments_id = $request->get('departaments_id');
                 $data_item->categories_id = $request->get('categories_id');
                 $data_item->categories_sub_id = $request->get('categories_sub_id');
@@ -733,7 +721,8 @@ class ProfileUserClassifiedController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserClassified::find($id);
+        $data_item = UserClassified::where('id', $id)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

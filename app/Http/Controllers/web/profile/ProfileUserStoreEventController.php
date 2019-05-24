@@ -75,15 +75,11 @@ class ProfileUserStoreEventController extends Controller
         $this->meta_sis = CoreMeta::MetaTags($send_meta_data, $send_lang, $send_meta_title, $send_meta_description, $send_meta_keywords, $send_meta_robot);
     }
 
-    //Para calga del index home
-    public function viewIndex()
-    { }
-
     // Mostar tabla con datos
     public function index()
     {
         // Carga data para el view
-        $data_item = UserStoreEvent::paginate(7);
+        $data_item = UserStoreEvent::where('user_id', Auth::user()->id)->paginate(7);
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -114,13 +110,13 @@ class ProfileUserStoreEventController extends Controller
         $action_form = 'show';
         $status_input = 'disabled';
         // Carga data para el view
-        $data_item = UserStoreEvent::find($id_a);
+        $data_item = UserStoreEvent::where('id', $id_a)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $id_sis = $data_item->id;
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $store_id = $data_item->store_id;
             $status_product_id = $data_item->status_product_id;
             $type_transaction_id = $data_item->type_transaction_id;
@@ -146,8 +142,7 @@ class ProfileUserStoreEventController extends Controller
             $longitude = $data_item->longitude;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
-            $data_user_store_id = UserStore::all();
+            $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();
             $data_type_event_id = TypeEvent::all();
@@ -171,7 +166,6 @@ class ProfileUserStoreEventController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_user_store_id' => $data_user_store_id,
                 'data_status_product_id' => $data_status_product_id,
                 'data_type_transaction_id' => $data_type_transaction_id,
@@ -181,7 +175,7 @@ class ProfileUserStoreEventController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'store_id' => $store_id,
                 'status_product_id' => $status_product_id,
                 'type_transaction_id' => $type_transaction_id,
@@ -228,7 +222,6 @@ class ProfileUserStoreEventController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $user_id = Auth::user()->id;
         $store_id = 0;
         $status_product_id = '';
         $type_transaction_id = '';
@@ -254,8 +247,7 @@ class ProfileUserStoreEventController extends Controller
         $longitude = '';
         $token = '';
         // Carga de combos
-        $data_user_id = User::all();
-        $data_user_store_id = UserStore::all();
+        $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
         $data_status_product_id = StatusProduct::all();
         $data_type_transaction_id = TypeTransaction::all();
         $data_type_event_id = TypeEvent::all();
@@ -278,7 +270,6 @@ class ProfileUserStoreEventController extends Controller
             'route_form' => $route_form,
             'action_form' => $action_form,
             'status_input' => $status_input,
-            'data_user_id' => $data_user_id,
             'data_user_store_id' => $data_user_store_id,
             'data_status_product_id' => $data_status_product_id,
             'data_type_transaction_id' => $data_type_transaction_id,
@@ -288,7 +279,7 @@ class ProfileUserStoreEventController extends Controller
             'created_at' => $date_created,
             'updated_at' => $date_edit,
             'enable' => $enable,
-            'user_id' => $user_id,
+            'user_id' => Auth::user()->username,
             'store_id' => $store_id,
             'status_product_id' => $status_product_id,
             'type_transaction_id' => $type_transaction_id,
@@ -321,7 +312,6 @@ class ProfileUserStoreEventController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'user_id' => 'required',
                 'store_id' => 'required',
                 'status_product_id' => 'required',
                 'type_transaction_id' => 'required',
@@ -345,7 +335,7 @@ class ProfileUserStoreEventController extends Controller
             // Crea la instancia
             $data_field = new UserStoreEvent();
             $data_field->enable = $request->get('enable');
-            $data_field->user_id = $request->get('user_id');
+            $data_field->user_id = Auth::user()->id;
             $data_field->store_id = $request->get('store_id');
             $data_field->status_product_id = $request->get('status_product_id');
             $data_field->type_transaction_id = $request->get('type_transaction_id');
@@ -448,7 +438,8 @@ class ProfileUserStoreEventController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserStoreEvent::find($id_a);
+        $data_item = UserStoreEvent::where('id', $id_a)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -459,7 +450,6 @@ class ProfileUserStoreEventController extends Controller
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $store_id = $data_item->store_id;
             $status_product_id = $data_item->status_product_id;
             $type_transaction_id = $data_item->type_transaction_id;
@@ -485,8 +475,7 @@ class ProfileUserStoreEventController extends Controller
             $longitude = $data_item->longitude;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
-            $data_user_store_id = UserStore::all();
+            $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_type_transaction_id = TypeTransaction::all();
             $data_type_event_id = TypeEvent::all();
@@ -510,7 +499,6 @@ class ProfileUserStoreEventController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_user_store_id' => $data_user_store_id,
                 'data_status_product_id' => $data_status_product_id,
                 'data_type_transaction_id' => $data_type_transaction_id,
@@ -520,7 +508,7 @@ class ProfileUserStoreEventController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'store_id' => $store_id,
                 'status_product_id' => $status_product_id,
                 'type_transaction_id' => $type_transaction_id,
@@ -559,11 +547,11 @@ class ProfileUserStoreEventController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserStoreEvent::find($id);
+        $data_item = UserStoreEvent::where('id', $id)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'user_id' => 'required',
                     'store_id' => 'required',
                     'status_product_id' => 'required',
                     'type_transaction_id' => 'required',
@@ -586,7 +574,7 @@ class ProfileUserStoreEventController extends Controller
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
-                $data_item->user_id = $request->get('user_id');
+                $data_item->user_id = Auth::user()->id;
                 $data_item->store_id = $request->get('store_id');
                 $data_item->status_product_id = $request->get('status_product_id');
                 $data_item->type_transaction_id = $request->get('type_transaction_id');
@@ -694,7 +682,8 @@ class ProfileUserStoreEventController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserStoreEvent::find($id);
+        $data_item = UserStoreEvent::where('id', $id)
+                                   ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

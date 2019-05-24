@@ -98075,7 +98075,7 @@ $(function () {
 
 function cboLoadState(value) {
   $.ajax({
-    url: "../../load-state/" + value,
+    url: url_sites + "/load-state/" + value,
     dataType: 'json',
     method: 'GET',
     success: function success(responseState) {
@@ -98093,7 +98093,7 @@ function cboLoadState(value) {
 
 function cboLoadCity(value) {
   $.ajax({
-    url: "../../load-city/" + value,
+    url: url_sites + "/load-city/" + value,
     dataType: 'json',
     method: 'GET',
     success: function success(responseSCat) {
@@ -98109,7 +98109,7 @@ function cboLoadCity(value) {
 
 function cboLoadCategories(value) {
   $.ajax({
-    url: "../../load-categorie/" + value,
+    url: url_sites + "/load-categorie/" + value,
     dataType: 'json',
     method: 'GET',
     success: function success(responseCat) {
@@ -98127,7 +98127,7 @@ function cboLoadCategories(value) {
 
 function cboLoadSubCategories(value) {
   $.ajax({
-    url: "../../load-subcategorie/" + value,
+    url: url_sites + "/load-subcategorie/" + value,
     dataType: 'json',
     method: 'GET',
     success: function success(responseSCat) {
@@ -98143,7 +98143,7 @@ function cboLoadSubCategories(value) {
 
 function cboLoadBranch(value) {
   $.ajax({
-    url: "../../load-branch/" + value,
+    url: url_sites + "/load-branch/" + value,
     dataType: 'json',
     method: 'GET',
     success: function success(responseBranc) {

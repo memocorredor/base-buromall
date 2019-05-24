@@ -75,10 +75,6 @@ class AdminUserStoreEventController extends Controller
         $this->meta_sis = CoreMeta::MetaTags($send_meta_data, $send_lang, $send_meta_title, $send_meta_description, $send_meta_keywords, $send_meta_robot);
     }
 
-    //Para calga del index home
-    public function viewIndex()
-    { }
-
     // Mostar tabla con datos
     public function index()
     {

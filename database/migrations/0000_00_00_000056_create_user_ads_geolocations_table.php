@@ -24,7 +24,7 @@ class CreateUserAdsGeolocationsTable extends Migration
             $table->integer('categories_id')->unsigned()->default('0');
             $table->integer('categories_sub_id')->unsigned()->default('0');
             $table->string('date_campain_end', 100)->nullable()->default('');
-            $table->string('name', 150)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
             $table->text('text_es')->nullable();
             $table->text('text_en')->nullable();
             $table->text('text_pt')->nullable();

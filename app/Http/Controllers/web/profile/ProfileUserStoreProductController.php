@@ -87,7 +87,7 @@ class ProfileUserStoreProductController extends Controller
     public function index()
     {
         // Carga data para el view
-        $data_item = UserStoreProduct::paginate(7);
+        $data_item = UserStoreProduct::where('user_id', Auth::user()->id)->paginate(7);
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -118,13 +118,13 @@ class ProfileUserStoreProductController extends Controller
         $action_form = 'show';
         $status_input = 'disabled';
         // Carga data para el view
-        $data_item = UserStoreProduct::find($id_a);
+        $data_item = UserStoreProduct::where('id', $id_a)
+                                     ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $id_sis = $data_item->id;
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $country_id = $data_item->country_id;
             $store_id = $data_item->store_id;
             $branch_id = $data_item->branch_id;
@@ -181,10 +181,9 @@ class ProfileUserStoreProductController extends Controller
             $accept_returns = $data_item->accept_returns;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
             $data_country_id = LocaleCountry::all();
-            $data_user_store_id = UserStore::all();
-            $data_user_store_branch_id = UserStoreBranch::all();
+            $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
+            $data_user_store_branch_id = UserStoreBranch::where('user_id', Auth::user()->id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_cg_brand_id = CgBrand::all();
             $data_departaments_id = CgDepartament::all();
@@ -214,7 +213,6 @@ class ProfileUserStoreProductController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_country_id' => $data_country_id,
                 'data_user_store_id' => $data_user_store_id,
                 'data_user_store_branch_id' => $data_user_store_branch_id,
@@ -233,7 +231,7 @@ class ProfileUserStoreProductController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'country_id' => $country_id,
                 'store_id' => $store_id,
                 'branch_id' => $branch_id,
@@ -311,7 +309,6 @@ class ProfileUserStoreProductController extends Controller
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $user_id = Auth::user()->id;
         $country_id = 0;
         $store_id = 0;
         $branch_id = 0;
@@ -368,10 +365,9 @@ class ProfileUserStoreProductController extends Controller
         $accept_returns = 0;
         $token = '';
         // Carga de combos
-        $data_user_id = User::all();
         $data_country_id = LocaleCountry::all();
-        $data_user_store_id = UserStore::all();
-        $data_user_store_branch_id = UserStoreBranch::all();
+        $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
+        $data_user_store_branch_id = UserStoreBranch::where('user_id', Auth::user()->id)->get();
         $data_status_product_id = StatusProduct::all();
         $data_cg_brand_id = CgBrand::all();
         $data_departaments_id = CgDepartament::all();
@@ -400,7 +396,6 @@ class ProfileUserStoreProductController extends Controller
             'route_form' => $route_form,
             'action_form' => $action_form,
             'status_input' => $status_input,
-            'data_user_id' => $data_user_id,
             'data_country_id' => $data_country_id,
             'data_user_store_id' => $data_user_store_id,
             'data_user_store_branch_id' => $data_user_store_branch_id,
@@ -419,7 +414,7 @@ class ProfileUserStoreProductController extends Controller
             'created_at' => $date_created,
             'updated_at' => $date_edit,
             'enable' => $enable,
-            'user_id' => $user_id,
+            'user_id' => Auth::user()->username,
             'country_id' => $country_id,
             'store_id' => $store_id,
             'branch_id' => $branch_id,
@@ -489,7 +484,7 @@ class ProfileUserStoreProductController extends Controller
             // Crea la instancia
             $data_field = new UserStoreProduct();
             $data_field->enable = $request->get('enable');
-            $data_field->user_id = $request->get('user_id');
+            $data_field->user_id = Auth::user()->id;
             $data_field->country_id = $request->get('country_id');
             $data_field->store_id = $request->get('store_id');
             $data_field->branch_id = $request->get('branch_id');
@@ -624,7 +619,8 @@ class ProfileUserStoreProductController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserStoreProduct::find($id_a);
+        $data_item = UserStoreProduct::where('id', $id_a)
+                                     ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -635,7 +631,6 @@ class ProfileUserStoreProductController extends Controller
             $date_created = $data_item->created_at;
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
-            $user_id = $data_item->user_id;
             $country_id = $data_item->country_id;
             $store_id = $data_item->store_id;
             $branch_id = $data_item->branch_id;
@@ -692,10 +687,9 @@ class ProfileUserStoreProductController extends Controller
             $accept_returns = $data_item->accept_returns;
             $token = $data_item->token;
             // Carga de combos
-            $data_user_id = User::all();
             $data_country_id = LocaleCountry::all();
-            $data_user_store_id = UserStore::all();
-            $data_user_store_branch_id = UserStoreBranch::all();
+            $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
+            $data_user_store_branch_id = UserStoreBranch::where('user_id', Auth::user()->id)->get();
             $data_status_product_id = StatusProduct::all();
             $data_cg_brand_id = CgBrand::all();
             $data_departaments_id = CgDepartament::all();
@@ -725,7 +719,6 @@ class ProfileUserStoreProductController extends Controller
                 'action_form' => $action_form,
                 'status_input' => $status_input,
                 'data_item' => $data_item,
-                'data_user_id' => $data_user_id,
                 'data_country_id' => $data_country_id,
                 'data_user_store_id' => $data_user_store_id,
                 'data_user_store_branch_id' => $data_user_store_branch_id,
@@ -744,7 +737,7 @@ class ProfileUserStoreProductController extends Controller
                 'created_at' => $date_created,
                 'updated_at' => $date_edit,
                 'enable' => $enable,
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->username,
                 'country_id' => $country_id,
                 'store_id' => $store_id,
                 'branch_id' => $branch_id,
@@ -814,7 +807,8 @@ class ProfileUserStoreProductController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserStoreProduct::find($id);
+        $data_item = UserStoreProduct::where('id', $id)
+                                     ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
@@ -823,7 +817,7 @@ class ProfileUserStoreProductController extends Controller
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
-                $data_item->user_id = $request->get('user_id');
+                $data_item->user_id = Auth::user()->id;
                 $data_item->country_id = $request->get('country_id');
                 $data_item->store_id = $request->get('store_id');
                 $data_item->branch_id = $request->get('branch_id');
@@ -961,7 +955,8 @@ class ProfileUserStoreProductController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserStoreProduct::find($id);
+        $data_item = UserStoreProduct::where('id', $id)
+                                     ->where('user_id', Auth::user()->id)->get();
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

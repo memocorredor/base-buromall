@@ -21,9 +21,9 @@ class CreateUserInvitationsTable extends Migration
             $table->integer('status')->unsigned()->default('0');
             $table->string('date_acept', 100)->nullable()->default('');
             $table->integer('user_invite_id')->unsigned()->default('0');
-            $table->string('name', 70)->nullable()->default('');
-            $table->string('lastname', 70)->nullable()->default('');
-            $table->string('email', 140)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
+            $table->string('lastname', 60)->nullable()->default('');
+            $table->string('email', 100)->nullable()->default('');
             $table->text('token')->nullable();
             $table->timestamps();
         });

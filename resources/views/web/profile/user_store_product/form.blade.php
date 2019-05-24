@@ -27,7 +27,18 @@
                             @include('components.forms.action')
                             <div class="row">
                                 <div class="col-md-12">
-                                    @include('components.cbo.cbo_user.user')
+                                    <label for="field-form-username">
+                                        @lang('web_layout.local_user')
+                                    </label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-tie"></i>
+                                            </span>
+                                        </div>
+                                        <input id="field-form-username" type="text" value="{{ $user_id }}"
+                                            class="form-control" disabled autocomplete="off">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

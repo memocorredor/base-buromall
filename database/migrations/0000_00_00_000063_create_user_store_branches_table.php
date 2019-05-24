@@ -21,7 +21,7 @@ class CreateUserStoreBranchesTable extends Migration
             $table->integer('enable')->unsigned()->default('0');
             $table->integer('user_id')->unsigned()->default('0');
             $table->integer('store_id')->unsigned()->default('0');
-            $table->string('name', 150)->nullable()->default('');
+            $table->string('name', 60)->nullable()->default('');
             $table->text('description_es')->nullable();
             $table->text('keywords_es')->nullable();
             $table->text('description_en')->nullable();

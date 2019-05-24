@@ -90,7 +90,7 @@
                         </div>
                         <p class="card-text">{{ $row_user_store->$locale_description }}</p>
                     </div>
-                    <a href="{{ route('profile.store', $row_user_store->url_name)}}"
+                    <a href="{{ route('profile.main_store', $row_user_store->url_name)}}"
                         class="bg-info card-footer align-middle">
                         <span class="btn-label-left">
                             <i class="fas fa-store-alt"></i>

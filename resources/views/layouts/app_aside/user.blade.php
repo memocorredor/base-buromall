@@ -101,19 +101,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_wallet', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_wallet') }}">
                         <i class="fas fa-wallet"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_wallet')</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_cart', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_cart') }}">
                         <i class="fas fa-shopping-cart"></i>
                             <span class="menu-offside-span">@lang('web_menu.local_aside_profile_cart')</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile.user_auction', Auth::user()->id) }}">
+                    <a href="{{ route('profile.user_auction') }}">
                         <i class="fas fa-gavel"></i>
                         <span class="menu-offside-span">@lang('web_menu.local_aside_profile_auction')</span>
                     </a>

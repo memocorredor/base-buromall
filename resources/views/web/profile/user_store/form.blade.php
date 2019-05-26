@@ -40,15 +40,10 @@
                                                 <i class="fas fa-piggy-bank"></i>
                                             </span>
                                         </div>
-                                        <input id="field-form-porcent-pay" name="porcent_pay" type="text"
-                                            value="{{ old('porcent_pay', $porcent_pay ?? '') }}" placeholder=""
-                                            class="form-control letters_first {{ $errors->has('porcent_pay') ? ' is-invalid' : '' }}"
+                                        <input id="field-form-porcent-pay" type="text"
+                                            value="{{ $porcent_pay }}" placeholder=""
+                                            class="form-control"
                                             disabled autocomplete="off">
-                                        @if ( $errors->has('porcent_pay'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('porcent_pay') }}</strong>
-                                        </span>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -63,15 +58,10 @@
                                                 <i class="fas fa-money-check-alt"></i>
                                             </span>
                                         </div>
-                                        <input id="field-form-cent-pay" name="cent_pay" type="text"
-                                            value="{{ old('cent_pay', $cent_pay ?? '') }}" placeholder=""
-                                            class="form-control letters_first {{ $errors->has('cent_pay') ? ' is-invalid' : '' }}"
+                                        <input id="field-form-cent-pay" type="text"
+                                            value="{{ $cent_pay }}" placeholder=""
+                                            class="form-control"
                                             disabled autocomplete="off">
-                                        @if ( $errors->has('cent_pay'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('cent_pay') }}</strong>
-                                        </span>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -87,21 +77,22 @@
                                             </span>
                                         </div>
                                         <input id="field-form-url-name" name="url_name" type="text"
-                                            value="{{ old('url_name', $url_name ?? '') }}"
+                                            value="{{ $url_name}}"
                                             placeholder="@lang('web_layout.local_name_store_url_ph')"
-                                            class="form-control letters_first {{ $errors->has('url_name') ? ' is-invalid' : '' }}"
+                                            class="form-control"
                                             disabled autocomplete="off">
-                                        @if ( $errors->has('url_name'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('url_name') }}</strong>
-                                        </span>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
                             @include('components.inputs.timezone')
                             @include('components.forms.dates')
                             @include('components.forms.buttons')
+                            <input type="hidden" name="url_name" value="{{ $url_name }}">
+                            <input type="hidden" name="image" value="{{ $image }}">
+                            <input type="hidden" name="profile_background" value="{{ $profile_background }}">
+                            <input type="hidden" name="profile_background_position" value="{{ $profile_background_position }}">
+                            <input type="hidden" name="porcent_pay" value="{{ $porcent_pay }}">
+                            <input type="hidden" name="cent_pay" value="{{ $cent_pay }}">
                         </fieldset>
                     </div>
                     <div class="col-md-8">
@@ -202,7 +193,7 @@
                                                         value="{{ old('merchant', $merchant ?? '') }}"
                                                         placeholder="@lang('web_layout.local_merchant_ph')"
                                                         class="form-control letters_first {{ $errors->has('merchant') ? ' is-invalid' : '' }}"
-                                                        disable autocomplete="off">
+                                                        disabled="disabled" autocomplete="off">
                                                     @if ( $errors->has('merchant'))
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $errors->first('merchant') }}</strong>

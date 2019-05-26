@@ -107,8 +107,7 @@ class ProfileUserStoreBranchController extends Controller
         $action_form = 'show';
         $status_input = 'disabled';
         // Carga data para el view
-        $data_item = UserStoreBranch::where('id', $id_a)
-                                    ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreBranch::find($id_a);
         if ($data_item != null) {
             $id_sis = $data_item->id;
             $date_created = $data_item->created_at;
@@ -231,6 +230,26 @@ class ProfileUserStoreBranchController extends Controller
         $route_form = $this->form_create;
         $action_form = 'add';
         $status_input = '';
+        // Carga los datos del usuario
+        $user_data = CoreUser::getUser();
+        $this->user_sis = $user_data;
+
+        $filter_country = $user_data['countrie_code_user'];
+        if(!is_null($filter_country) AND $filter_country <> '-') {
+            $for_country = $filter_country;
+        } else {
+            $for_country = 'CO';
+        }
+        $data_country = LocaleCountry::where('code', $for_country)->first();
+        $data_for_country = $data_country->id;
+
+        $filter_city = $user_data['city_user'];
+        if(!is_null($filter_city) AND $filter_city <> '-') {
+            $for_city = $filter_city;
+        } else {
+            $for_city = 'Bogotá';
+        }
+        $data_city = LocaleCity::where('name', $for_city)->first();
         // Carga data para el view
         $mytime = Carbon::now();
         $date_created = $mytime->toDateTimeString();
@@ -245,16 +264,16 @@ class ProfileUserStoreBranchController extends Controller
         $description_en = '';
         $keywords_en = '';
         $email = '';
-        $zipcode = '';
-        $country_id = 0;
-        $state_id = 0;
-        $city_id = 0;
+        $zipcode = $user_data['zip_code_user'];
+        $country_id = $data_for_country;
+        $state_id = $data_city->state_id;
+        $city_id = $data_city->id;
         $address = '';
-        $areacode = '';
+        $areacode = $user_data['area_code_user'];
         $phone = '';
         $mobile = '';
-        $latitude = '';
-        $longitude = '';
+        $latitude = $user_data['latitude_user'];
+        $longitude = $user_data['longitude_user'];
         $lun_a = '';
         $lun_c = '';
         $mar_a = '';
@@ -272,8 +291,8 @@ class ProfileUserStoreBranchController extends Controller
         // Carga de combos
         $data_user_store_id = UserStore::where('user_id', Auth::user()->id)->get();
         $data_country_id = LocaleCountry::all();
-        $data_state_id = LocaleState::where('country_id', 47)->get();
-        $data_city_id = LocaleCity::where('state_id', 775)->get();
+        $data_state_id = LocaleState::where('country_id', $country_id)->get();
+        $data_city_id = LocaleCity::where('state_id', $state_id)->get();
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -343,7 +362,23 @@ class ProfileUserStoreBranchController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'name' => 'required',
+                'store_id' => 'required',
+                'name' => 'required|min:5|max:60',
+                'description_es' => 'required|min:5|max:150',
+                'keywords_es' => 'required',
+                'description_en' => 'required|min:5|max:150',
+                'keywords_en' => 'required',
+                'description_pt' => 'required|min:5|max:150',
+                'keywords_pt' => 'required',
+                'email' => 'required',
+                'country_id' => 'required',
+                'state_id' => 'required',
+                'city_id' => 'required',
+                'zipcode' => 'required',
+                'address' => 'required',
+                'areacode' => 'required',
+                'phone' => 'required',
+                'mobile' => 'required',
             ]);
             // Crea la instancia
             $data_field = new UserStoreBranch();
@@ -411,8 +446,7 @@ class ProfileUserStoreBranchController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserStoreBranch::where('id', $id_a)
-                                 ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreBranch::find($id_a);
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -537,12 +571,27 @@ class ProfileUserStoreBranchController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserStoreBranch::where('id', $id)
-                                    ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreBranch::find($id);
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'name' => 'required',
+                    'store_id' => 'required',
+                    'name' => 'required|min:5|max:60',
+                    'description_es' => 'required|min:5|max:150',
+                    'keywords_es' => 'required',
+                    'description_en' => 'required|min:5|max:150',
+                    'keywords_en' => 'required',
+                    'description_pt' => 'required|min:5|max:150',
+                    'keywords_pt' => 'required',
+                    'email' => 'required',
+                    'country_id' => 'required',
+                    'state_id' => 'required',
+                    'city_id' => 'required',
+                    'zipcode' => 'required',
+                    'address' => 'required',
+                    'areacode' => 'required',
+                    'phone' => 'required',
+                    'mobile' => 'required',
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
@@ -614,8 +663,7 @@ class ProfileUserStoreBranchController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserStoreBranch::where('id', $id)
-                                    ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreBranch::find($id);
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

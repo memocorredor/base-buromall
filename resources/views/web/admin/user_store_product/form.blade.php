@@ -82,7 +82,7 @@
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="fas fa-users"></i>
+                                                <i class="fas fa-tag"></i>
                                             </span>
                                         </div>
                                         <input id="field-form-no-ref" name="no_ref" type="text"
@@ -104,7 +104,7 @@
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="fas fa-users"></i>
+                                                <i class="fas fa-barcode"></i>
                                             </span>
                                         </div>
                                         <input id="field-form-no-ean" name="no_ean" type="text"

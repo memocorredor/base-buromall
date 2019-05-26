@@ -22,9 +22,9 @@
             @if ($row_user_store->enable === 1)
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card custom-card">
-                    <div class="card-cover" style="background-image: url( https://picsum.photos/600/400/?random );">
+                    <div class="card-cover" style="background-image: url( {{ $row_user_store->profile_background }} );">
                         <div class="circle-image"
-                            style="background-image: url( https://picsum.photos/200/110/?random );"></div>
+                            style="background-image: url( {{ $row_user_store->image }} );"></div>
                     </div>
                     <div class="card-body">
                         <div class="row no-gutters">

@@ -129,7 +129,7 @@ class ProfileUserStoreController extends Controller
             $email = $data_item->email;
             $country_id = $data_item->country_id;
             $state_id = $data_item->state_id;
-            $city_id = $data_item->enable;
+            $city_id = $data_item->city_id;
             $zipcode = $data_item->zipcode;
             $address = $data_item->address;
             $areacode = $data_item->areacode;
@@ -259,16 +259,27 @@ class ProfileUserStoreController extends Controller
         $this->user_sis = $user_data;
 
         $filter_country = $user_data['countrie_code_user'];
-        $data_country = LocaleCountry::where('code', $filter_country)->first();
+        if(!is_null($filter_country) AND $filter_country <> '-') {
+            $for_country = $filter_country;
+        } else {
+            $for_country = 'CO';
+        }
+        $data_country = LocaleCountry::where('code', $for_country)->first();
+        $data_for_country = $data_country->id;
 
         $filter_city = $user_data['city_user'];
-        $data_city = LocaleCity::where('name', $filter_city)->first();
+        if(!is_null($filter_city) AND $filter_city <> '-') {
+            $for_city = $filter_city;
+        } else {
+            $for_city = 'Bogotá';
+        }
+        $data_city = LocaleCity::where('name', $for_city)->first();
         // Carga data para el view
         $mytime = Carbon::now();
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $time_zone = '';
+        $time_zone = $user_data['timezone'];
         $url_name = '';
         $type_store_id = '';
         $image = 'imagens/stores/default-store.png';
@@ -282,7 +293,7 @@ class ProfileUserStoreController extends Controller
         $description_pt = '';
         $keywords_pt = '';
         $email = '';
-        $country_id = $data_country->id;
+        $country_id = $data_for_country;
         $state_id = $data_city->state_id;
         $city_id = $data_city->id;
         $zipcode = $user_data['zip_code_user'];
@@ -419,13 +430,13 @@ class ProfileUserStoreController extends Controller
                 'name_bank' => 'required',
                 'name_acount' => 'required',
                 'no_acount' => 'required',
-                'facebook' => 'min:5|max:60',
-                'twitter' => 'min:5|max:60',
-                'instagram' => 'min:5|max:60',
-                'pinterest' => 'min:5|max:60',
-                'youtube' => 'min:5|max:60',
-                'linkedin' => 'min:5|max:60',
-                'skype' => 'min:5|max:60'
+                'facebook' => 'max:60',
+                'twitter' => 'max:60',
+                'instagram' => 'max:60',
+                'pinterest' => 'max:60',
+                'youtube' => 'max:60',
+                'linkedin' => 'max:60',
+                'skype' => 'max:60'
             ]);
             // Crea la instancia
             $data_field = new UserStore();
@@ -434,9 +445,9 @@ class ProfileUserStoreController extends Controller
             $data_field->url_name = CoreUser::friendly_Url($request->get('name'));
             $data_field->user_id = Auth::user()->id;
             $data_field->type_store_id = $request->get('type_store_id');
-            $data_field->image = $request->get('image');
-            $data_field->profile_background = $request->get('profile_background');
-            $data_field->profile_background_position = $request->get('profile_background_position');
+            $data_field->image = 'imagens/stores/default-store.png';
+            $data_field->profile_background = 'imagens/stores/default-background.png';
+            $data_field->profile_background_position = '0px';
             $data_field->name = $request->get('name');
             $data_field->description_es = $request->get('description_es');
             $data_field->keywords_es = $request->get('keywords_es');
@@ -453,8 +464,8 @@ class ProfileUserStoreController extends Controller
             $data_field->areacode = $request->get('areacode');
             $data_field->phone = $request->get('phone');
             $data_field->mobile = $request->get('mobile');
-            $data_field->porcent_pay = $request->get('porcent_pay');
-            $data_field->cent_pay = $request->get('cent_pay');
+            $data_field->porcent_pay = env('APP_PORCENT_PAY');
+            $data_field->cent_pay = env('APP_CENT_PAY');
             $data_field->no_company = $request->get('no_company');
             $data_field->merchant = $request->get('merchant');
             $data_field->name_bank = $request->get('name_bank');
@@ -505,8 +516,7 @@ class ProfileUserStoreController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserStore::where('id', $id_a)
-                              ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStore::find($id_a);
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -533,7 +543,7 @@ class ProfileUserStoreController extends Controller
             $email = $data_item->email;
             $country_id = $data_item->country_id;
             $state_id = $data_item->state_id;
-            $city_id = $data_item->enable;
+            $city_id = $data_item->city_id;
             $zipcode = $data_item->zipcode;
             $address = $data_item->address;
             $areacode = $data_item->areacode;
@@ -655,8 +665,7 @@ class ProfileUserStoreController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserStore::where('id', $id)
-                              ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStore::find($id);
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
@@ -682,13 +691,13 @@ class ProfileUserStoreController extends Controller
                     'name_bank' => 'required',
                     'name_acount' => 'required',
                     'no_acount' => 'required',
-                    'facebook' => 'min:5|max:60',
-                    'twitter' => 'min:5|max:60',
-                    'instagram' => 'min:5|max:60',
-                    'pinterest' => 'min:5|max:60',
-                    'youtube' => 'min:5|max:60',
-                    'linkedin' => 'min:5|max:60',
-                    'skype' => 'min:5|max:60'
+                    'facebook' => 'max:60',
+                    'twitter' => 'max:60',
+                    'instagram' => 'max:60',
+                    'pinterest' => 'max:60',
+                    'youtube' => 'max:60',
+                    'linkedin' => 'max:60',
+                    'skype' => 'max:60'
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
@@ -772,8 +781,7 @@ class ProfileUserStoreController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserStore::where('id', $id)
-                              ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStore::where('id', $id)->get();
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

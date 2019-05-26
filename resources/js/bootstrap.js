@@ -47,6 +47,8 @@ window.datetimepicker = require('tempusdominus-bootstrap-4');
 // Fileinput
 window.fileinput = require('bootstrap-fileinput');
 
+window.card = require("card/dist/jquery.card");
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -976,12 +978,72 @@ $(function () {
 
 
 
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+
+        if ($target.hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+        e.preventDefault();
+        var $active = $('.wizard .nav-tabs .nav-item .active');
+        var $activeli = $active.parent("li");
+
+        $($activeli).next().find('a[data-toggle="tab"]').removeClass("disabled");
+        $($activeli).next().find('a[data-toggle="tab"]').click();
+    });
+
+
+    $(".prev-step").click(function (e) {
+        e.preventDefault();
+        var $active = $('.wizard .nav-tabs .nav-item .active');
+        var $activeli = $active.parent("li");
+
+        $($activeli).prev().find('a[data-toggle="tab"]').removeClass("disabled");
+        $($activeli).prev().find('a[data-toggle="tab"]').click();
+
+    });
+
+
+    $('.checkout-form').card({
+        // a selector or DOM element for the container
+        // where you want the card to appear
+        container: '.card-wrapper', // *required*
+
+        // all of the other options from above
+        placeholders: {
+            number: '0000 0000 0000 0000',
+            name: 'Arya Stark',
+            expiry: '00/0000',
+            cvc: '000'
+        }
+    });
+
+
+
+
     const map_canvas = document.querySelector("#gomap-canvas");
     if (typeof (map_canvas) != 'undefined' && map_canvas != null) {
         initMap();
     }
 
 });
+// var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+// var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 function cboLoadState(value) {
     $.ajax({
         url: url_sites + "/load-state/" + value,
@@ -1067,6 +1129,58 @@ function cboLoadBranch(value) {
     });
 }
 
+window.add_cart_item = function () {
+
+    var id_prod = '1';
+    var cant_prod = '1';
+    var price = '12';
+    $.ajax({
+        /* the route pointing to the post function */
+        url: '/add-to-cart',
+        type: 'POST',
+        /* send the csrf-token and the input to the controller */
+        data: { id_prod: id_prod, cant_prod: cant_prod, price: price },
+        dataType: 'JSON',
+        /* remind that 'data' is the response of the AjaxController */
+        success: function (data) {
+            alert(data.success);
+        }
+    });
+}
+
+
+
+
+function tick() {
+    //get the mins of the current time
+    var mins = new Date().getMinutes();
+    var second = new Date().getSeconds();
+    if (mins == "00") {
+        // set endpoint and your API key
+        endpoint = 'live';
+        access_key = 'a5c9db90b76a9b96b7afa2c6f9070b74';
+        // execute the conversion using the "convert" endpoint:
+        if (second == "00") {
+            $.ajax({
+                url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
+                dataType: 'jsonp',
+                success: function (json) {
+                    $.ajax({
+                        url: 'new-currnecy',
+                        type: 'post',
+                        data: { usd_eur: json.quotes.USDEUR, usd_usd: json.quotes.USDUSD, usd_cop: json.quotes.USDCOP, usd_brl: json.quotes.USDBRL },
+                        success: function (response) {
+
+                        }
+                    });
+                }
+            });
+        }
+    }
+}
+
+setInterval(function () { tick(); }, 1000);
+
 var map, infoWindow;
 function initMap() {
     var lat_user = document.getElementById('info-user-lat').innerHTML;
@@ -1139,33 +1253,5 @@ function aaaaaainitMap() {
 
 
 
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-function tick() {
-    //get the mins of the current time
-    var mins = new Date().getMinutes();
-    var second = new Date().getSeconds();
-    if (mins == "00") {
-        // set endpoint and your API key
-        endpoint = 'live';
-        access_key = 'a5c9db90b76a9b96b7afa2c6f9070b74';
-        // execute the conversion using the "convert" endpoint:
-        if (second == "00") {
-            $.ajax({
-                url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
-                dataType: 'jsonp',
-                success: function (json) {
-                    $.ajax({
-                        url: 'new-currnecy',
-                        type: 'post',
-                        data: { _token: CSRF_TOKEN, usd_eur: json.quotes.USDEUR, usd_usd: json.quotes.USDUSD, usd_cop: json.quotes.USDCOP, usd_brl: json.quotes.USDBRL },
-                        success: function (response) {
 
-                        }
-                    });
-                }
-            });
-        }
-    }
-}
 
-setInterval(function () { tick(); }, 1000);

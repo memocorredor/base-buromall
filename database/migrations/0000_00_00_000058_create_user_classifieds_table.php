@@ -54,7 +54,6 @@ class CreateUserClassifiedsTable extends Migration
             $table->foreign('departaments_id')->references('id')->on('cg_departaments');
             $table->foreign('categories_id')->references('id')->on('cg_categories');
             $table->foreign('categories_sub_id')->references('id')->on('cg_sub_categories');
-            $table->foreign('country_id')->references('id')->on('locale_countries');
             $table->foreign('status_product_id')->references('id')->on('status_products');
             $table->foreign('type_transaction_id')->references('id')->on('type_transactions');
         });

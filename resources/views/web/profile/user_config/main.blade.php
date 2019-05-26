@@ -308,7 +308,6 @@
                             <legend class="text-semibold">
                                 <i class="fas fa-share-alt"></i>@lang('web_layout.local_legen_detail_contact')
                             </legend>
-
                             <div class="row">
                                 <div class="col-md-4">
                                     @include('components.cbo.cbo_locale.countries')

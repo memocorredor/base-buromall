@@ -118,8 +118,7 @@ class ProfileUserStoreProductController extends Controller
         $action_form = 'show';
         $status_input = 'disabled';
         // Carga data para el view
-        $data_item = UserStoreProduct::where('id', $id_a)
-                                     ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreProduct::find($id_a);
         if ($data_item != null) {
             $id_sis = $data_item->id;
             $date_created = $data_item->created_at;
@@ -478,7 +477,36 @@ class ProfileUserStoreProductController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                //'name' => 'required',
+                'country_id' => 'required',
+                'store_id' => 'required',
+                'branch_id' => 'required',
+                'status_product_id' => 'required',
+                'departaments_id' => 'required',
+                'categories_id' => 'required',
+                'categories_sub_id' => 'required',
+                'brand_id' => 'required',
+                'title_es' => 'required|min:5|max:60',
+                'text_es' => 'required|min:5|max:60',
+                'description_es' => 'required|min:5|max:150',
+                'keywords_es' => 'required',
+                'title_en' => 'required|min:5|max:60',
+                'text_en' => 'required|min:5|max:60',
+                'description_en' => 'required|min:5|max:150',
+                'keywords_en' => 'required',
+                'title_pt' => 'required|min:5|max:60',
+                'text_pt' => 'required|min:5|max:60',
+                'description_pt' => 'required|min:5|max:150',
+                'keywords_pt' => 'required',
+                'type_auction_id' => 'required',
+                'type_transaction_id' => 'required',
+                'tax_id' => 'required',
+                'price' => 'required',
+                'quantity' => 'required',
+                'type_shipping_id' => 'required',
+                'shipping_price' => 'required',
+                'shipping_description_es' => 'required|min:5|max:150',
+                'shipping_description_en' => 'required|min:5|max:150',
+                'shipping_description_pt' => 'required|min:5|max:150',
                 'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             // Crea la instancia
@@ -619,8 +647,7 @@ class ProfileUserStoreProductController extends Controller
     {
         $id_a = $id;
         // Carga data para el view
-        $data_item = UserStoreProduct::where('id', $id_a)
-                                     ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreProduct::find($id_a);
         if ($data_item != null) {
             // Aciones del form
             $route_form = $this->form_update;
@@ -807,12 +834,40 @@ class ProfileUserStoreProductController extends Controller
     public function update(Request $request, $id)
     {
         //Carga la informacion del registro
-        $data_item = UserStoreProduct::where('id', $id)
-                                     ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreProduct::find($id);
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    //'name' => 'required',
+                    'country_id' => 'required',
+                    'store_id' => 'required',
+                    'branch_id' => 'required',
+                    'status_product_id' => 'required',
+                    'departaments_id' => 'required',
+                    'categories_id' => 'required',
+                    'categories_sub_id' => 'required',
+                    'brand_id' => 'required',
+                    'title_es' => 'required|min:5|max:60',
+                    'text_es' => 'required|min:5|max:60',
+                    'description_es' => 'required|min:5|max:150',
+                    'keywords_es' => 'required',
+                    'title_en' => 'required|min:5|max:60',
+                    'text_en' => 'required|min:5|max:60',
+                    'description_en' => 'required|min:5|max:150',
+                    'keywords_en' => 'required',
+                    'title_pt' => 'required|min:5|max:60',
+                    'text_pt' => 'required|min:5|max:60',
+                    'description_pt' => 'required|min:5|max:150',
+                    'keywords_pt' => 'required',
+                    'type_auction_id' => 'required',
+                    'type_transaction_id' => 'required',
+                    'tax_id' => 'required',
+                    'price' => 'required',
+                    'quantity' => 'required',
+                    'type_shipping_id' => 'required',
+                    'shipping_price' => 'required',
+                    'shipping_description_es' => 'required|min:5|max:150',
+                    'shipping_description_en' => 'required|min:5|max:150',
+                    'shipping_description_pt' => 'required|min:5|max:150',
                     'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                 ]);
                 //Compara la info
@@ -955,8 +1010,7 @@ class ProfileUserStoreProductController extends Controller
     // Borrar un registro
     public function destroy($id)
     {
-        $data_item = UserStoreProduct::where('id', $id)
-                                     ->where('user_id', Auth::user()->id)->get();
+        $data_item = UserStoreProduct::find($id);
         if ($data_item != null) {
             $data_item->delete();
             $notification = array(

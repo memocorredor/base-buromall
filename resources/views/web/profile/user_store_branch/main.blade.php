@@ -12,9 +12,11 @@
                         <tr>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_counter')</th>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_id')</th>
-                            <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_created_at')</th>
-                            <th class="text-center" style="width: 110px;">@lang('web_layout.local_tb_updated_at')</th>
+                            <th class="text-center" style="width: 120px; font-size: .8rem;">@lang('web_layout.local_tb_created_at')</th>
+                            <th class="text-center" style="width: 120px; font-size: .8rem;">@lang('web_layout.local_tb_updated_at')</th>
                             <th class="text-center" style="width: 20px;">@lang('web_layout.local_show')</th>
+                            <th class="text-center" style="width: 30px;">@lang('web_layout.local_logo')</th>
+                            <th class="text-center">@lang('web_layout.local_stores')</th>
                             <th class="text-center">@lang('web_layout.local_name')</th>
                             <th class="text-center" style="width: 14%;">@lang('web_layout.local_actions')</th>
                         </tr>
@@ -30,10 +32,10 @@
                         <tr>
                             <td class="text-center" style="width: 20px;">{{  $counter }}</td>
                             <td class="text-center" style="width: 20px;">{{  $row_items->id }}</td>
-                            <td class="text-center" style="width: 110px; font-size: .55rem;">
+                            <td class="text-center" style="width: 120px; font-size: .55rem;">
                                 {{  $row_items->created_at }}
                             </td>
-                            <td class="text-center" style="width: 110px; font-size: .55rem;">
+                            <td class="text-center" style="width: 120px; font-size: .55rem;">
                                 {{  $row_items->updated_at }}
                             </td>
                             @if ($row_items->enable === 1)
@@ -45,6 +47,8 @@
                                 <span class="label label-danger">@lang('web_layout.local_no_show')</span>
                             </td>
                             @endif
+                            <td class="text-center" style="width: 30px;"><img src="{{ asset($row_items->nameStore->image) }}" class="img-fluid" style="min-height: 30px"/></td>
+                            <td class="text-center">{{  $row_items->nameStore->name }}</td>
                             <td class="text-center">{{  $row_items->name }}</td>
                             @include('components.tables.buttons')
                         </tr>

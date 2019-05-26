@@ -141,7 +141,7 @@
                             <i class="{{ $icon }}"></i>
                         </span>
                         <div class="btn-label-text">
-                            <span>@lang('web_layout.local_visit_cupon')</span>
+                            <span>@lang('web_layout.local_visit_product')</span>
                         </div>
                     </a>
                 </div>

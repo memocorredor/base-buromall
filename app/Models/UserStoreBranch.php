@@ -45,4 +45,9 @@ class UserStoreBranch extends Model
         'dom_a',
         'dom_c'
     ];
+
+    public function nameStore()
+    {
+        return $this->belongsTo(UserStore::class, 'store_id');
+    }
 }

@@ -13,7 +13,7 @@
             </div>
             <input id="field-form-title-en" name="title_en" type="text" value="{{ old('title_en', $title_en ?? '') }}"
                 placeholder="@lang('web_layout.local_title_ph')"
-                class="form-control letters_first seo_title_en {{ $errors->has('title_en') ? ' is-invalid' : '' }}"
+                class="form-control seo_title_en {{ $errors->has('title_en') ? ' is-invalid' : '' }}"
                 {{ $status_input }} autocomplete="off" maxlength="60">
             @if ( $errors->has('title_en'))
             <span class="invalid-feedback">

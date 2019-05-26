@@ -2,10 +2,13 @@
 
 namespace Buromall\Http\Controllers;
 
+use Buromall\Models\User;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Buromall\AppCore\CoreUser;
+use Darryldecode\Cart\CartCondition;
+use Auth;
 
 class ProfileUserCartController extends Controller
 {
@@ -52,6 +55,11 @@ class ProfileUserCartController extends Controller
         $this->seo_title = '';
         $this->seo_description = '';
         $this->seo_keywords = '';
+        //Get cart
+        $items = \Cart::getContent();
+
+        $get_stotal = \Cart::getSubTotal();
+        $get_total = \Cart::getTotal();
         //Carga los metas en las variables
         $this->setMeta();
         //Carga los datos de la web
@@ -62,7 +70,34 @@ class ProfileUserCartController extends Controller
         return view('web.profile.user_cart.main', [
             'meta_lang' => $this->lang,
             'meta_sis' => $for_meta_sis,
-            'user_sis' => $this->user_sis
+            'user_sis' => $this->user_sis,
+            'items' => $items,
+            'get_stotal' => $get_stotal,
+            'get_total' => $get_total
         ]);
     }
+
+    public function itemAdd(Request $request)
+    {
+        $condition = new CartCondition(array(
+            'name' => 'VAT 12.5%',
+            'type' => 'tax',
+            'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            'value' => '12.5%',
+            'attributes' => array( // attributes field is optional
+                'description' => 'Value added tax',
+                'more_data' => 'more data here'
+            )
+        ));
+
+        \Cart::condition($condition);
+
+        \Cart::add(1, 'Sample Item 1', 100.99, 1, array());
+        $input = $request->all();
+
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
+        //return response()->json(['success'=>true]);
+
+    }
+
 }

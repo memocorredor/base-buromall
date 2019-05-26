@@ -18,6 +18,7 @@
         "bootstrap-select": "^1.13.10",
         "bootstrap-touchspin": "^4.2.5",
         "bootstrap4-toggle": "^3.4.0",
+        "card": "^2.4.0",
         "codemirror": "^5.46.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",

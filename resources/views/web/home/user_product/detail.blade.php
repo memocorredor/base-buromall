@@ -39,12 +39,12 @@
                             class="form-control only_numbers" autocomplete="off">
                     </div>
                     <div class="app-button">
-                        <a href="{{ url('/') }}" class="btn btn-labeled btn-secondary" style="width: 100%">
+                        <button onclick="add_cart_item()" class="btn btn-labeled btn-secondary" style="width: 100%">
                             <span class="btn-label-left">
                                 <i class="fas fa-cart-plus"></i>
                             </span>
                             <div class="btn-label-text"><span>@lang('web_layout.local_btn_to_cart')</span></div>
-                        </a>
+                        </button>
                     </div>
                 </div>
 

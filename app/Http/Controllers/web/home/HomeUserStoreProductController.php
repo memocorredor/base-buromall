@@ -20,6 +20,7 @@ use Buromall\Models\UserItemMedia;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
+use Buromall\AppCore\coreImage;
 use Carbon\Carbon;
 use Buromall\AppCore\CoreUser;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
@@ -54,9 +55,9 @@ class HomeUserStoreProductController extends Controller
         //Name headers item
         $this->item_name_base = __('web_layout.local_product');
         //Icon Cantidad
-        $this->quantity_icon = 'fas fa-ticket-alt';
+        $this->quantity_icon = 'fas fa-shopping-basket';
         //Icon View
-        $this->view_icon = 'fas fa-crosshairs';
+        $this->view_icon = 'fas fa-gift';
     }
 
     //Asignacion de variables y carga del META
@@ -150,12 +151,11 @@ class HomeUserStoreProductController extends Controller
         $price_operation = $price_to_operation - ($price_to_operation * ($descount_apply / 100));
         $price = number_format($data_view->price, 2, ',', '.');
         $price_descount = number_format($price_operation, 2, ',', '.');
-
-
-
         //Carga las imagenes
         $data_img_id = $data_view->id;
         $data_img = UserItemMedia::where($this->media_id, '=', $data_img_id)->get();
+        $data_imagenes = coreImage::imageNews($data_img_id);
+
         //Se envia a url segun idioma y carga la info de la pantalla
         if ($this->lang === 'pt') {
             $url_title = $data_view->url_title_pt;
@@ -230,7 +230,7 @@ class HomeUserStoreProductController extends Controller
             'quantity' => $quantity,
             'qr_type' => $qr_type,
             'qr_img' => $qr_img,
-            'data_img' => $data_img,
+            'data_imagenes' => $data_imagenes,
             'data_url' => $data_url
         ]);
     }

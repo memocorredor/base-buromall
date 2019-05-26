@@ -80,7 +80,6 @@ class CreateUserStoreProductsTable extends Migration
 
         Schema::table('user_store_products', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('country_id')->references('id')->on('locale_countries');
             $table->foreign('store_id')->references('id')->on('user_stores');
             $table->foreign('branch_id')->references('id')->on('user_store_branches');
             $table->foreign('status_product_id')->references('id')->on('status_products');

@@ -12,18 +12,25 @@ namespace Buromall\AppCore;
 
 use Buromall\Models\UserItemMedia;
 use File;
-class coreImage {
+
+class coreImage
+{
 
     // Imagen en News list
-    public static function imageNews($id) {
+    public static function imageNews($id)
+    {
 
         $data_item = UserItemMedia::where('news_id', $id)->first();
-        $path = $data_item->url;
-        $path_default ='imagens/news/default-news.png';
+        $path_default = 'imagens/news/default-news.png';
 
-        if ($path != null) {
-            if (File::exists($path)) {
-                return $path;
+        if ($data_item) {
+            $path = $data_item->url;
+            if ($path != null) {
+                if (File::exists($path)) {
+                    return $path;
+                } else {
+                    return $path_default;
+                }
             } else {
                 return $path_default;
             }
@@ -31,5 +38,4 @@ class coreImage {
             return $path_default;
         }
     }
-
 }

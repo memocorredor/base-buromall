@@ -55,7 +55,7 @@
                                         <input id="field-form-name" name="name" type="text"
                                             value="{{ old('name', $name ?? '') }}"
                                             placeholder="@lang('web_layout.local_name_branch_ph')"
-                                            class="form-control letters_first {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                            class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             {{ $status_input }} autocomplete="off">
                                         @if ( $errors->has('name'))
                                         <span class="invalid-feedback">

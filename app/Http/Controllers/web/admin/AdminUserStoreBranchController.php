@@ -13,6 +13,7 @@ use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Carbon\Carbon;
 use Buromall\AppCore\CoreUser;
+use Auth;
 
 class AdminUserStoreBranchController extends Controller
 {
@@ -232,12 +233,32 @@ class AdminUserStoreBranchController extends Controller
         $route_form = $this->form_create;
         $action_form = 'add';
         $status_input = '';
+        // Carga los datos del usuario
+        $user_data = CoreUser::getUser();
+        $this->user_sis = $user_data;
+
+        $filter_country = $user_data['countrie_code_user'];
+        if (!is_null($filter_country) and $filter_country <> '-') {
+            $for_country = $filter_country;
+        } else {
+            $for_country = 'CO';
+        }
+        $data_country = LocaleCountry::where('code', $for_country)->first();
+        $data_for_country = $data_country->id;
+
+        $filter_city = $user_data['city_user'];
+        if (!is_null($filter_city) and $filter_city <> '-') {
+            $for_city = $filter_city;
+        } else {
+            $for_city = 'Bogotá';
+        }
+        $data_city = LocaleCity::where('name', $for_city)->first();
         // Carga data para el view
         $mytime = Carbon::now();
         $date_created = $mytime->toDateTimeString();
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
-        $user_id = 0;
+        $user_id = Auth::user()->id;
         $store_id = 0;
         $name = '';
         $description_es = '';
@@ -247,16 +268,16 @@ class AdminUserStoreBranchController extends Controller
         $description_en = '';
         $keywords_en = '';
         $email = '';
-        $zipcode = '';
-        $country_id = 0;
-        $state_id = 0;
-        $city_id = 0;
+        $zipcode = $user_data['zip_code_user'];
+        $country_id = $data_for_country;
+        $state_id = $data_city->state_id;
+        $city_id = $data_city->id;
         $address = '';
-        $areacode = '';
+        $areacode = $user_data['area_code_user'];
         $phone = '';
         $mobile = '';
-        $latitude = '';
-        $longitude = '';
+        $latitude = $user_data['latitude_user'];
+        $longitude = $user_data['longitude_user'];
         $lun_a = '';
         $lun_c = '';
         $mar_a = '';
@@ -275,8 +296,8 @@ class AdminUserStoreBranchController extends Controller
         $data_user_id = User::all();
         $data_user_store_id = UserStore::all();
         $data_country_id = LocaleCountry::all();
-        $data_state_id = LocaleState::where('country_id', 47)->get();
-        $data_city_id = LocaleCity::where('state_id', 775)->get();
+        $data_state_id = LocaleState::where('country_id', $country_id)->get();
+        $data_city_id = LocaleCity::where('state_id', $state_id)->get();
         // Carga los metas en las variables
         $this->setMeta();
         // Carga los datos de la web
@@ -347,7 +368,24 @@ class AdminUserStoreBranchController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
-                'name' => 'required',
+                'user_id' => 'required',
+                'store_id' => 'required',
+                'name' => 'required|min:5|max:60',
+                'description_es' => 'required|min:5|max:150',
+                'keywords_es' => 'required',
+                'description_en' => 'required|min:5|max:150',
+                'keywords_en' => 'required',
+                'description_pt' => 'required|min:5|max:150',
+                'keywords_pt' => 'required',
+                'email' => 'required',
+                'country_id' => 'required',
+                'state_id' => 'required',
+                'city_id' => 'required',
+                'zipcode' => 'required',
+                'address' => 'required',
+                'areacode' => 'required',
+                'phone' => 'required',
+                'mobile' => 'required',
             ]);
             // Crea la instancia
             $data_field = new UserStoreBranch();
@@ -547,7 +585,24 @@ class AdminUserStoreBranchController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
-                    'name' => 'required',
+                    'user_id' => 'required',
+                    'store_id' => 'required',
+                    'name' => 'required|min:5|max:60',
+                    'description_es' => 'required|min:5|max:150',
+                    'keywords_es' => 'required',
+                    'description_en' => 'required|min:5|max:150',
+                    'keywords_en' => 'required',
+                    'description_pt' => 'required|min:5|max:150',
+                    'keywords_pt' => 'required',
+                    'email' => 'required',
+                    'country_id' => 'required',
+                    'state_id' => 'required',
+                    'city_id' => 'required',
+                    'zipcode' => 'required',
+                    'address' => 'required',
+                    'areacode' => 'required',
+                    'phone' => 'required',
+                    'mobile' => 'required',
                 ]);
                 //Compara la info
                 $data_item->enable = $request->get('enable');
@@ -639,8 +694,7 @@ class AdminUserStoreBranchController extends Controller
     // Carga del los combos
     public function getBranch(Request $request, $id)
     {
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
             $data_cambo = UserStoreBranch::where('store_id', $id)->get();
             return response()->json($data_cambo);
         }

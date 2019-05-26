@@ -135,10 +135,11 @@ Route::get(__('route_profile.profile_user_classified_edit').'{id}', 'ProfileUser
 Route::put(__('route_profile.profile_user_classified_update').'{id}', 'ProfileUserClassifiedController@update')->name('profile.user_classified.update');
 Route::delete(__('route_profile.profile_user_classified_delete').'{id}', 'ProfileUserClassifiedController@destroy')->name('profile.user_classified.delete');
 /* ROUTE PROFILE GENERALS */
-Route::get(__('route_profile.profile_user_wallet').'{id}', 'ProfileUserWalletController@index')->name('profile.user_wallet');
-Route::get(__('route_profile.profile_user_cart').'{id}', 'ProfileUserCartController@index')->name('profile.user_cart');
-Route::get(__('route_profile.profile_user_checkout').'{id}', 'ProfileUserCheckoutController@index')->name('profile.user_checkout');
-Route::get(__('route_profile.profile_user_auction').'{id}', 'ProfileUserAuctionController@index')->name('profile.user_auction');
+Route::get(__('route_profile.profile_user_wallet'), 'ProfileUserWalletController@index')->name('profile.user_wallet');
+Route::get(__('route_profile.profile_user_cart'), 'ProfileUserCartController@index')->name('profile.user_cart');
+Route::get(__('route_profile.profile_user_checkout'), 'ProfileUserCheckoutController@index')->name('profile.user_checkout');
+Route::post('make-payment', 'ProfileUserCheckoutController@iniOrden')->name('profile.make_payment');
+Route::get(__('route_profile.profile_user_auction'), 'ProfileUserAuctionController@index')->name('profile.user_auction');
 Route::get(__('route_profile.profile_user_status_shipping').'{id}', 'ProfileUserStatusShippingController@index')->name('profile.user_status_shipping');
 Route::get(__('route_profile.profile_user_buy_recurrent').'{id}', 'ProfileUserBuyRecurrentController@index')->name('profile.user_buy_recurrent');
 Route::get(__('route_profile.profile_user_whishlist').'{id}', 'ProfileUserWhishlistController@index')->name('profile.user_whishlist');
@@ -718,5 +719,7 @@ Route::get('load-categorie/{id}', 'AdminCgCategorieController@getCategories');
 Route::get('load-subcategorie/{id}', 'AdminCgSubCategorieController@getSubCategories');
 /* ROUTE COMBO BRANCH */
 Route::get('load-branch/{id}', 'AdminUserStoreBranchController@getBranch');
+/* ROUTE ADD TO CART */
+Route::post('add-to-cart', 'ProfileUserCartController@itemAdd')->name('add.itemcart');
 
 

@@ -11,7 +11,7 @@
     </div>
     <input id="field-form-name-pt" name="name_pt" type="text" value="{{ old('name_pt', $name_pt ?? '') }}"
         placeholder="@lang('web_layout.local_name_ph')"
-        class="form-control letters_first {{ $errors->has('name_pt') ? ' is-invalid' : '' }}" {{ $status_input }}
+        class="form-control {{ $errors->has('name_pt') ? ' is-invalid' : '' }}" {{ $status_input }}
         autocomplete="off">
     @if ( $errors->has('name_pt'))
     <span class="invalid-feedback">

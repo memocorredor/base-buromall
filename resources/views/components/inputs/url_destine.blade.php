@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <label for="field-form-url-destine">
-            @lang('web_layout.local_url_destine')
+            @lang('web_layout.local_url_name')
         </label>
         <div class="form-group input-group">
             <div class="input-group-prepend">

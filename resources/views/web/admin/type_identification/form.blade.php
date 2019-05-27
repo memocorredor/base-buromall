@@ -24,6 +24,9 @@
                                 @include('components.inputs.icon')
                                 @include('components.inputs.color')
                             </div>
+                            <div class="row">
+                                @include('components.inputs.iso')
+                            </div>
                             <div class="tabbable">
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">

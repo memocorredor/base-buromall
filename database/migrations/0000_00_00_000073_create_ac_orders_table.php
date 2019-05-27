@@ -32,6 +32,7 @@ class CreateAcOrdersTable extends Migration
             $table->string('lastname', 150)->nullable()->default('');
             $table->integer('type_identification_id')->unsigned()->default('0');
             $table->string('identification', 60)->nullable()->default('');
+            $table->string('exped_identification', 10)->nullable()->default('');
             $table->string('email', 150)->nullable()->default('');
             $table->string('areacode', 60)->nullable()->default('');
             $table->string('phone', 60)->nullable()->default('');
@@ -51,6 +52,8 @@ class CreateAcOrdersTable extends Migration
             $table->integer('pay_errors_id')->unsigned()->default('0');
             $table->integer('pay_errors_avs_id')->unsigned()->default('0');
             $table->integer('pay_errors_cvv_id')->unsigned()->default('0');
+            $table->string('currency', 2)->nullable()->default('');
+            $table->string('trm', 60)->nullable()->default('');
             $table->string('wallet_saldo_debit', 100)->nullable()->default('');
             $table->string('wallet_saldo_credit', 100)->nullable()->default('');
             $table->string('wallet_total', 100)->nullable()->default('');
@@ -58,6 +61,8 @@ class CreateAcOrdersTable extends Migration
             $table->string('cart_tax', 100)->nullable()->default('');
             $table->string('cart_shipping', 100)->nullable()->default('');
             $table->string('cart_total', 100)->nullable()->default('');
+            $table->text('info_user')->nullable();
+            $table->text('tx_payment')->nullable();
             $table->text('token');
             $table->timestamps();
         });

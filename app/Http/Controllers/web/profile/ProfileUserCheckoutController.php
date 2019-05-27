@@ -25,6 +25,7 @@ use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Buromall\AppCore\CoreUser;
 use Darryldecode\Cart\Cart;
+use Epayco\Util;
 use Auth;
 
 class ProfileUserCheckoutController extends Controller
@@ -128,57 +129,174 @@ class ProfileUserCheckoutController extends Controller
 
     public function iniOrden(Request $request)
     {
+        $data_ac_order_new = AcOrder::latest()->first();
+        if($data_ac_order_new){
+            $id_ac_order_new = $data_ac_order_new->id;
+        } else {
+            $id_ac_order_new = 1;
+        }
 
-        // $data_field = new AcOrder();
-        // $data_field->user_id = $request->get('user_id');
-        // $data_field->status_order_id = $request->get('status_order_id');
-        // $data_field->type_payment_id = $request->get('type_payment_id');
-        // $data_field->no_order_id = $request->get('no_order_id');
-        // $data_field->no_bill_id = $request->get('no_bill_id');
-        // $data_field->no_request_id = $request->get('no_request_id');
-        // $data_field->status_payment_id = $request->get('status_payment_id');
-        // $data_field->status_refund_id = $request->get('status_refund_id');
-        // $data_field->status_shipping_id = $request->get('status_shipping_id');
-        // $data_field->name = $request->get('name');
-        // $data_field->lastname = $request->get('lastname');
-        // $data_field->identification_id = $request->get('identification_id');
-        // $data_field->identification = $request->get('identification');
-        // $data_field->email = $request->get('email');
-        // $data_field->areacode = $request->get('areacode');
-        // $data_field->phone = $request->get('phone');
-        // $data_field->mobile = $request->get('mobile');
-        // $data_field->country_id = $request->get('country_id');
-        // $data_field->region_id = $request->get('region_id');
-        // $data_field->city_id = $request->get('city_id');
-        // $data_field->township_id = $request->get('township_id');
-        // $data_field->address = $request->get('address');
-        // $data_field->zipcode = $request->get('zipcode');
-        // $data_field->latitude = $request->get('latitude');
-        // $data_field->longitude = $request->get('longitude');
-        // $data_field->name_credit = $request->get('name_credit');
-        // $data_field->number_credit = $request->get('number_credit');
-        // $data_field->cvv_credit = $request->get('cvv_credit');
-        // $data_field->exp_credit = $request->get('exp_credit');
-        // $data_field->nu_autorization = $request->get('nu_autorization');
-        // $data_field->error_vpos_id = $request->get('error_vpos_id');
-        // $data_field->error_avs_vpos_id = $request->get('error_avs_vpos_id');
-        // $data_field->error_cvv_vpos_id = $request->get('error_cvv_vpos_id');
-        // $data_field->wallet_saldo_debit = $request->get('wallet_saldo_debit');
-        // $data_field->wallet_saldo_credit = $request->get('wallet_saldo_credit');
-        // $data_field->wallet_total = $request->get('wallet_total');
-        // $data_field->cart_stotal = $request->get('cart_stotal');
-        // $data_field->cart_tax = $request->get('cart_tax');
-        // $data_field->cart_shipping = $request->get('cart_shipping');
-        // $data_field->cart_total = $request->get('cart_total');
-        // $data_field->token = $request->get('token');
+        $data_expire_cc = explode("/", $request->get('expiry'));
+        $format_expire_cc = $data_expire_cc[1] . '-' . $data_expire_cc[0];
 
-        $notification = array(
-            'message' => 'listo el pago',
-            'alert-type' => 'error'
+
+        // OJO CON ESTA
+        //TODO: verificar como podemos hacer esto mejor.
+        // Crea nuevo numero de factura
+        $data_nobill = new AcNoBill();
+        $data_nobill->status = 2;
+        $data_nobill->order_num = $id_ac_order_new;
+        $data_nobill->no_item = 1; //supuesto no de factura
+        $data_nobill->token = $request->get('_token');
+        //Accion de guardar la info
+        $data_nobill->save();
+
+        // Crea nuevo numero de orden
+        $data_noorder = new AcNoOrder();
+        $data_noorder->status = 2;
+        $data_noorder->order_num = $id_ac_order_new;
+        $data_noorder->no_item = 1;
+        $data_noorder->token = $request->get('_token');
+        //Accion de guardar la info
+        $data_noorder->save();
+
+        // Crea nuevo numero de orden
+        $data_norequest = new AcNoRequest();
+        $data_norequest->status = 2;
+        $data_norequest->order_num = $id_ac_order_new;
+        $data_norequest->no_item = 1;
+        $data_norequest->token = $request->get('_token');
+        //Accion de guardar la info
+        $data_norequest->save();
+
+        $data_field = new AcOrder();
+        $data_field->user_id = Auth::user()->id;
+        $data_field->status_order_id = 2; //Orden iniciada
+        $data_field->type_payment_id = 3; //Tarjeta de credito
+        $data_field->no_order_id = $data_noorder->id;
+        $data_field->no_bill_id = $data_nobill->id;
+        $data_field->no_request_id = $data_norequest->id;
+        $data_field->status_payment_id = 2; //Pago pendiente
+        $data_field->status_refund_id = 2; //Sin devoluciones
+        $data_field->status_shipping_id = 2; //En espera del pago
+        $data_field->name = $request->get('name_user');
+        $data_field->lastname = $request->get('lastname_user');
+        $data_field->type_identification_id = $request->get('type_identification_id');
+        $data_field->identification = $request->get('identification_user');
+        $data_field->exped_identification = $request->get('exped_identification');
+        $data_field->email = $request->get('email_user');
+        $data_field->areacode = $request->get('areacode_user');
+        $data_field->phone = $request->get('phone_user');
+        $data_field->mobile = $request->get('mobile_user');
+        $data_field->country_id = $request->get('country_id');
+        $data_field->state_id = $request->get('state_id');
+        $data_field->city_id = $request->get('city_id');
+        $data_field->address = $request->get('address_user');
+        $data_field->zipcode = $request->get('zipcode_user');
+        $data_field->latitude = $request->get('latitude_user');
+        $data_field->longitude = $request->get('longitude_user');
+        $data_field->name_credit = $request->get('name');
+        $data_field->number_credit = $request->get('number');
+        $data_field->cvv_credit = $request->get('cvc');
+        $data_field->exp_credit = $format_expire_cc;
+        $data_field->nu_autorization = '';
+        $data_field->pay_errors_id = 1;
+        $data_field->pay_errors_avs_id = 1;
+        $data_field->pay_errors_cvv_id = 1;
+        $data_field->wallet_saldo_debit = '';
+        $data_field->wallet_saldo_credit = '';
+        $data_field->wallet_total = '';
+        $data_field->cart_stotal = \Cart::getSubTotal();
+        $data_field->cart_tax = '';
+        $data_field->cart_shipping = '';
+        $data_field->cart_total = \Cart::getTotal();
+        $data_field->token = $request->get('_token');
+
+        //Accion de guardar la info
+        $saved = $data_field->save();
+
+        if ($saved) {
+            $notification = array(
+                'message' => 'Orden Generada!, procedemos a hacer el pago.',
+                'alert-type' => 'info'
+            );
+
+            $this->makePaymentCC($data_field->id);
+        }
+
+        //return redirect()->route('home')->with($notification);
+    }
+
+    public function makePaymentCC($id)
+    {
+        $data_item = AcOrder::find($id);
+        // Carga los datos del usuario
+        $user_sis = CoreUser::getUser();
+
+        $filter_identification = $data_item->type_identification_id;
+        $data_identification = TypeIdentification::where('id', $filter_identification)->first();
+
+        $filter_country = $data_item->country_id;
+        $data_country = LocaleCountry::where('id', $filter_country)->first();
+
+        $filter_state = $data_item->state_id;
+        $data_state = LocaleState::where('id', $filter_state)->first();
+
+        $filter_city = $data_item->city_id;
+        $data_city = LocaleCity::where('id', $filter_city)->first();
+
+        $data_send = array(
+            'public_key' => env('APP_PAY_KEY'),
+            'tipo_doc' => $data_identification->iso,
+            'documento' => $data_item->identification,
+            'fechaExpedicion' => $data_item->exped_identification,
+            'nombres' => $data_item->name,
+            'apellidos' => $data_item->lastname,
+            'email' => $data_item->email,
+            'pais' => $data_country->code,
+            'depto' => $data_state->name,
+            'ciudad' => $data_city->name,
+            'telefono' => $data_item->phone,
+            'celular' => $data_item->mobile,
+            'direccion' => $data_item->address . ' - Zip:' . $data_item->zipcode,
+            'ip' => $user_sis['session_ip'],
+            'factura' => '24',
+            'descripcion' => 'Nuevo pago de 20.000',
+            'iva' => 0,
+            'baseiva' => 0,
+            'valor' => \Cart::getTotal(),//20.000, PUNTO ES miles y coma decimales.
+            'moneda' => 'USD',
+            'tarjeta' => $data_item->number_credit,
+            'fechaexpiracion' => $data_item->exp_credit,//'2018-06',
+            'codigoseguridad' => $data_item->cvv_credit,
+            'franquicia' => 'VISA',
+            'cuotas' => 1,
+            'url_respuesta' => env('APP_URL').env('APP_PAY_URLR'),
+            'url_confirmacion' => env('APP_URL').env('APP_PAY_URLC'),
+            'metodoconfirmacion' => env('APP_PAY_ACTION_SIS'),
+            'lenguaje' => env('APP_PAY_LANG_SIS'),
+            'i' => env('APP_PAY_KEY_ENC'),
+            'enpruebas' => env('APP_PAY_SIS_TEST')
         );
+        $op_pay = new Util();
+        $data = $op_pay->mergeSet($data_send, env('APP_PAY_SIS_TEST'), env('APP_PAY_LANG_SIS'), env('APP_PAY_KEY_PV'), env('APP_PAY_KEY'));
 
-        return redirect()->route('home')->with($notification);
-
+        $payload = json_encode($data);
+        $ch = curl_init('https://secure.payco.co/restpagos/pagos/comercios.json');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($payload))
+        );
+        //Submit the POST request
+        $result = curl_exec($ch);
+        echo 'data resultado <br>';
+        print_r($result);
+        //Close cURL session handle
+        curl_close($ch);
 
     }
 }

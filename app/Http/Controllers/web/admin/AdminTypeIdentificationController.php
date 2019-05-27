@@ -108,6 +108,7 @@ class AdminTypeIdentificationController extends Controller
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
             $icon = $data_item->icon;
+            $iso = $data_item->iso;
             $name_es = $data_item->name_es;
             $name_en = $data_item->name_en;
             $name_pt = $data_item->name_pt;
@@ -137,6 +138,7 @@ class AdminTypeIdentificationController extends Controller
                 'updated_at' => $date_edit,
                 'enable' => $enable,
                 'icon' => $icon,
+                'iso' => $iso,
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
@@ -164,6 +166,7 @@ class AdminTypeIdentificationController extends Controller
         $date_edit = $mytime->toDateTimeString();
         $enable = 1;
         $icon = $this->view_icon;
+        $iso = '';
         $name_es = '';
         $name_en = '';
         $name_pt = '';
@@ -192,6 +195,7 @@ class AdminTypeIdentificationController extends Controller
             'updated_at' => $date_edit,
             'enable' => $enable,
             'icon' => $icon,
+            'iso' => $iso,
             'name_es' => $name_es,
             'name_en' => $name_en,
             'name_pt' => $name_pt,
@@ -204,6 +208,7 @@ class AdminTypeIdentificationController extends Controller
     {
         if ($request->get('process') === 'add') {
             $this->validate($request, [
+                'iso' => 'required|min:2|max:5',
                 'name_es' => 'required|min:5|max:60',
                 'name_en' => 'required|min:5|max:60',
                 'name_pt' => 'required|min:5|max:60'
@@ -212,6 +217,7 @@ class AdminTypeIdentificationController extends Controller
             $data_field = new TypeIdentification();
             $data_field->enable = $request->get('enable');
             $data_field->icon = $request->get('icon');
+            $data_field->iso = $request->get('iso');
             $data_field->name_es = $request->get('name_es');
             $data_field->name_en = $request->get('name_en');
             $data_field->name_pt = $request->get('name_pt');
@@ -257,6 +263,7 @@ class AdminTypeIdentificationController extends Controller
             $date_edit = $data_item->updated_at;
             $enable = $data_item->enable;
             $icon = $data_item->icon;
+            $iso = $data_item->iso;
             $name_es = $data_item->name_es;
             $name_en = $data_item->name_en;
             $name_pt = $data_item->name_pt;
@@ -286,6 +293,7 @@ class AdminTypeIdentificationController extends Controller
                 'updated_at' => $date_edit,
                 'enable' => $enable,
                 'icon' => $icon,
+                'iso' => $iso,
                 'name_es' => $name_es,
                 'name_en' => $name_en,
                 'name_pt' => $name_pt,
@@ -308,6 +316,7 @@ class AdminTypeIdentificationController extends Controller
         if ($data_item != null) {
             if ($request->get('process') === 'edit') {
                 $this->validate($request, [
+                    'iso' => 'required|min:2|max:5',
                     'name_es' => 'required|min:5|max:60',
                     'name_en' => 'required|min:5|max:60',
                     'name_pt' => 'required|min:5|max:60'
@@ -315,6 +324,7 @@ class AdminTypeIdentificationController extends Controller
                 //Compara la info
                 $data_item->enable = $request->get('enable');
                 $data_item->icon = $request->get('icon');
+                $data_item->iso = $request->get('iso');
                 $data_item->name_es = $request->get('name_es');
                 $data_item->name_en = $request->get('name_en');
                 $data_item->name_pt = $request->get('name_pt');

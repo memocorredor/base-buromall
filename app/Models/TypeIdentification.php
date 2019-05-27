@@ -11,6 +11,7 @@ class TypeIdentification extends Model
     protected $fillable = [
         'enable',
         'icon',
+        'iso',
         'name_es',
         'name_en',
         'name_pt',

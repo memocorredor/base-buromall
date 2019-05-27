@@ -310,6 +310,7 @@ return [
     'local_keywords_ph' => 'separalas por comas (,)',
     // STORE TRANSACTION AND BANK INFO
     'local_no_ident' => 'Numero de Identificacion',
+    'local_exped_identification' => 'Fecha de expedicion',
     'local_no_ruc' => 'Numero de Identificacion',
     'local_no_ruc_ph' => 'Numero de identificacion trubutaria',
     'local_price' => 'Precio',

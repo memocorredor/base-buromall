@@ -58,9 +58,13 @@ class DatabaseSeeder extends Seeder
             PayTaxesTableSeeder::class,
             UserItemMediaTableSeeder::class,
             UserNewsTableSeeder::class,
-            UsersTableSeeder::class
+            UsersTableSeeder::class,
+            UserStoresTableSeeder::class,
+            UserStoreBranchesTableSeeder::class
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $this->call(PayTaxesTableSeeder::class);
+        $this->call(UserStoresTableSeeder::class);
+        $this->call(UserStoreBranchesTableSeeder::class);
     }
 }

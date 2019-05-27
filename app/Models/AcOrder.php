@@ -22,6 +22,7 @@ class AcOrder extends Model
         'lastname',
         'identification_id',
         'identification',
+        'exped_identification',
         'email',
         'areacode',
         'phone',
@@ -41,6 +42,8 @@ class AcOrder extends Model
         'error_vpos_id',
         'error_avs_vpos_id',
         'error_cvv_vpos_id',
+        'currency',
+        'trm',
         'wallet_saldo_debit',
         'wallet_saldo_credit',
         'wallet_total',
@@ -48,6 +51,8 @@ class AcOrder extends Model
         'cart_tax',
         'cart_shipping',
         'cart_total',
+        'info_user',
+        'tx_payment',
         'token'
     ];
 }

@@ -20,6 +20,7 @@ class CreateTypeIdentificationsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('enable')->unsigned()->default('0');
             $table->string('icon', 30)->nullable()->default('');
+            $table->string('iso', 5)->nullable()->default('');
             $table->string('name_es', 60)->nullable()->default('');
             $table->string('name_en', 60)->nullable()->default('');
             $table->string('name_pt', 60)->nullable()->default('');

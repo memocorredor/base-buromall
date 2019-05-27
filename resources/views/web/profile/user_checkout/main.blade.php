@@ -3,7 +3,16 @@
 <div class="layout-checkout">
     <div class="container-fluid">
         <form role="form" action="{{ route('profile.make_payment') }}" method="post" class="form checkout-form">
-            @include('components.forms.error')
+            {{ csrf_field() }}
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="row">
                 <div class="wizard">
                     <div class="wizard-inner">
@@ -69,9 +78,9 @@
                                                     <i class="fas fa-user"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-name" type="text" value="{{ $name }}"
+                                            <input id="field-form-name" name="name_user" type="text" value="{{ $name }}"
                                                 placeholder="@lang('web_layout.local_name')" class="form-control"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -84,9 +93,9 @@
                                                     <i class="fas fa-user-friends"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-lastname" type="text" value="{{ $lastname }}"
+                                            <input id="field-form-lastname" name="lastname_user" type="text" value="{{ $lastname }}"
                                                 placeholder="@lang('web_layout.local_name')" class="form-control"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -104,11 +113,29 @@
                                                     <i class="fas fa-passport"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-no-ident" type="text" value="" placeholder=" "
+                                            <input id="field-form-no-ident" name="identification_user" type="text" value="" placeholder=" "
                                                 class="form-control" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="field-form-no-ident">
+                                                @lang('web_layout.local_exped_identification')
+                                            </label>
+                                            <div class="form-group input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-passport"></i>
+                                                    </span>
+                                                </div>
+                                                <input id="field-form-no-ident" name="exped_identification" type="text" value="" placeholder=" "
+                                                    class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="field-form-email">
@@ -120,8 +147,8 @@
                                                     <i class="far fa-envelope"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-email" type="email" value="{{ $email  }}"
-                                                placeholder="email@buromall.com" class="form-control" disabled
+                                            <input id="field-form-email" name="email_user" type="email" value="{{ $email  }}"
+                                                placeholder="email@buromall.com" class="form-control" readonly
                                                 autocomplete="off">
                                         </div>
                                     </div>
@@ -137,11 +164,11 @@
                                                     <i class="fas fa-phone-square"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-areacode" name="areacode" type="text"
+                                            <input id="field-form-areacode" name="areacode_user" type="text"
                                                 value="{{ old('areacode', $areacode ?? '') }}"
                                                 placeholder="@lang('web_layout.local_areacode')"
                                                 class="form-control only_numbers {{ $errors->has('areacode') ? ' is-invalid' : '' }}"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                             @if ( $errors->has('areacode'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('areacode') }}</strong>
@@ -159,10 +186,10 @@
                                                     <i class="fas fa-phone"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-phone" name="phone" type="text"
+                                            <input id="field-form-phone" name="phone_user" type="text"
                                                 value="{{ old('phone', $phone ?? '') }}" placeholder="0-000-000"
                                                 class="form-control only_numbers {{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                             @if ( $errors->has('phone'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('phone') }}</strong>
@@ -180,10 +207,10 @@
                                                     <i class="fas fa-mobile-alt"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-mobile" name="mobile" type="text"
+                                            <input id="field-form-mobile" name="mobile_user" type="text"
                                                 value="{{ old('mobile', $mobile ?? '') }}" placeholder="0-000-000"
                                                 class="form-control only_numbers {{ $errors->has('mobile') ? ' is-invalid' : '' }}"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                             @if ( $errors->has('mobile'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('mobile') }}</strong>
@@ -239,7 +266,7 @@
                                                     <i class="fas fa-map-pin"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-zipcode" name="zipcode" type="text"
+                                            <input id="field-form-zipcode" name="zipcode_user" type="text"
                                                 value="{{ old('zipcode', $zipcode ?? '') }}"
                                                 placeholder="@lang('web_layout.local_zipcode')"
                                                 class="form-control only_numbers {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
@@ -261,10 +288,10 @@
                                                     <i class="fas fa-map-marker-alt"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-latitude" name="latitude" type="text"
+                                            <input id="field-form-latitude" name="latitude_user" type="text"
                                                 value="{{ old('latitude', $latitude ?? '') }}" placeholder=""
                                                 class="form-control letters_first {{ $errors->has('latitude') ? ' is-invalid' : '' }}"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                             @if ( $errors->has('latitude'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('latitude') }}</strong>
@@ -282,10 +309,10 @@
                                                     <i class="fas fa-map-marker-alt"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-longitude" name="longitude" type="text"
+                                            <input id="field-form-longitude" name="longitude_user" type="text"
                                                 value="{{ old('longitude', $longitude ?? '') }}" placeholder=""
                                                 class="form-control letters_first {{ $errors->has('longitude') ? ' is-invalid' : '' }}"
-                                                disabled autocomplete="off">
+                                                readonly autocomplete="off">
                                             @if ( $errors->has('longitude'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('longitude') }}</strong>
@@ -299,7 +326,7 @@
                                         <label for="field-form-address">@lang('web_layout.local_address'):
                                         </label>
                                         <div class="form-group">
-                                            <textarea id="field-form-address" name="address"
+                                            <textarea id="field-form-address" name="address_user"
                                                 placeholder="@lang('web_layout.local_description_seo_ph')"
                                                 class="form-control summernote-address {{ $errors->has('address') ? ' is-invalid' : '' }}"
                                                 {{ $status_input }} autocomplete="off"
@@ -313,8 +340,7 @@
                                     </div>
                                 </div>
                                 <legend class="text-semibold">
-                                    <i
-                                        class="fas fa-map-marked-alt position-left"></i>@lang('web_layout.local_legen_geolocation')
+                                    <i class="fas fa-map-marked-alt position-left"></i>@lang('web_layout.local_legen_geolocation')
                                 </legend>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -444,18 +470,18 @@
 
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="app-button">
-                                            <button type="submit" class="btn btn-labeled btn-success"
-                                                style="width: 100%">
-                                                <span class="btn-label-right">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </span>
-                                                <div class="btn-label-text">
-                                                    <span>@lang('web_layout.local_go_to')</span>
-                                                </div>
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="app-button">
+                                        <button type="submit" class="btn btn-labeled btn-common btn-success"
+                                            style="width: 100%">
+                                            <span class="btn-label-right">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </span>
+                                            <div class="btn-label-text">
+                                                <span>@lang('web_layout.local_go_to')</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -99669,7 +99669,17 @@ __webpack_require__(/*! ./components/web/toggle */ "./resources/js/components/we
 __webpack_require__(/*! ./components/web/touchspin */ "./resources/js/components/web/touchspin.js"); // SEO
 
 
-__webpack_require__(/*! ./components/web/seo */ "./resources/js/components/web/seo.js");
+__webpack_require__(/*! ./components/web/seo */ "./resources/js/components/web/seo.js"); // Combos
+
+
+__webpack_require__(/*! ./components/web/combos */ "./resources/js/components/web/combos.js"); // In checkout
+
+
+__webpack_require__(/*! ./components/web/checkout_tabs */ "./resources/js/components/web/checkout_tabs.js");
+
+__webpack_require__(/*! ./components/web/checkout_btn */ "./resources/js/components/web/checkout_btn.js");
+
+__webpack_require__(/*! ./components/web/checkout_card */ "./resources/js/components/web/checkout_card.js");
 
 $(function () {
   //////////////////
@@ -99764,93 +99774,9 @@ $(function () {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
-  }); //////////////////
-  //Change country combo
-
-  $('#field-form-country-id').on('change', function () {
-    cboLoadState($(this).val());
-  }); //////////////////
-  //Change state combo
-
-  $('#field-form-state-id').on('change', function () {
-    cboLoadCity($(this).val());
-  }); //////////////////
-  //Change departments combo
-
-  $('#field-form-departaments-id').on('change', function () {
-    cboLoadCategories($(this).val());
-  }); //////////////////
-  //Change categorie combo
-
-  $('#field-form-categories-id').on('change', function () {
-    cboLoadSubCategories($(this).val());
-  }); //////////////////
-  //Change branch combo
-
-  $('#field-form-store-id').on('change', function () {
-    cboLoadBranch($(this).val());
-  }); //Initialize tooltips
-
-  $('.nav-tabs > li a[title]').tooltip(); //Wizard
-
-  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-    var $target = $(e.target);
-
-    if ($target.hasClass('disabled')) {
-      return false;
-    }
-  });
-  $(".next-step").click(function (e) {
-    e.preventDefault();
-    var $active = $('.wizard .nav-tabs .nav-item .active');
-    var $activeli = $active.parent("li");
-    $($activeli).next().find('a[data-toggle="tab"]').removeClass("disabled");
-    $($activeli).next().find('a[data-toggle="tab"]').click();
-  });
-  $(".prev-step").click(function (e) {
-    e.preventDefault();
-    var $active = $('.wizard .nav-tabs .nav-item .active');
-    var $activeli = $active.parent("li");
-    $($activeli).prev().find('a[data-toggle="tab"]').removeClass("disabled");
-    $($activeli).prev().find('a[data-toggle="tab"]').click();
-  });
-  $('.checkout-form').card({
-    // a selector or DOM element for the container
-    // where you want the card to appear
-    container: '.card-wrapper',
-    // *required*
-    // all of the other options from above
-    placeholders: {
-      number: '0000 0000 0000 0000',
-      name: 'Arya Stark',
-      expiry: '00/0000',
-      cvc: '000'
-    }
   });
 
-  window.add_cart_item = function () {
-    var id_prod = '1';
-    var cant_prod = '1';
-    var price = '12';
-    $.ajax({
-      /* the route pointing to the post function */
-      url: '/add-to-cart',
-      type: 'POST',
-
-      /* send the csrf-token and the input to the controller */
-      data: {
-        id_prod: id_prod,
-        cant_prod: cant_prod,
-        price: price
-      },
-      dataType: 'JSON',
-
-      /* remind that 'data' is the response of the AjaxController */
-      success: function success(data) {
-        alert(data.success);
-      }
-    });
-  };
+  window.add_cart_item = function () {};
 
   var map_canvas = document.querySelector("#gomap-canvas");
 
@@ -99859,90 +99785,6 @@ $(function () {
   }
 }); // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 // var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
-
-function cboLoadState(value) {
-  $.ajax({
-    url: url_sites + "/load-state/" + value,
-    dataType: 'json',
-    method: 'GET',
-    success: function success(responseState) {
-      $('#field-form-state-id').html('');
-      $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
-      var first_element = responseState[0].id;
-      responseState.forEach(function (element) {
-        $('#field-form-state-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-      });
-      $("#field-form-state-id").selectpicker("refresh");
-      cboLoadCity(first_element);
-    }
-  });
-}
-
-function cboLoadCity(value) {
-  $.ajax({
-    url: url_sites + "/load-city/" + value,
-    dataType: 'json',
-    method: 'GET',
-    success: function success(responseSCat) {
-      $('#field-form-city-id').html('');
-      $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
-      responseSCat.forEach(function (element) {
-        $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-      });
-      $("#field-form-city-id").selectpicker("refresh");
-    }
-  });
-}
-
-function cboLoadCategories(value) {
-  $.ajax({
-    url: url_sites + "/load-categorie/" + value,
-    dataType: 'json',
-    method: 'GET',
-    success: function success(responseCat) {
-      $('#field-form-categories-id').html('');
-      $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
-      var first_element = responseCat[0].id;
-      responseCat.forEach(function (element) {
-        $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
-      });
-      $("#field-form-categories-id").selectpicker("refresh");
-      cboLoadSubCategories(first_element);
-    }
-  });
-}
-
-function cboLoadSubCategories(value) {
-  $.ajax({
-    url: url_sites + "/load-subcategorie/" + value,
-    dataType: 'json',
-    method: 'GET',
-    success: function success(responseSCat) {
-      $('#field-form-categories_sub-id').html('');
-      $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
-      responseSCat.forEach(function (element) {
-        $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
-      });
-      $("#field-form-categories_sub-id").selectpicker("refresh");
-    }
-  });
-}
-
-function cboLoadBranch(value) {
-  $.ajax({
-    url: url_sites + "/load-branch/" + value,
-    dataType: 'json',
-    method: 'GET',
-    success: function success(responseBranc) {
-      $('#field-form-branch-id').html('');
-      $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');
-      responseBranc.forEach(function (element) {
-        $('#field-form-branch-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-      });
-      $("#field-form-branch-id").selectpicker("refresh");
-    }
-  });
-}
 
 function tick() {
   //get the mins of the current time
@@ -100106,6 +99948,320 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnClock_vue_vue_type_template_id_dfee6d80___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/web/checkout_btn.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/web/checkout_btn.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  //btn-detail-add-product-cart
+  //field-form-quantity
+  //id_data
+  $('#btn-detail-add-product-cart').click(function () {
+    alert('hoal');
+    var id_prod = document.getElementById("id_data").value;
+    var cant_prod = document.getElementById("field-form-quantity").value;
+    $.ajax({
+      /* the route pointing to the post function */
+      url: '/add-to-cart',
+      type: 'POST',
+
+      /* send the csrf-token and the input to the controller */
+      data: {
+        id_prod: id_prod,
+        cant_prod: cant_prod
+      },
+      dataType: 'JSON',
+
+      /* remind that 'data' is the response of the AjaxController */
+      success: function success(data) {
+        toastr.success("Producto agregado al carrito");
+      }
+    });
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/web/checkout_card.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/web/checkout_card.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $('.checkout-form').card({
+    // a selector or DOM element for the container
+    // where you want the card to appear
+    container: '.card-wrapper',
+    // *required*
+    // all of the other options from above
+    placeholders: {
+      number: '0000 0000 0000 0000',
+      name: 'Arya Stark',
+      expiry: '00/0000',
+      cvc: '000'
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/web/checkout_tabs.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/web/checkout_tabs.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  //Initialize tooltips
+  $('.nav-tabs > li a[title]').tooltip(); //Wizard
+
+  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+    var $target = $(e.target);
+
+    if ($target.hasClass('disabled')) {
+      return false;
+    }
+  });
+  $(".next-step").click(function (e) {
+    e.preventDefault();
+    var $active = $('.wizard .nav-tabs .nav-item .active');
+    var $activeli = $active.parent("li");
+    $($activeli).next().find('a[data-toggle="tab"]').removeClass("disabled");
+    $($activeli).next().find('a[data-toggle="tab"]').click();
+  });
+  $(".prev-step").click(function (e) {
+    e.preventDefault();
+    var $active = $('.wizard .nav-tabs .nav-item .active');
+    var $activeli = $active.parent("li");
+    $($activeli).prev().find('a[data-toggle="tab"]').removeClass("disabled");
+    $($activeli).prev().find('a[data-toggle="tab"]').click();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/web/combos.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/web/combos.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  //////////////////
+  //Change country combo
+  $('#field-form-country-id').on('change', function () {
+    //cboLoadState($(this).val())
+    $.ajax({
+      url: url_sites + "/load-state/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(responseState) {
+        $('#field-form-state-id').html('');
+        $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
+        var first_element = responseState[0].id;
+        responseState.forEach(function (element) {
+          $('#field-form-state-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+        });
+        $("#field-form-state-id").selectpicker("refresh"); //cboLoadCity(first_element)
+
+        $.ajax({
+          url: url_sites + "/load-city/" + first_element,
+          dataType: 'json',
+          method: 'GET',
+          success: function success(responseSCat) {
+            $('#field-form-city-id').html('');
+            $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+            responseSCat.forEach(function (element) {
+              $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+            });
+            $("#field-form-city-id").selectpicker("refresh");
+          }
+        });
+      }
+    });
+  }); //////////////////
+  //Change state combo
+
+  $('#field-form-state-id').on('change', function () {
+    //cboLoadCity($(this).val())
+    $.ajax({
+      url: url_sites + "/load-city/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(responseSCat) {
+        $('#field-form-city-id').html('');
+        $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+        responseSCat.forEach(function (element) {
+          $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+        });
+        $("#field-form-city-id").selectpicker("refresh");
+      }
+    });
+  }); //////////////////
+  //Change departments combo
+
+  $('#field-form-departaments-id').on('change', function () {
+    //cboLoadCategories($(this).val())
+    $.ajax({
+      url: url_sites + "/load-categorie/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(responseCat) {
+        $('#field-form-categories-id').html('');
+        $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
+        var first_element = responseCat[0].id;
+        responseCat.forEach(function (element) {
+          $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+        });
+        $("#field-form-categories-id").selectpicker("refresh"); //cboLoadSubCategories(first_element)
+
+        $.ajax({
+          url: url_sites + "/load-subcategorie/" + first_element,
+          dataType: 'json',
+          method: 'GET',
+          success: function success(responseSCat) {
+            $('#field-form-categories_sub-id').html('');
+            $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+            responseSCat.forEach(function (element) {
+              $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+            });
+            $("#field-form-categories_sub-id").selectpicker("refresh");
+          }
+        });
+      }
+    });
+  }); //////////////////
+  //Change categorie combo
+
+  $('#field-form-categories-id').on('change', function () {
+    //cboLoadSubCategories($(this).val())
+    $.ajax({
+      url: url_sites + "/load-subcategorie/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(responseSCat) {
+        $('#field-form-categories_sub-id').html('');
+        $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+        responseSCat.forEach(function (element) {
+          $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+        });
+        $("#field-form-categories_sub-id").selectpicker("refresh");
+      }
+    });
+  }); //////////////////
+  //Change branch combo
+
+  $('#field-form-store-id').on('change', function () {
+    //cboLoadBranch($(this).val())
+    $.ajax({
+      url: url_sites + "/load-branch/" + $(this).val(),
+      dataType: 'json',
+      method: 'GET',
+      success: function success(responseBranc) {
+        $('#field-form-branch-id').html('');
+        $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');
+        responseBranc.forEach(function (element) {
+          $('#field-form-branch-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+        });
+        $("#field-form-branch-id").selectpicker("refresh");
+      }
+    });
+  });
+});
+
+function cboLoadState(value) {
+  $.ajax({
+    url: url_sites + "/load-state/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseState) {
+      $('#field-form-state-id').html('');
+      $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
+      var first_element = responseState[0].id;
+      responseState.forEach(function (element) {
+        $('#field-form-state-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-state-id").selectpicker("refresh");
+      cboLoadCity(first_element);
+    }
+  });
+}
+
+function cboLoadCity(value) {
+  $.ajax({
+    url: url_sites + "/load-city/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseSCat) {
+      $('#field-form-city-id').html('');
+      $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+      responseSCat.forEach(function (element) {
+        $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-city-id").selectpicker("refresh");
+    }
+  });
+}
+
+function cboLoadCategories(value) {
+  $.ajax({
+    url: url_sites + "/load-categorie/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseCat) {
+      $('#field-form-categories-id').html('');
+      $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
+      var first_element = responseCat[0].id;
+      responseCat.forEach(function (element) {
+        $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+      });
+      $("#field-form-categories-id").selectpicker("refresh");
+      cboLoadSubCategories(first_element);
+    }
+  });
+}
+
+function cboLoadSubCategories(value) {
+  $.ajax({
+    url: url_sites + "/load-subcategorie/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseSCat) {
+      $('#field-form-categories_sub-id').html('');
+      $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
+      responseSCat.forEach(function (element) {
+        $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
+      });
+      $("#field-form-categories_sub-id").selectpicker("refresh");
+    }
+  });
+}
+
+function cboLoadBranch(value) {
+  $.ajax({
+    url: url_sites + "/load-branch/" + value,
+    dataType: 'json',
+    method: 'GET',
+    success: function success(responseBranc) {
+      $('#field-form-branch-id').html('');
+      $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');
+      responseBranc.forEach(function (element) {
+        $('#field-form-branch-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
+      });
+      $("#field-form-branch-id").selectpicker("refresh");
+    }
+  });
+}
 
 /***/ }),
 

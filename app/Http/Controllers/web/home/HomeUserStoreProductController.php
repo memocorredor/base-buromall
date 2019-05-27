@@ -116,6 +116,8 @@ class HomeUserStoreProductController extends Controller
         }
         //Filtra la info de acuerdo al parametro si es numerico o texto
         $data_view = UserStoreProduct::where($filter, '=', $id_a)->firstOrFail();
+        // envio de variable de id
+        $id_data = $data_view->id;
         //Carga la fecha de publicacion
         $date_created = $data_view->created_at;
         //Carga el usuario
@@ -210,6 +212,7 @@ class HomeUserStoreProductController extends Controller
             'meta_sis' => $for_meta_sis,
             'user_sis' => $this->user_sis,
             'data_view' => $data_view,
+            'id_data' => $id_data,
             'icon' => $this->view_icon,
             'date_created' => $date_created,
             'publiced_by' => $publiced_by,

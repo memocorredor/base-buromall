@@ -35,11 +35,11 @@
 
                 <div class="col-md-12 grilla-item-buy">
                     <div class="form-group">
-                        <input id="field-form-quantity" name="quantity" type="text" value="0"
+                        <input id="field-form-quantity" name="quantity" type="text" value="1"
                             class="form-control only_numbers" autocomplete="off">
                     </div>
                     <div class="app-button">
-                        <button onclick="add_cart_item()" class="btn btn-labeled btn-secondary" style="width: 100%">
+                        <button id="btn-detail-add-product-cart" class="btn btn-labeled btn-secondary" style="width: 100%">
                             <span class="btn-label-left">
                                 <i class="fas fa-cart-plus"></i>
                             </span>
@@ -47,6 +47,7 @@
                         </button>
                     </div>
                 </div>
+                <input type="hidden" id="id_data" name="id_data" value="{{  $id_data }}">
 
             </div>
         </div>

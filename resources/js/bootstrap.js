@@ -101,15 +101,26 @@ if (token) {
 
 // Offside
 require('./components/web/offside');
+
 // Faq Sidebar
 require('./components/web/faq_sidebar');
+
 // Toggle
 require('./components/web/toggle');
+
 // TouchSpin
 require('./components/web/touchspin');
+
 // SEO
 require('./components/web/seo');
 
+// Combos
+require('./components/web/combos');
+
+// In checkout
+require('./components/web/checkout_tabs');
+require('./components/web/checkout_btn');
+require('./components/web/checkout_card');
 
 $(function () {
 
@@ -229,103 +240,20 @@ $(function () {
     });
 
 
-    //////////////////
-    //Change country combo
-    $('#field-form-country-id').on('change', function () {
-        cboLoadState($(this).val())
-    });
-    //////////////////
-    //Change state combo
-    $('#field-form-state-id').on('change', function () {
-        cboLoadCity($(this).val())
-    });
-    //////////////////
-    //Change departments combo
-    $('#field-form-departaments-id').on('change', function () {
-        cboLoadCategories($(this).val())
-    });
-    //////////////////
-    //Change categorie combo
-    $('#field-form-categories-id').on('change', function () {
-        cboLoadSubCategories($(this).val())
-    });
-    //////////////////
-    //Change branch combo
-    $('#field-form-store-id').on('change', function () {
-        cboLoadBranch($(this).val())
-    });
 
 
 
 
 
 
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-        var $target = $(e.target);
-
-        if ($target.hasClass('disabled')) {
-            return false;
-        }
-    });
-
-    $(".next-step").click(function (e) {
-        e.preventDefault();
-        var $active = $('.wizard .nav-tabs .nav-item .active');
-        var $activeli = $active.parent("li");
-
-        $($activeli).next().find('a[data-toggle="tab"]').removeClass("disabled");
-        $($activeli).next().find('a[data-toggle="tab"]').click();
-    });
 
 
-    $(".prev-step").click(function (e) {
-        e.preventDefault();
-        var $active = $('.wizard .nav-tabs .nav-item .active');
-        var $activeli = $active.parent("li");
 
-        $($activeli).prev().find('a[data-toggle="tab"]').removeClass("disabled");
-        $($activeli).prev().find('a[data-toggle="tab"]').click();
-
-    });
-
-
-    $('.checkout-form').card({
-        // a selector or DOM element for the container
-        // where you want the card to appear
-        container: '.card-wrapper', // *required*
-
-        // all of the other options from above
-        placeholders: {
-            number: '0000 0000 0000 0000',
-            name: 'Arya Stark',
-            expiry: '00/0000',
-            cvc: '000'
-        }
-    });
 
 
     window.add_cart_item = function () {
 
-        var id_prod = '1';
-        var cant_prod = '1';
-        var price = '12';
-        $.ajax({
-            /* the route pointing to the post function */
-            url: '/add-to-cart',
-            type: 'POST',
-            /* send the csrf-token and the input to the controller */
-            data: { id_prod: id_prod, cant_prod: cant_prod, price: price },
-            dataType: 'JSON',
-            /* remind that 'data' is the response of the AjaxController */
-            success: function (data) {
-                alert(data.success);
-            }
-        });
+
     }
 
 
@@ -340,90 +268,7 @@ $(function () {
 
 
 
-function cboLoadState(value) {
-    $.ajax({
-        url: url_sites + "/load-state/" + value,
-        dataType: 'json',
-        method: 'GET',
-        success: function (responseState) {
 
-            $('#field-form-state-id').html('');
-            $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
-            var first_element = responseState[0].id;
-            responseState.forEach(element => {
-                $('#field-form-state-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-            });
-            $("#field-form-state-id").selectpicker("refresh");
-            cboLoadCity(first_element)
-        }
-    });
-}
-function cboLoadCity(value) {
-    $.ajax({
-        url: url_sites + "/load-city/" + value,
-        dataType: 'json',
-        method: 'GET',
-        success: function (responseSCat) {
-
-            $('#field-form-city-id').html('');
-            $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
-            responseSCat.forEach(element => {
-                $('#field-form-city-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-            });
-            $("#field-form-city-id").selectpicker("refresh");
-        }
-    });
-}
-function cboLoadCategories(value) {
-    $.ajax({
-        url: url_sites + "/load-categorie/" + value,
-        dataType: 'json',
-        method: 'GET',
-        success: function (responseCat) {
-
-            $('#field-form-categories-id').html('');
-            $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
-            var first_element = responseCat[0].id;
-            responseCat.forEach(element => {
-                $('#field-form-categories-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
-            });
-            $("#field-form-categories-id").selectpicker("refresh");
-            cboLoadSubCategories(first_element)
-        }
-    });
-}
-function cboLoadSubCategories(value) {
-    $.ajax({
-        url: url_sites + "/load-subcategorie/" + value,
-        dataType: 'json',
-        method: 'GET',
-        success: function (responseSCat) {
-
-            $('#field-form-categories_sub-id').html('');
-            $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
-            responseSCat.forEach(element => {
-                $('#field-form-categories_sub-id').append('<option value=' + element.id + '> ' + element.name_es + ' </option>');
-            });
-            $("#field-form-categories_sub-id").selectpicker("refresh");
-        }
-    });
-}
-function cboLoadBranch(value) {
-    $.ajax({
-        url: url_sites + "/load-branch/" + value,
-        dataType: 'json',
-        method: 'GET',
-        success: function (responseBranc) {
-
-            $('#field-form-branch-id').html('');
-            $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');
-            responseBranc.forEach(element => {
-                $('#field-form-branch-id').append('<option value=' + element.id + '> ' + element.name + ' </option>');
-            });
-            $("#field-form-branch-id").selectpicker("refresh");
-        }
-    });
-}
 
 
 

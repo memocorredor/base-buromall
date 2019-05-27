@@ -12,12 +12,12 @@ class PayErrorAvsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('pay_error_avs')->delete();
-        
+
         \DB::table('pay_error_avs')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
@@ -26,12 +26,12 @@ class PayErrorAvsTableSeeder extends Seeder
                 'name_es' => 'Sin Errores',
                 'name_en' => 'Sin Errores',
                 'name_pt' => 'Sin Errores',
-                'color' => NULL,
-                'created_at' => '2019-05-27 14:32:07',
-                'updated_at' => '2019-05-27 14:32:07',
+                'color' => '#34F56B',
+                'created_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00',
             ),
         ));
-        
-        
+
+
     }
 }

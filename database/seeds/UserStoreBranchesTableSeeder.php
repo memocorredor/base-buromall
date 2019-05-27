@@ -55,8 +55,8 @@ class UserStoreBranchesTableSeeder extends Seeder
                 'sab_c' => '',
                 'dom_a' => '',
                 'dom_c' => '',
-                'created_at' => '2019-05-27 08:11:06',
-                'updated_at' => '2019-05-27 08:11:06',
+                'created_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00',
             ),
         ));
 

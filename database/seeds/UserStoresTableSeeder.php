@@ -67,8 +67,8 @@ class UserStoresTableSeeder extends Seeder
                 'linkedin_enable' => 0,
                 'skype' => '',
                 'skype_enable' => 0,
-                'created_at' => '2019-05-27 07:50:28',
-                'updated_at' => '2019-05-27 07:50:28',
+                'created_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00',
             ),
         ));
 

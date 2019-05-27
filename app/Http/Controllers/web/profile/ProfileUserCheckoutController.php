@@ -226,10 +226,10 @@ class ProfileUserCheckoutController extends Controller
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_stotal = str_replace('.', ',', \Cart::getSubTotal());
+        $data_field->cart_stotal = Cart::getSubTotal();
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-        $data_field->cart_total = str_replace('.', ',', \Cart::getTotal());
+        $data_field->cart_total = \Cart::getTotal();
         $data_field->token = $request->get('_token');
 
         //Accion de guardar la info
@@ -284,7 +284,7 @@ class ProfileUserCheckoutController extends Controller
             'descripcion' => 'test de prueba 1',
             'iva' => 0,
             'baseiva' => 0,
-            'valor' => str_replace('.', ',', \Cart::getTotal()),//20.000, PUNTO ES miles y coma decimales.
+            'valor' => $data_item->cart_total,//20.000, PUNTO ES miles y coma decimales.
             'moneda' => 'USD',
             'tarjeta' => $data_item->number_credit,
             'fechaexpiracion' => $data_item->exp_credit,//'2018-06',
@@ -298,6 +298,7 @@ class ProfileUserCheckoutController extends Controller
             'i' => $this->pay_key_enc,
             'enpruebas' => $this->pay_test
         );
+
         $op_pay = new Util();
         $data = $op_pay->mergeSet($data_send, $this->pay_test, $this->pay_lang_sis, $this->pay_key_pv, $this->pay_key);
 

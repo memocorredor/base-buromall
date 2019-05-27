@@ -247,14 +247,14 @@ class ProfileUserCheckoutController extends Controller
             echo 'estado resultado:' . $data_transaction['data']['estado'] . '<br>';
             //$array_data = json_decode($data_result, true);
             //$msg_result = $data_result['success'];
-            if($data_transaction['success'] === 'false'){
+            if($data_transaction['success'] === 0){
                 //print_r($data_transaction);
-                echo 'data resultado false <br>';
+                echo 'false <br>';
             }
 
-            if($data_transaction['success'] === 'true'){
+            if($data_transaction['success'] === 1){
                 //print_r($data_transaction);
-                echo 'data resultado true <br>';
+                echo 'true <br>';
             }
 
             //print_r($data_transaction);

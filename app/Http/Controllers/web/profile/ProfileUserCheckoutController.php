@@ -242,8 +242,8 @@ class ProfileUserCheckoutController extends Controller
             );
 
             $data_result = $this->makePaymentCC($data_field->id);
-            $array_data = json_decode($data_result, true);
-            $msg_result = $array_data['success'];
+            //$array_data = json_decode($data_result, true);
+            $msg_result = $data_result['success'];
 
             if($msg_result === 0){
                 echo 'data resultado false <br>';
@@ -253,7 +253,7 @@ class ProfileUserCheckoutController extends Controller
                 echo 'data resultado true <br>';
             }
 
-            print_r($array_data);
+            print_r($data_result);
         }
 
         //return redirect()->route('home')->with($notification);

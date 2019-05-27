@@ -252,7 +252,6 @@ class ProfileUserCheckoutController extends Controller
                 echo 'data resultado true <br>';
             }
 
-            echo 'data resultado <br>';
             print_r($data_result);
         }
 

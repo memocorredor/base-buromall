@@ -48,6 +48,7 @@
                     </div>
                 </div>
                 <input type="hidden" id="id_data" name="id_data" value="{{  $id_data }}">
+                <input type="hidden" id="type_item" name="type_item" value="PR">
 
             </div>
         </div>

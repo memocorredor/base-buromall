@@ -7,6 +7,7 @@ $(function () {
             url: url_sites + "/load-state/" + $(this).val(),
             dataType: 'json',
             method: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function (responseState) {
                 $('#field-form-state-id').html('');
                 $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
@@ -41,6 +42,7 @@ $(function () {
             url: url_sites + "/load-city/" + $(this).val(),
             dataType: 'json',
             method: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function (responseSCat) {
                 $('#field-form-city-id').html('');
                 $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
@@ -59,6 +61,7 @@ $(function () {
             url: url_sites + "/load-categorie/" + $(this).val(),
             dataType: 'json',
             method: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function (responseCat) {
                 $('#field-form-categories-id').html('');
                 $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
@@ -93,6 +96,7 @@ $(function () {
             url: url_sites + "/load-subcategorie/" + $(this).val(),
             dataType: 'json',
             method: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function (responseSCat) {
 
                 $('#field-form-categories_sub-id').html('');
@@ -112,6 +116,7 @@ $(function () {
             url: url_sites + "/load-branch/" + $(this).val(),
             dataType: 'json',
             method: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function (responseBranc) {
                 $('#field-form-branch-id').html('');
                 $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');

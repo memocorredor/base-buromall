@@ -8,6 +8,7 @@ use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Buromall\AppCore\CoreUser;
 use Darryldecode\Cart\CartCondition;
+use Buromall\Models\UserStoreProduct;
 use Auth;
 
 class ProfileUserCartController extends Controller
@@ -79,6 +80,17 @@ class ProfileUserCartController extends Controller
 
     public function itemAdd(Request $request)
     {
+        $input = $request->all();
+
+        $type_item = $request['type_item'];
+        $id_prod = $request['id_prod'];
+        $cant_prod = $request['cant_prod'];
+
+        $data_item = UserStoreProduct::find($id_prod);
+
+        $res_id_item = $type_item . '-' . $data_item->id;
+        $name_item = $data_item->title_es;
+        $price_item = $data_item->price;
 
         $condition = new CartCondition(array(
             'name' => 'VAT 12.5%',
@@ -93,12 +105,45 @@ class ProfileUserCartController extends Controller
 
         \Cart::condition($condition);
 
-        \Cart::add(1, 'Sample Item 1', 100.99, 1, array());
-        $input = $request->all();
+        \Cart::add($res_id_item, $name_item, $price_item, $cant_prod, array());
 
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
+
+        return response()->json(['success' => 'Got Simple Ajax Request.']);
+
+
+
+
+
+
+
+
+
+        //$type_item = $request->get('type_item');
+
+        //$id_prod = $request->get('id_prod');
+        //$cant_prod = $request->get('cant_prod');
+
+
+        //$data_item = UserStoreProduct::find($id_prod);
+
+        //$condition = new CartCondition(array(
+            //'name' => 'VAT 12.5%',
+            //'type' => 'tax',
+            //'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            //'value' => '12.5%',
+            //'attributes' => array( // attributes field is optional
+                //'description' => 'Value added tax',
+                //'more_data' => 'more data here'
+           // )
+        //));
+
+        //\Cart::condition($condition);
+
+        //\Cart::add(1, 'Sample Item 1', 100.99, $cant_prod, array());
+        //$input = $request->all();
+
+        //return response()->json(['success' => 'Got Simple Ajax Request.']);
         //return response()->json(['success'=>true]);
 
     }
-
 }

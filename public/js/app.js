@@ -99649,13 +99649,14 @@ if (token) {
 //     disableStats: process.env.MIX_PUSHER_APP_STATSH,
 //     enabledTransports: ['ws', 'wss'],
 // });
+//$.ajaxSetup({
+//headers: {
+//'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//}
+//});
+//var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+// Offside
 
-
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-}); // Offside
 
 __webpack_require__(/*! ./components/web/offside */ "./resources/js/components/web/offside.js"); // Faq Sidebar
 
@@ -99783,7 +99784,7 @@ $(function () {
   if (typeof map_canvas != 'undefined' && map_canvas != null) {
     initMap();
   }
-}); // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+}); //
 // var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
 
 function tick() {
@@ -99963,24 +99964,33 @@ $(function () {
   //field-form-quantity
   //id_data
   $('#btn-detail-add-product-cart').click(function () {
-    alert('hoal');
+    var type_item = document.getElementById("type_item").value;
+    ;
     var id_prod = document.getElementById("id_data").value;
     var cant_prod = document.getElementById("field-form-quantity").value;
     $.ajax({
       /* the route pointing to the post function */
       url: '/add-to-cart',
       type: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
 
       /* send the csrf-token and the input to the controller */
       data: {
+        type_item: type_item,
         id_prod: id_prod,
         cant_prod: cant_prod
       },
-      dataType: 'JSON',
 
       /* remind that 'data' is the response of the AjaxController */
       success: function success(data) {
         toastr.success("Producto agregado al carrito");
+      },
+      error: function error(jqXHR, textStatus, errorThrown) {
+        // What to do if we fail
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
       }
     });
   });
@@ -100065,6 +100075,9 @@ $(function () {
       url: url_sites + "/load-state/" + $(this).val(),
       dataType: 'json',
       method: 'GET',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(responseState) {
         $('#field-form-state-id').html('');
         $("#field-form-state-id").html('<option value=""> Seleccionar uno </option>');
@@ -100098,6 +100111,9 @@ $(function () {
       url: url_sites + "/load-city/" + $(this).val(),
       dataType: 'json',
       method: 'GET',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(responseSCat) {
         $('#field-form-city-id').html('');
         $("#field-form-city-id").html('<option value="" selected="true"> Seleccionar uno </option>');
@@ -100116,6 +100132,9 @@ $(function () {
       url: url_sites + "/load-categorie/" + $(this).val(),
       dataType: 'json',
       method: 'GET',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(responseCat) {
         $('#field-form-categories-id').html('');
         $("#field-form-categories-id").html('<option value=""> Seleccionar uno </option>');
@@ -100149,6 +100168,9 @@ $(function () {
       url: url_sites + "/load-subcategorie/" + $(this).val(),
       dataType: 'json',
       method: 'GET',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(responseSCat) {
         $('#field-form-categories_sub-id').html('');
         $("#field-form-categories_sub-id").html('<option value="" selected="true"> Seleccionar uno </option>');
@@ -100167,6 +100189,9 @@ $(function () {
       url: url_sites + "/load-branch/" + $(this).val(),
       dataType: 'json',
       method: 'GET',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(responseBranc) {
         $('#field-form-branch-id').html('');
         $("#field-form-branch-id").html('<option value=""> Seleccionar uno </option>');

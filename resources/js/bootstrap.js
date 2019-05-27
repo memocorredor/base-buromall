@@ -79,11 +79,11 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
- //import Echo from 'laravel-echo'
+//import Echo from 'laravel-echo'
 
- //window.Pusher = require('pusher-js');
+//window.Pusher = require('pusher-js');
 
- //window.Echo = new Echo({
+//window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     wsHost: window.location.hostname,
@@ -93,11 +93,13 @@ if (token) {
 // });
 
 
- $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+//$.ajaxSetup({
+    //headers: {
+        //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //}
+//});
+
+//var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 // Offside
 require('./components/web/offside');
@@ -263,7 +265,7 @@ $(function () {
     }
 
 });
-// var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+//
 // var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
 
 

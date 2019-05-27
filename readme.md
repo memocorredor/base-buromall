@@ -36,3 +36,6 @@ php artisan config:clear
 php artisan route:cache
 php artisan config:cache
 - php artisan websockets:serve /ws-site-app
+
+
+

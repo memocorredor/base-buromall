@@ -89,6 +89,7 @@ if (token) {
      wsHost: window.location.hostname,
      wsPort: process.env.MIX_PUSHER_APP_PORT,
      disableStats: process.env.MIX_PUSHER_APP_STATSH,
+     enabledTransports: ['ws', 'wss'],
  });
 
 

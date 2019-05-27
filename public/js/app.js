@@ -109863,7 +109863,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   key: "",
   wsHost: window.location.hostname,
   wsPort: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_PUSHER_APP_PORT,
-  disableStats: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_PUSHER_APP_STATSH
+  disableStats: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_PUSHER_APP_STATSH,
+  enabledTransports: ['ws', 'wss']
 });
 $(function () {
   //////////////////

@@ -241,14 +241,14 @@ class ProfileUserCheckoutController extends Controller
                 'alert-type' => 'info'
             );
 
-            $data_result = json_decode($this->makePaymentCC($data_field->id));
+            $data_result = $this->makePaymentCC($data_field->id);
             $msg_result = $data_result->success;
 
             if($msg_result === 'false'){
                 echo 'data resultado false <br>';
             }
 
-            if($msg_result === 'true'){
+            if($msg_result === 'success'){
                 echo 'data resultado true <br>';
             }
 

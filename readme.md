@@ -37,5 +37,8 @@ php artisan route:cache
 php artisan config:cache
 - php artisan websockets:serve /ws-site-app
 
+sudo chgrp -R www-data storage bootstrap/cache
+sudo chmod -R ug+rwx storage bootstrap/cache
+
 
 

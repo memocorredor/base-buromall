@@ -258,10 +258,10 @@ class ProfileUserCheckoutController extends Controller
             'ciudad' => $data_city->name,
             'telefono' => $data_item->phone,
             'celular' => $data_item->mobile,
-            'direccion' => $data_item->address . ' - Zip:' . $data_item->zipcode,
+            'direccion' => 'Transversal 3 No 52B - 08' . ' - Zip:' . $data_item->zipcode,
             'ip' => $user_sis['session_ip'],
             'factura' => '24',
-            'descripcion' => 'Nuevo pago de 20.000',
+            'descripcion' => 'test de prueba 1',
             'iva' => 0,
             'baseiva' => 0,
             'valor' => \Cart::getTotal(),//20.000, PUNTO ES miles y coma decimales.

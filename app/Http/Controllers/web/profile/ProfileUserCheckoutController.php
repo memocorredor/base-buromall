@@ -226,7 +226,7 @@ class ProfileUserCheckoutController extends Controller
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_stotal = Cart::getSubTotal();
+        $data_field->cart_stotal = \Cart::getSubTotal();
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
         $data_field->cart_total = \Cart::getTotal();

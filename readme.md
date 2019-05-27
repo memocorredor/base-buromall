@@ -29,10 +29,10 @@ Una web diferente de comercio electronico donde comprar es divertido, dando opci
 - php artisan db:seed
 - php artisan migrate:fresh
 - php artisan migrate:fresh --seed
-- php artisan cache:clear
-- php artisan route:clear
-- php artisan view:clear
-- php artisan config:clear
-- php artisan route:cache
-- php artisan config:cache
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+php artisan config:clear
+php artisan route:cache
+php artisan config:cache
 - php artisan websockets:serve /ws-site-app

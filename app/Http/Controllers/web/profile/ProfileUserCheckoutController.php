@@ -149,7 +149,7 @@ class ProfileUserCheckoutController extends Controller
     public function iniOrden(Request $request)
     {
         $data_ac_order_new = AcOrder::latest()->first();
-        if($data_ac_order_new){
+        if ($data_ac_order_new) {
             $id_ac_order_new = $data_ac_order_new->id;
         } else {
             $id_ac_order_new = 1;
@@ -241,7 +241,19 @@ class ProfileUserCheckoutController extends Controller
                 'alert-type' => 'info'
             );
 
-            $this->makePaymentCC($data_field->id);
+            $data_result = json_decode($this->makePaymentCC($data_field->id));
+            $msg_result = $data_result->success;
+
+            if($msg_result === 'false'){
+                echo 'data resultado false <br>';
+            }
+
+            if($msg_result === 'true'){
+                echo 'data resultado true <br>';
+            }
+
+            echo 'data resultado <br>';
+            print_r($data_result);
         }
 
         //return redirect()->route('home')->with($notification);
@@ -266,7 +278,7 @@ class ProfileUserCheckoutController extends Controller
         $data_city = LocaleCity::where('id', $filter_city)->first();
 
         $data_send = array(
-            'public_key' => $this->pay_key,//env('APP_PAY_KEY'),
+            'public_key' => $this->pay_key, //env('APP_PAY_KEY'),
             'tipo_doc' => $data_identification->iso,
             'documento' => $data_item->identification,
             'fechaExpedicion' => $data_item->exped_identification,
@@ -284,15 +296,15 @@ class ProfileUserCheckoutController extends Controller
             'descripcion' => 'test de prueba 1',
             'iva' => 0,
             'baseiva' => 0,
-            'valor' => $data_item->cart_total,//20.000, PUNTO ES miles y coma decimales.
+            'valor' => $data_item->cart_total, //20.000, PUNTO ES miles y coma decimales.
             'moneda' => 'USD',
             'tarjeta' => $data_item->number_credit,
-            'fechaexpiracion' => $data_item->exp_credit,//'2018-06',
+            'fechaexpiracion' => $data_item->exp_credit, //'2018-06',
             'codigoseguridad' => $data_item->cvv_credit,
             'franquicia' => 'VISA',
             'cuotas' => 1,
-            'url_respuesta' => $this->pay_url.$this->pay_url_r,
-            'url_confirmacion' => $this->pay_url.$this->pay_url_c,
+            'url_respuesta' => $this->pay_url . $this->pay_url_r,
+            'url_confirmacion' => $this->pay_url . $this->pay_url_c,
             'metodoconfirmacion' => $this->pay_acti_sis,
             'lenguaje' => $this->pay_lang_sis,
             'i' => $this->pay_key_enc,
@@ -308,16 +320,18 @@ class ProfileUserCheckoutController extends Controller
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($payload))
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($payload)
+            )
         );
         //Submit the POST request
         $result = curl_exec($ch);
-        echo 'data resultado <br>';
-        print_r($result);
+        return $result;
         //Close cURL session handle
         curl_close($ch);
-
     }
 }

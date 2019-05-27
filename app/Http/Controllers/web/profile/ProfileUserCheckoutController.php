@@ -39,6 +39,15 @@ class ProfileUserCheckoutController extends Controller
     private $meta_sis;
     private $user_sis;
     private $view_icon;
+    private $pay_key;
+    private $pay_key_pv;
+    private $pay_key_enc;
+    private $pay_lang_sis;
+    private $pay_acti_sis;
+    private $pay_url;
+    private $pay_url_r;
+    private $pay_url_c;
+    private $pay_test;
 
     // Constructor del CONTROLLER
     public function __construct()
@@ -49,6 +58,16 @@ class ProfileUserCheckoutController extends Controller
         $this->lang = str_replace('_', '-', app()->getLocale());
         // SEO del form
         $this->view_icon = 'fas fa-home';
+
+        $this->pay_key = env('APP_PAY_KEY', '595cefa06f1609883a2e1a8aea84811c');
+        $this->pay_key_pv = env('APP_PAY_KEY_PV', 'f69a51ee25af5aafb26f6c296382cf73');
+        $this->pay_key_enc = env('APP_PAY_KEY_ENC', '1020304050607080');
+        $this->pay_lang_sis = env('APP_PAY_LANG_SIS', 'php');
+        $this->pay_acti_sis = env('APP_PAY_ACTION_SIS', 'POST');
+        $this->pay_url_r = env('APP_PAY_URLR', '/transaction-response');
+        $this->pay_url_c = env('APP_PAY_URLC', '/transaction-confirmation');
+        $this->pay_test = env('APP_PAY_SIS_TEST', 'true');
+        $this->pay_url = env('APP_URL');
     }
 
     // Asignacion de variables y carga del META
@@ -137,7 +156,8 @@ class ProfileUserCheckoutController extends Controller
         }
 
         $data_expire_cc = explode("/", $request->get('expiry'));
-        $format_expire_cc = $data_expire_cc[1] . '-' . $data_expire_cc[0];
+        $format_expire_cc_sp = $data_expire_cc[1] . '-' . $data_expire_cc[0];
+        $format_expire_cc = str_replace(' ', '', $format_expire_cc_sp);
 
 
         // OJO CON ESTA
@@ -206,10 +226,10 @@ class ProfileUserCheckoutController extends Controller
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_stotal = \Cart::getSubTotal();
+        $data_field->cart_stotal = str_replace('.', ',', \Cart::getSubTotal());
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-        $data_field->cart_total = \Cart::getTotal();
+        $data_field->cart_total = str_replace('.', ',', \Cart::getTotal());
         $data_field->token = $request->get('_token');
 
         //Accion de guardar la info
@@ -246,7 +266,7 @@ class ProfileUserCheckoutController extends Controller
         $data_city = LocaleCity::where('id', $filter_city)->first();
 
         $data_send = array(
-            'public_key' => env('APP_PAY_KEY'),
+            'public_key' => $this->pay_key,//env('APP_PAY_KEY'),
             'tipo_doc' => $data_identification->iso,
             'documento' => $data_item->identification,
             'fechaExpedicion' => $data_item->exped_identification,
@@ -264,22 +284,22 @@ class ProfileUserCheckoutController extends Controller
             'descripcion' => 'test de prueba 1',
             'iva' => 0,
             'baseiva' => 0,
-            'valor' => 110,//20.000, PUNTO ES miles y coma decimales.
+            'valor' => str_replace('.', ',', \Cart::getTotal()),//20.000, PUNTO ES miles y coma decimales.
             'moneda' => 'USD',
             'tarjeta' => $data_item->number_credit,
             'fechaexpiracion' => $data_item->exp_credit,//'2018-06',
             'codigoseguridad' => $data_item->cvv_credit,
             'franquicia' => 'VISA',
             'cuotas' => 1,
-            'url_respuesta' => env('APP_URL').env('APP_PAY_URLR'),
-            'url_confirmacion' => env('APP_URL').env('APP_PAY_URLC'),
-            'metodoconfirmacion' => env('APP_PAY_ACTION_SIS'),
-            'lenguaje' => env('APP_PAY_LANG_SIS'),
-            'i' => env('APP_PAY_KEY_ENC'),
-            'enpruebas' => env('APP_PAY_SIS_TEST')
+            'url_respuesta' => $this->pay_url.$this->pay_url_r,
+            'url_confirmacion' => $this->pay_url.$this->pay_url_c,
+            'metodoconfirmacion' => $this->pay_acti_sis,
+            'lenguaje' => $this->pay_lang_sis,
+            'i' => $this->pay_key_enc,
+            'enpruebas' => $this->pay_test
         );
         $op_pay = new Util();
-        $data = $op_pay->mergeSet($data_send, env('APP_PAY_SIS_TEST'), env('APP_PAY_LANG_SIS'), env('APP_PAY_KEY_PV'), env('APP_PAY_KEY'));
+        $data = $op_pay->mergeSet($data_send, $this->pay_test, $this->pay_lang_sis, $this->pay_key_pv, $this->pay_key);
 
         $payload = json_encode($data);
         $ch = curl_init('https://secure.payco.co/restpagos/pagos/comercios.json');

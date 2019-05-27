@@ -63,8 +63,5 @@ class DatabaseSeeder extends Seeder
             UserStoreBranchesTableSeeder::class
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        $this->call(PayTaxesTableSeeder::class);
-        $this->call(UserStoresTableSeeder::class);
-        $this->call(UserStoreBranchesTableSeeder::class);
     }
 }

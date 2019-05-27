@@ -109866,6 +109866,11 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   disableStats: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_PUSHER_APP_STATSH,
   enabledTransports: ['ws', 'wss']
 });
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 $(function () {
   //////////////////
   //Offside
@@ -110839,6 +110844,31 @@ $(function () {
       cvc: '000'
     }
   });
+
+  window.add_cart_item = function () {
+    var id_prod = '1';
+    var cant_prod = '1';
+    var price = '12';
+    $.ajax({
+      /* the route pointing to the post function */
+      url: '/add-to-cart',
+      type: 'POST',
+
+      /* send the csrf-token and the input to the controller */
+      data: {
+        id_prod: id_prod,
+        cant_prod: cant_prod,
+        price: price
+      },
+      dataType: 'JSON',
+
+      /* remind that 'data' is the response of the AjaxController */
+      success: function success(data) {
+        alert(data.success);
+      }
+    });
+  };
+
   var map_canvas = document.querySelector("#gomap-canvas");
 
   if (typeof map_canvas != 'undefined' && map_canvas != null) {
@@ -110846,12 +110876,6 @@ $(function () {
   }
 }); // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 // var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
-
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
 
 function cboLoadState(value) {
   $.ajax({
@@ -110936,30 +110960,6 @@ function cboLoadBranch(value) {
     }
   });
 }
-
-window.add_cart_item = function () {
-  var id_prod = '1';
-  var cant_prod = '1';
-  var price = '12';
-  $.ajax({
-    /* the route pointing to the post function */
-    url: '/add-to-cart',
-    type: 'POST',
-
-    /* send the csrf-token and the input to the controller */
-    data: {
-      id_prod: id_prod,
-      cant_prod: cant_prod,
-      price: price
-    },
-    dataType: 'JSON',
-
-    /* remind that 'data' is the response of the AjaxController */
-    success: function success(data) {
-      alert(data.success);
-    }
-  });
-};
 
 function tick() {
   //get the mins of the current time

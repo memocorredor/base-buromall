@@ -93,6 +93,13 @@ if (token) {
  });
 
 
+ $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+
 $(function () {
     //////////////////
     //Offside
@@ -1028,6 +1035,24 @@ $(function () {
     });
 
 
+    window.add_cart_item = function () {
+
+        var id_prod = '1';
+        var cant_prod = '1';
+        var price = '12';
+        $.ajax({
+            /* the route pointing to the post function */
+            url: '/add-to-cart',
+            type: 'POST',
+            /* send the csrf-token and the input to the controller */
+            data: { id_prod: id_prod, cant_prod: cant_prod, price: price },
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the AjaxController */
+            success: function (data) {
+                alert(data.success);
+            }
+        });
+    }
 
 
     const map_canvas = document.querySelector("#gomap-canvas");
@@ -1039,11 +1064,7 @@ $(function () {
 // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 // var CSRF_TOKENa = $('meta[name="csrf-token"]').attr('content');
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+
 
 function cboLoadState(value) {
     $.ajax({
@@ -1130,24 +1151,7 @@ function cboLoadBranch(value) {
     });
 }
 
-window.add_cart_item = function () {
 
-    var id_prod = '1';
-    var cant_prod = '1';
-    var price = '12';
-    $.ajax({
-        /* the route pointing to the post function */
-        url: '/add-to-cart',
-        type: 'POST',
-        /* send the csrf-token and the input to the controller */
-        data: { id_prod: id_prod, cant_prod: cant_prod, price: price },
-        dataType: 'JSON',
-        /* remind that 'data' is the response of the AjaxController */
-        success: function (data) {
-            alert(data.success);
-        }
-    });
-}
 
 
 

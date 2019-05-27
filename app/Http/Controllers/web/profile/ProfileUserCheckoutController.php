@@ -245,11 +245,11 @@ class ProfileUserCheckoutController extends Controller
             //$array_data = json_decode($data_result, true);
             $msg_result = $data_result['success'];
 
-            if($msg_result === 0){
+            if($msg_result === 'false'){
                 echo 'data resultado false <br>';
             }
 
-            if($msg_result === 1){
+            if($msg_result === 'true'){
                 echo 'data resultado true <br>';
             }
 

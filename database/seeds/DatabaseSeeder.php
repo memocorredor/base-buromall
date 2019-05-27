@@ -63,7 +63,8 @@ class DatabaseSeeder extends Seeder
             UserNewsTableSeeder::class,
             UsersTableSeeder::class,
             UserStoresTableSeeder::class,
-            UserStoreBranchesTableSeeder::class
+            UserStoreBranchesTableSeeder::class,
+            UserStoreProductsTableSeeder::class
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

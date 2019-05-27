@@ -12,12 +12,12 @@ class UserNewsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('user_news')->delete();
-        
+
         DB::table('user_news')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'enable' => 1,
@@ -41,11 +41,11 @@ class UserNewsTableSeeder extends Seeder
                 'description_pt' => 'Google veta a huawei y como esto afecta a usuarios de estos dispositivos',
                 'keywords_pt' => 'google,huawei,veto',
                 'token' => NULL,
-                'created_at' => '2019-05-21 12:56:42',
-                'updated_at' => '2019-05-21 12:56:42',
+                'created_at' => '2019-01-01 12:00:00',
+                'updated_at' => '2019-01-01 12:00:00'
             ),
         ));
-        
-        
+
+
     }
 }

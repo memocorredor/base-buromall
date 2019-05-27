@@ -243,20 +243,20 @@ class ProfileUserCheckoutController extends Controller
 
             $data_result = $this->makePaymentCC($data_field->id);
             $data_transaction = json_decode($data_result, true);
-            print_r($data_transaction['success'] . '<br> data resultado false <br>');
+            echo $data_transaction['success'] . '<br> data resultado false <br>';
             //$array_data = json_decode($data_result, true);
             //$msg_result = $data_result['success'];
-            //if($msg_result === 'false'){
+            if($data_transaction['success'] === 'false'){
                 //print_r($data_transaction);
-                //echo 'data resultado false <br>';
-            //}
+                echo 'data resultado false <br>';
+            }
 
-            //if($msg_result === 'true'){
+            if($data_transaction['success'] === 'true'){
                 //print_r($data_transaction);
-                //echo 'data resultado true <br>';
-            //}
+                echo 'data resultado true <br>';
+            }
 
-            print_r($data_transaction);
+            //print_r($data_transaction);
 
         }
 

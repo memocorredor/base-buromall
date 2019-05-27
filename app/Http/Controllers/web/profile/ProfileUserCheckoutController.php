@@ -253,7 +253,7 @@ class ProfileUserCheckoutController extends Controller
                 echo 'data resultado true <br>';
             }
 
-            print_r($data_result);
+            print_r($array_data);
         }
 
         //return redirect()->route('home')->with($notification);

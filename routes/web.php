@@ -138,8 +138,8 @@ Route::delete(__('route_profile.profile_user_classified_delete').'{id}', 'Profil
 Route::get(__('route_profile.profile_user_wallet'), 'ProfileUserWalletController@index')->name('profile.user_wallet');
 Route::get(__('route_profile.profile_user_cart'), 'ProfileUserCartController@index')->name('profile.user_cart');
 Route::get(__('route_profile.profile_user_checkout'), 'ProfileUserCheckoutController@index')->name('profile.user_checkout');
-Route::post('make-payment', 'ProfileUserCheckoutController@iniOrden')->name('profile.make_payment');
-Route::get(__('route_profile.profile_user_checkout_confirm').'{id}', 'ProfileUserCheckoutController@indexConfirm')->name('profile.user_pay.confirm');
+Route::post(__('route_profile.profile_user_checkout_make'), 'ProfileUserCheckoutController@iniOrden')->name('profile.make_payment');
+Route::get(__('route_profile.profile_user_checkout_confirm').'{id}', 'ProfileUserCheckoutController@indexConfirm')->name('profile.user_checkout.confirm');
 Route::get(__('route_profile.profile_user_auction'), 'ProfileUserAuctionController@index')->name('profile.user_auction');
 Route::get(__('route_profile.profile_user_status_shipping').'{id}', 'ProfileUserStatusShippingController@index')->name('profile.user_status_shipping');
 Route::get(__('route_profile.profile_user_buy_recurrent').'{id}', 'ProfileUserBuyRecurrentController@index')->name('profile.user_buy_recurrent');

@@ -254,12 +254,14 @@ class ProfileUserCheckoutController extends Controller
                         'message' => 'Pago Aceptado.',
                         'alert-type' => 'info'
                     );
+                    $chnage_status_payment = 4;
                 }
                 if ($state_data === 'Pendiente') {
                     $notification = array(
                         'message' => 'Pago Pendiente.',
                         'alert-type' => 'info'
                     );
+                    $chnage_status_payment = 2;
                 }
                 if ($state_data === 'Rechazada') {
                     $notification = array(
@@ -267,19 +269,21 @@ class ProfileUserCheckoutController extends Controller
                         'alert-type' => 'info'
                     );
                     echo 'Rechazada <br>';
+                    $chnage_status_payment = 3;
                 }
                 if ($state_data === 'Fallida') {
                     $notification = array(
                         'message' => 'Pago Fallido.',
                         'alert-type' => 'info'
                     );
+                    $chnage_status_payment = 3;
                 }
 
                 $data_resultado = AcOrder::find($data_field->id);
                 if ($data_resultado != null) {
                     //$data_resultado->status_order_id = $data_result;
                     //$data_resultado->type_payment_id = $data_result;
-                    //$data_resultado->status_payment_id = $data_result;
+                    $data_resultado->status_payment_id = $chnage_status_payment;
                     $data_resultado->nu_autorization = $data_transaction['data']['autorizacion'];
                     //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
                     $data_resultado->tx_payment = $data_result;

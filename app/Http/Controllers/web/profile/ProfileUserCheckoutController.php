@@ -303,7 +303,9 @@ class ProfileUserCheckoutController extends Controller
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
             array(
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($payload)
@@ -359,16 +361,17 @@ class ProfileUserCheckoutController extends Controller
                 $chnage_status_payment = 3;
             }
 
-            if ($data_item != null) {
-                //$data_resultado->status_order_id = $data_result;
-                //$data_resultado->type_payment_id = $data_result;
-                $$data_item->status_payment_id = $chnage_status_payment;
-                $$data_item->nu_autorization = $data_transaction['data']['autorizacion'];
-                //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
-                $$data_item->tx_payment = $result;
-                //Accion de guardar la info
-                $$data_item->save();
-            }
+
+            $data_pay = AcOrder::find($id_save_order);
+            //$data_resultado->status_order_id = $data_result;
+            //$data_resultado->type_payment_id = $data_result;
+            $$data_pay->status_payment_id = $chnage_status_payment;
+            $$data_pay->nu_autorization = $data_transaction['data']['autorizacion'];
+            //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
+            $$data_pay->tx_payment = $result;
+            //Accion de guardar la info
+            $$data_pay->save();
+
             return redirect()->route('profile.user_pay.confirm', $id_save_order)->with($notification);
         }
     }

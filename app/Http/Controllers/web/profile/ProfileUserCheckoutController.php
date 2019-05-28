@@ -235,9 +235,11 @@ class ProfileUserCheckoutController extends Controller
         //Accion de guardar la info
         $saved = $data_field->save();
 
+        $id_save_order = $data_field->id;
+
         if ($saved) {
 
-            $data_result = $this->makePaymentCC($data_field->id);
+            $data_result = $this->makePaymentCC($id_save_order);
             $data_transaction = json_decode($data_result, true);
             $success_data = $data_transaction['success'];
             if ($success_data === 0) {
@@ -283,7 +285,7 @@ class ProfileUserCheckoutController extends Controller
                     $chnage_status_payment = 3;
                 }
 
-                $data_resultado = AcOrder::find($data_field->id);
+                $data_resultado = AcOrder::find($id_save_order);
                 if ($data_resultado != null) {
                     //$data_resultado->status_order_id = $data_result;
                     //$data_resultado->type_payment_id = $data_result;
@@ -294,7 +296,7 @@ class ProfileUserCheckoutController extends Controller
                     //Accion de guardar la info
                 $data_resultado->save();
                 }
-                return redirect()->route('profile.data_payment', $data_field->id)->with($notification);
+                return redirect()->route('profile.make_payment.confirm', $id_save_order)->with($notification);
             }
         }
     }

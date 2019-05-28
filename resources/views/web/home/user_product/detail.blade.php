@@ -55,9 +55,6 @@
         <div class="row">
             <div class="col-xs-12 col-md-9 px-2">
 
-
-
-
                 <div class="tabbable">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -98,8 +95,6 @@
 
                     </div>
                 </div>
-
-
 
                 <div class="row">
                     <div class="col-md-4 grilla-item">

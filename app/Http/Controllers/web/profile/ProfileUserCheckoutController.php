@@ -374,4 +374,27 @@ class ProfileUserCheckoutController extends Controller
         //Close cURL session handle
         curl_close($ch);
     }
+
+    //Para calga del index home
+    public function indexResponse()
+    {
+        //Si title, description y keywords esta vacio se mantiene el de defult por base de datos
+        $this->seo_title = '';
+        $this->seo_description = '';
+        $this->seo_keywords = '';
+        //Carga los metas en las variables
+        $this->setMeta();
+        //Carga los datos de la web
+        $for_meta_sis = $this->meta_sis;
+        // Carga los datos del usuario
+        $this->user_sis = CoreUser::getUser();
+        //Carga del view
+        return view('web.profile.user_checkout.result', [
+            'meta_lang' => $this->lang,
+            'meta_sis' => $for_meta_sis,
+            'user_sis' => $this->user_sis
+        ]);
+    }
+
+
 }

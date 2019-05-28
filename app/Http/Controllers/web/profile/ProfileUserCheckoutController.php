@@ -244,7 +244,7 @@ class ProfileUserCheckoutController extends Controller
                     'message' => 'Pago Fallido.',
                     'alert-type' => 'info'
                 );
-                return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
+                return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
             }
         }
     }

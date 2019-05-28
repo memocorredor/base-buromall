@@ -237,15 +237,6 @@ class ProfileUserCheckoutController extends Controller
 
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
-
-
-            if ($result_data) {
-                $notification = array(
-                    'message' => 'Pago Fallido.',
-                    'alert-type' => 'info'
-                );
-                return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
-            }
         }
     }
 
@@ -382,7 +373,11 @@ class ProfileUserCheckoutController extends Controller
         //return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
         // }
 
-        return true;
+        $notification = array(
+            'message' => 'Pago Fallido.',
+            'alert-type' => 'info'
+        );
+        return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
     }
 
     //Para calga del index home

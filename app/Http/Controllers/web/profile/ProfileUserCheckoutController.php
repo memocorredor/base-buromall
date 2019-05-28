@@ -236,7 +236,16 @@ class ProfileUserCheckoutController extends Controller
         $id_save_order = $data_field->id;
 
         if ($saved) {
-            $this->makePaymentCC($id_save_order);
+            $result_data = $this->makePaymentCC($id_save_order);
+
+
+            if ($result_data) {
+                $notification = array(
+                    'message' => 'Pago Fallido.',
+                    'alert-type' => 'info'
+                );
+                return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
+            }
         }
     }
 
@@ -324,54 +333,56 @@ class ProfileUserCheckoutController extends Controller
 
         // if ($success_data === 1) {
 
-            // $state_data = $data_transaction['data']['estado'];
-            // $notification = array(
-            //     'message' => $state_data,
-            //     'alert-type' => 'info'
-            // );
+        // $state_data = $data_transaction['data']['estado'];
+        // $notification = array(
+        //     'message' => $state_data,
+        //     'alert-type' => 'info'
+        // );
 
-            // if ($state_data === 'Aceptada') {
-            //     $notification = array(
-            //         'message' => 'Pago Aceptado.',
-            //         'alert-type' => 'info'
-            //     );
-            //     $chnage_status_payment = 4;
-            // }
-            // if ($state_data === 'Pendiente') {
-            //     $notification = array(
-            //         'message' => 'Pago Pendiente.',
-            //         'alert-type' => 'info'
-            //     );
-            //     $chnage_status_payment = 2;
-            // }
-            // if ($state_data === 'Rechazada') {
-            //     $notification = array(
-            //         'message' => 'Pago Rechazado.',
-            //         'alert-type' => 'info'
-            //     );
-            //     $chnage_status_payment = 3;
-            // }
-            //if ($state_data === 'Fallida') {
-                $notification = array(
-                    'message' => 'Pago Fallido.',
-                    'alert-type' => 'info'
-                );
-                //$chnage_status_payment = 3;
-            //}
-
-
-            // $data_pay = AcOrder::find($id_save_order);
-            // //$data_resultado->status_order_id = $data_result;
-            // //$data_resultado->type_payment_id = $data_result;
-            // $data_pay->status_payment_id = $chnage_status_payment;
-            // $data_pay->nu_autorization = $data_transaction['data']['autorizacion'];
-            // //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
-            // $data_pay->tx_payment = $result;
-            // //Accion de guardar la info
-            // $data_pay->save();
-
-            return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
+        // if ($state_data === 'Aceptada') {
+        //     $notification = array(
+        //         'message' => 'Pago Aceptado.',
+        //         'alert-type' => 'info'
+        //     );
+        //     $chnage_status_payment = 4;
         // }
+        // if ($state_data === 'Pendiente') {
+        //     $notification = array(
+        //         'message' => 'Pago Pendiente.',
+        //         'alert-type' => 'info'
+        //     );
+        //     $chnage_status_payment = 2;
+        // }
+        // if ($state_data === 'Rechazada') {
+        //     $notification = array(
+        //         'message' => 'Pago Rechazado.',
+        //         'alert-type' => 'info'
+        //     );
+        //     $chnage_status_payment = 3;
+        // }
+        //if ($state_data === 'Fallida') {
+        // $notification = array(
+        //     'message' => 'Pago Fallido.',
+        //     'alert-type' => 'info'
+        // );
+        //$chnage_status_payment = 3;
+        //}
+
+
+        // $data_pay = AcOrder::find($id_save_order);
+        // //$data_resultado->status_order_id = $data_result;
+        // //$data_resultado->type_payment_id = $data_result;
+        // $data_pay->status_payment_id = $chnage_status_payment;
+        // $data_pay->nu_autorization = $data_transaction['data']['autorizacion'];
+        // //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
+        // $data_pay->tx_payment = $result;
+        // //Accion de guardar la info
+        // $data_pay->save();
+
+        //return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
+        // }
+
+        return true;
     }
 
     //Para calga del index home

@@ -248,6 +248,10 @@ class ProfileUserCheckoutController extends Controller
             if ($success_data === 1) {
 
                 $state_data = $data_transaction['data']['estado'];
+                $notification = array(
+                    'message' => $state_data,
+                    'alert-type' => 'info'
+                );
 
                 if ($state_data === 'Aceptada') {
                     $notification = array(

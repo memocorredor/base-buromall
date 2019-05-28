@@ -242,6 +242,7 @@ class ProfileUserCheckoutController extends Controller
             $data_result = $this->makePaymentCC($id_save_order);
             $data_transaction = json_decode($data_result, true);
             $success_data = $data_transaction['success'];
+
             if ($success_data === 0) {
                 print_r($data_transaction);
                 echo 'false <br>';
@@ -296,7 +297,7 @@ class ProfileUserCheckoutController extends Controller
                     //Accion de guardar la info
                 $data_resultado->save();
                 }
-                return redirect()->route('profile.make_payment.confirm', $id_save_order)->with($notification);
+                return redirect()->route('profile.user_payment.confirm', $id_save_order)->with($notification);
             }
         }
     }

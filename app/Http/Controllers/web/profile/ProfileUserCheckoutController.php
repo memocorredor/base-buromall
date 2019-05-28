@@ -240,45 +240,57 @@ class ProfileUserCheckoutController extends Controller
             $data_result = $this->makePaymentCC($data_field->id);
             $data_transaction = json_decode($data_result, true);
             $success_data = $data_transaction['success'];
-            if($success_data === 0){
+            if ($success_data === 0) {
                 //print_r($data_transaction);
                 echo 'false <br>';
             }
 
-            if($success_data === 1){
+            if ($success_data === 1) {
+
                 $state_data = $data_transaction['data']['estado'];
 
-                if($state_data === 'Aceptada'){
+                if ($state_data === 'Aceptada') {
                     $notification = array(
                         'message' => 'Pago Aceptado.',
                         'alert-type' => 'info'
                     );
                 }
-                if($state_data === 'Pendiente'){
+                if ($state_data === 'Pendiente') {
                     $notification = array(
                         'message' => 'Pago Pendiente.',
                         'alert-type' => 'info'
                     );
                 }
-                if($state_data === 'Rechazada'){
+                if ($state_data === 'Rechazada') {
                     $notification = array(
                         'message' => 'Pago Rechazado.',
                         'alert-type' => 'info'
                     );
                     echo 'Rechazada <br>';
                 }
-                if($state_data === 'Fallida'){
+                if ($state_data === 'Fallida') {
                     $notification = array(
                         'message' => 'Pago Fallido.',
                         'alert-type' => 'info'
                     );
                 }
+
+                $data_resultado = AcOrder::find($data_field->id);
+                if ($data_resultado != null) {
+                    //$data_resultado->status_order_id = $data_result;
+                    //$data_resultado->type_payment_id = $data_result;
+                    //$data_resultado->status_payment_id = $data_result;
+                    $data_resultado->nu_autorization = $data_transaction['data']['autorizacion'];
+                    //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
+                    $data_resultado->tx_payment = $data_result;
+                    //Accion de guardar la info
+                $data_resultado->save();
+                }
+
             }
 
             return redirect()->route('profile.data_payment', $data_field->id)->with($notification);
         }
-
-
     }
 
     public function makePaymentCC($id)

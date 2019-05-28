@@ -84,6 +84,7 @@ return [
     'profile_user_wallet' => 'perfil/usuario/monedero/',
     'profile_user_cart' => 'perfil/usuario/mi-carrito/',
     'profile_user_checkout' => 'perfil/usuario/hacer-la-compra/',
+    'profile_user_checkout_response' => 'perfil/usuario/transacion-checkout/',
     'profile_user_auction' => 'perfil/usuario/subastas-en-las-que-participo/',
     'profile_user_status_shipping' => 'perfil/usuario/estado-de-mis-envios/',
     'profile_user_buy_recurrent' => 'perfil/usuario/compras-pagos-recurrentes/',

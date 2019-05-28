@@ -93,17 +93,17 @@
                                                     <i class="fas fa-user-friends"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-lastname" name="lastname_user" type="text" value="{{ $lastname }}"
-                                                placeholder="@lang('web_layout.local_name')" class="form-control"
-                                                readonly autocomplete="off">
+                                            <input id="field-form-lastname" name="lastname_user" type="text"
+                                                value="{{ $lastname }}" placeholder="@lang('web_layout.local_name')"
+                                                class="form-control" readonly autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         @include('components.cbo.cbo_types.identification')
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="field-form-no-ident">
                                             @lang('web_layout.local_no_ident')
                                         </label>
@@ -113,29 +113,25 @@
                                                     <i class="fas fa-passport"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-no-ident" name="identification_user" type="text" value="" placeholder=" "
-                                                class="form-control" autocomplete="off">
+                                            <input id="field-form-no-ident" name="identification_user" type="text"
+                                                value="" placeholder=" " class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="field-form-no-ident">
+                                            @lang('web_layout.local_exped_identification')
+                                        </label>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-passport"></i>
+                                                </span>
+                                            </div>
+                                            <input id="field-form-no-ident" name="exped_identification" type="text"
+                                                value="" placeholder=" " class="form-control" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                        <div class="col-md-6">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="field-form-no-ident">
-                                                @lang('web_layout.local_exped_identification')
-                                            </label>
-                                            <div class="form-group input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-passport"></i>
-                                                    </span>
-                                                </div>
-                                                <input id="field-form-no-ident" name="exped_identification" type="text" value="" placeholder=" "
-                                                    class="form-control" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="field-form-email">
@@ -147,9 +143,9 @@
                                                     <i class="far fa-envelope"></i>
                                                 </span>
                                             </div>
-                                            <input id="field-form-email" name="email_user" type="email" value="{{ $email  }}"
-                                                placeholder="email@buromall.com" class="form-control" readonly
-                                                autocomplete="off">
+                                            <input id="field-form-email" name="email_user" type="email"
+                                                value="{{ $email }}" placeholder="email@buromall.com"
+                                                class="form-control" readonly autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +336,8 @@
                                     </div>
                                 </div>
                                 <legend class="text-semibold">
-                                    <i class="fas fa-map-marked-alt position-left"></i>@lang('web_layout.local_legen_geolocation')
+                                    <i
+                                        class="fas fa-map-marked-alt position-left"></i>@lang('web_layout.local_legen_geolocation')
                                 </legend>
                                 <div class="row">
                                     <div class="col-md-12">

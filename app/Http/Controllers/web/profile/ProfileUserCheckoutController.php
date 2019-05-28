@@ -236,10 +236,6 @@ class ProfileUserCheckoutController extends Controller
         $saved = $data_field->save();
 
         if ($saved) {
-            $notification = array(
-                'message' => 'Orden Generada!, procedemos a hacer el pago.',
-                'alert-type' => 'info'
-            );
 
             $data_result = $this->makePaymentCC($data_field->id);
             $data_transaction = json_decode($data_result, true);
@@ -253,24 +249,36 @@ class ProfileUserCheckoutController extends Controller
                 $state_data = $data_transaction['data']['estado'];
 
                 if($state_data === 'Aceptada'){
-                    echo 'Aceptada <br>';
+                    $notification = array(
+                        'message' => 'Pago Aceptado.',
+                        'alert-type' => 'info'
+                    );
                 }
                 if($state_data === 'Pendiente'){
-                    echo 'Pendiente <br>';
+                    $notification = array(
+                        'message' => 'Pago Pendiente.',
+                        'alert-type' => 'info'
+                    );
                 }
                 if($state_data === 'Rechazada'){
+                    $notification = array(
+                        'message' => 'Pago Rechazado.',
+                        'alert-type' => 'info'
+                    );
                     echo 'Rechazada <br>';
                 }
                 if($state_data === 'Fallida'){
-                    echo 'Fallida <br>';
+                    $notification = array(
+                        'message' => 'Pago Fallido.',
+                        'alert-type' => 'info'
+                    );
                 }
             }
 
-            //print_r($data_transaction);
-
+            return redirect()->route('profile.data_payment', $data_field->id)->with($notification);
         }
 
-        //return redirect()->route('home')->with($notification);
+
     }
 
     public function makePaymentCC($id)

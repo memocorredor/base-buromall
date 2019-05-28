@@ -294,10 +294,8 @@ class ProfileUserCheckoutController extends Controller
                     //Accion de guardar la info
                 $data_resultado->save();
                 }
-
+                return redirect()->route('profile.data_payment', $data_field->id)->with($notification);
             }
-
-            return redirect()->route('profile.data_payment', $data_field->id)->with($notification);
         }
     }
 

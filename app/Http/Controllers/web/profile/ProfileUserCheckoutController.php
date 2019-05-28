@@ -238,72 +238,66 @@ class ProfileUserCheckoutController extends Controller
         $id_save_order = $data_field->id;
 
         if ($saved) {
-                 $notification = array(
-                    'message' => 'test',
+
+            $data_result = $this->makePaymentCC($id_save_order);
+            $data_transaction = json_decode($data_result, true);
+            $success_data = $data_transaction['success'];
+            if ($success_data === 0) {
+                print_r($data_transaction);
+                echo 'false <br>';
+            }
+
+            if ($success_data === 1) {
+
+                $state_data = $data_transaction['data']['estado'];
+                $notification = array(
+                    'message' => $state_data,
                     'alert-type' => 'info'
                 );
 
-            return redirect()->route('profile.user_payment.confirm', $id_save_order)->with($notification);
+                if ($state_data === 'Aceptada') {
+                    $notification = array(
+                        'message' => 'Pago Aceptado.',
+                        'alert-type' => 'info'
+                    );
+                    $chnage_status_payment = 4;
+                }
+                if ($state_data === 'Pendiente') {
+                    $notification = array(
+                        'message' => 'Pago Pendiente.',
+                        'alert-type' => 'info'
+                    );
+                    $chnage_status_payment = 2;
+                }
+                if ($state_data === 'Rechazada') {
+                    $notification = array(
+                        'message' => 'Pago Rechazado.',
+                        'alert-type' => 'info'
+                    );
+                    echo 'Rechazada <br>';
+                    $chnage_status_payment = 3;
+                }
+                if ($state_data === 'Fallida') {
+                    $notification = array(
+                        'message' => 'Pago Fallido.',
+                        'alert-type' => 'info'
+                    );
+                    $chnage_status_payment = 3;
+                }
 
-            //$data_result = $this->makePaymentCC($id_save_order);
-            //$data_transaction = json_decode($data_result, true);
-            //$success_data = $data_transaction['success'];
-            //if ($success_data === 0) {
-                //print_r($data_transaction);
-                //echo 'false <br>';
-            //}
-
-            // if ($success_data === 1) {
-
-            //     $state_data = $data_transaction['data']['estado'];
-            //     $notification = array(
-            //         'message' => $state_data,
-            //         'alert-type' => 'info'
-            //     );
-
-            //     if ($state_data === 'Aceptada') {
-            //         $notification = array(
-            //             'message' => 'Pago Aceptado.',
-            //             'alert-type' => 'info'
-            //         );
-            //         $chnage_status_payment = 4;
-            //     }
-            //     if ($state_data === 'Pendiente') {
-            //         $notification = array(
-            //             'message' => 'Pago Pendiente.',
-            //             'alert-type' => 'info'
-            //         );
-            //         $chnage_status_payment = 2;
-            //     }
-            //     if ($state_data === 'Rechazada') {
-            //         $notification = array(
-            //             'message' => 'Pago Rechazado.',
-            //             'alert-type' => 'info'
-            //         );
-            //         echo 'Rechazada <br>';
-            //         $chnage_status_payment = 3;
-            //     }
-            //     if ($state_data === 'Fallida') {
-            //         $notification = array(
-            //             'message' => 'Pago Fallido.',
-            //             'alert-type' => 'info'
-            //         );
-            //         $chnage_status_payment = 3;
-            //     }
-
-            //     $data_resultado = AcOrder::find($id_save_order);
-            //     if ($data_resultado != null) {
-            //         //$data_resultado->status_order_id = $data_result;
-            //         //$data_resultado->type_payment_id = $data_result;
-            //         $data_resultado->status_payment_id = $chnage_status_payment;
-            //         $data_resultado->nu_autorization = $data_transaction['data']['autorizacion'];
-            //         //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
-            //         $data_resultado->tx_payment = $data_result;
-            //         //Accion de guardar la info
-            //     $data_resultado->save();
-            //     }
-            //     //return redirect()->route('profile.make_payment.confirm', $id_save_order)->with($notification);
-            // }
+                $data_resultado = AcOrder::find($id_save_order);
+                if ($data_resultado != null) {
+                    //$data_resultado->status_order_id = $data_result;
+                    //$data_resultado->type_payment_id = $data_result;
+                    $data_resultado->status_payment_id = $chnage_status_payment;
+                    $data_resultado->nu_autorization = $data_transaction['data']['autorizacion'];
+                    //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
+                    $data_resultado->tx_payment = $data_result;
+                    //Accion de guardar la info
+                $data_resultado->save();
+                }
+                return redirect()->route('profile.make_payment.confirm', $id_save_order)->with($notification);
+            }
         }
     }
 

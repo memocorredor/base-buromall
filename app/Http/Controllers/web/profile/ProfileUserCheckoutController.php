@@ -369,12 +369,12 @@ class ProfileUserCheckoutController extends Controller
                 //Accion de guardar la info
                 $$data_item->save();
             }
-            return redirect()->route('profile.user_payment.confirm', $id_save_order)->with($notification);
+            return redirect()->route('profile.user_pay.confirm', $id_save_order)->with($notification);
         }
     }
 
     //Para calga del index home
-    public function indexResponse()
+    public function indexConfirm()
     {
         //Si title, description y keywords esta vacio se mantiene el de defult por base de datos
         $this->seo_title = '';

@@ -40,6 +40,8 @@ class AcOrder extends Model
         'exp_credit',
         'nu_autorization',
         'nu_recibo',
+        'tx_payment',
+        'tx_payment_anz',
         'error_vpos_id',
         'error_avs_vpos_id',
         'error_cvv_vpos_id',
@@ -53,7 +55,6 @@ class AcOrder extends Model
         'cart_shipping',
         'cart_total',
         'info_user',
-        'tx_payment',
         'token'
     ];
 }

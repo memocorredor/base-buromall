@@ -50,6 +50,8 @@ class CreateAcOrdersTable extends Migration
             $table->string('exp_credit', 10)->nullable()->default('');
             $table->string('nu_autorization', 100)->nullable()->default('');
             $table->string('nu_recibo', 100)->nullable()->default('');
+            $table->text('tx_payment')->nullable();
+            $table->text('tx_payment_anz')->nullable();
             $table->integer('pay_errors_id')->unsigned()->default('0');
             $table->integer('pay_errors_avs_id')->unsigned()->default('0');
             $table->integer('pay_errors_cvv_id')->unsigned()->default('0');
@@ -63,7 +65,6 @@ class CreateAcOrdersTable extends Migration
             $table->string('cart_shipping', 100)->nullable()->default('');
             $table->string('cart_total', 100)->nullable()->default('');
             $table->text('info_user')->nullable();
-            $table->text('tx_payment')->nullable();
             $table->text('token');
             $table->timestamps();
         });

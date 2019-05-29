@@ -408,7 +408,8 @@ class ProfileUserCheckoutController extends Controller
             'status_payment_id' => $chnage_status_payment,
             'nu_autorization' => $data_transaction['data']['autorizacion'],
             'nu_recibo' => $data_transaction['data']['recibo'],
-            'tx_payment' => $result
+            'tx_payment' => $result,
+            'tx_payment_anz' => $state_data_msg
         ]);
 
         return $data_transaction;

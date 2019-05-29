@@ -371,7 +371,7 @@ class ProfileUserCheckoutController extends Controller
 
         if ($success_data === 1) {
             $state_data = $data_transaction['data']['estado'];
-
+            print_r($state_data);
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;
@@ -396,7 +396,7 @@ class ProfileUserCheckoutController extends Controller
             'tx_payment' => $result
         ]);
 
-        return $data_transaction;
+        //return $data_transaction;
     }
 
     //Para calga del index home

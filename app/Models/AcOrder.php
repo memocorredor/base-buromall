@@ -42,6 +42,7 @@ class AcOrder extends Model
         'nu_recibo',
         'tx_payment',
         'tx_payment_anz',
+        'ref_procesor',
         'error_vpos_id',
         'error_avs_vpos_id',
         'error_cvv_vpos_id',

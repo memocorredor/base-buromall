@@ -247,15 +247,12 @@ class ProfileUserCheckoutController extends Controller
             $success_data = $result_data['success'];
             $state_data = $result_data['data']['estado'];
 
-            print_r($success_data);
-            print_r($state_data);
-
-            if ($success_data === 0) {
+            if ($success_data === false) {
                 print_r($result_data);
                 echo 'false <br>';
             }
 
-            if ($success_data === 1) {
+            if ($success_data === true) {
 
                 if ($state_data === 'Aceptada') {
                     $notification = array(
@@ -281,8 +278,8 @@ class ProfileUserCheckoutController extends Controller
                         'alert-type' => 'info'
                     );
                 }
+                return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
             }
-            //return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
         }
     }
 
@@ -370,10 +367,10 @@ class ProfileUserCheckoutController extends Controller
             echo 'false <br>';
         }
 
-        $chnage_status_order = 1;
-        $chnage_status_payment = 1;
-
         if ($success_data === true) {
+
+            $chnage_status_order = 1;
+            $chnage_status_payment = 1;
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_order = 2;
@@ -391,26 +388,17 @@ class ProfileUserCheckoutController extends Controller
                 $chnage_status_order = 5;
                 $chnage_status_payment = 5;
             }
+
+            DB::table('ac_orders')->where('id', $id_save_order)->update([
+                'status_order_id' => $chnage_status_order,
+                'status_payment_id' => $chnage_status_payment,
+                'nu_autorization' => $data_transaction['data']['autorizacion'],
+                'nu_recibo' => $data_transaction['data']['recibo'],
+                'tx_payment' => $result,
+                'tx_payment_anz' => $state_data_msg,
+                'ref_procesor' => $data_transaction['data']['ref_payco']
+            ]);
         }
-
-        print_r($data_transaction);
-        echo '<br> estado: <br>';
-        print_r($state_data);
-        echo '<br> c satus: <br>';
-        print_r($chnage_status_payment);
-        echo '<br> respuesta: <br>';
-        print_r($state_data_msg);
-        die();
-
-        DB::table('ac_orders')->where('id', $id_save_order)->update([
-            'status_order_id' => $chnage_status_order,
-            //'type_payment_id' => $title[$key],
-            'status_payment_id' => $chnage_status_payment,
-            'nu_autorization' => $data_transaction['data']['autorizacion'],
-            'nu_recibo' => $data_transaction['data']['recibo'],
-            'tx_payment' => $result,
-            'tx_payment_anz' => $state_data_msg
-        ]);
 
         return $data_transaction;
     }

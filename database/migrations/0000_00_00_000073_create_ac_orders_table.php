@@ -52,6 +52,7 @@ class CreateAcOrdersTable extends Migration
             $table->string('nu_recibo', 100)->nullable()->default('');
             $table->text('tx_payment')->nullable();
             $table->text('tx_payment_anz')->nullable();
+            $table->string('ref_procesor', 60)->nullable()->default('');
             $table->integer('pay_errors_id')->unsigned()->default('0');
             $table->integer('pay_errors_avs_id')->unsigned()->default('0');
             $table->integer('pay_errors_cvv_id')->unsigned()->default('0');

@@ -257,25 +257,25 @@ class ProfileUserCheckoutController extends Controller
                 if ($state_data === 'Aceptada') {
                     $notification = array(
                         'message' => 'Pago Aceptado.',
-                        'alert-type' => 'info'
+                        'alert-type' => 'success'
                     );
                 }
                 if ($state_data === 'Pendiente') {
                     $notification = array(
                         'message' => 'Pago Pendiente.',
-                        'alert-type' => 'info'
+                        'alert-type' => 'warning'
                     );
                 }
                 if ($state_data === 'Rechazada') {
                     $notification = array(
                         'message' => 'Pago Rechazado.',
-                        'alert-type' => 'info'
+                        'alert-type' => 'error'
                     );
                 }
                 if ($state_data === 'Fallida') {
                     $notification = array(
                         'message' => 'Pago Fallido.',
-                        'alert-type' => 'info'
+                        'alert-type' => 'error'
                     );
                 }
                 return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);

@@ -147,6 +147,9 @@ class ProfileUserCheckoutController extends Controller
 
     public function iniOrden(Request $request)
     {
+        //carga la informacion de usaurio
+        $order_user_sis = CoreUser::getUser();
+        //carga si hay una primera orden
         $data_ac_order_new = AcOrder::latest()->first();
         if ($data_ac_order_new) {
             $id_ac_order_new = $data_ac_order_new->id;
@@ -222,6 +225,8 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_id = 1;
         $data_field->pay_errors_avs_id = 1;
         $data_field->pay_errors_cvv_id = 1;
+        $data_field->currency = $order_user_sis['currency_user_sale'];
+        $data_field->trm = 1;
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
@@ -316,7 +321,7 @@ class ProfileUserCheckoutController extends Controller
             'iva' => 0,
             'baseiva' => 0,
             'valor' => $data_item->cart_total, //20.000, PUNTO ES miles y coma decimales.
-            'moneda' => 'USD',
+            'moneda' => $data_item->currency,
             'tarjeta' => $data_item->number_credit,
             'fechaexpiracion' => $data_item->exp_credit, //'2018-06',
             'codigoseguridad' => $data_item->cvv_credit,

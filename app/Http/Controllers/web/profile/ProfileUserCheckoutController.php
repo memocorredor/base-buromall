@@ -363,8 +363,7 @@ class ProfileUserCheckoutController extends Controller
         $data_transaction = json_decode($result, true);
         $success_data = $data_transaction['success'];
         $state_data = $data_transaction['data']['estado'];
-        print_r($success_data);
-        die();
+
 
 
         if ($success_data === 0) {
@@ -375,7 +374,8 @@ class ProfileUserCheckoutController extends Controller
         $chnage_status_payment = 0;
 
         if ($success_data === 1) {
-
+            print_r($state_data);
+            die();
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;
@@ -390,7 +390,8 @@ class ProfileUserCheckoutController extends Controller
                 $chnage_status_payment = 3;
             }
         }
-
+        echo 'paso de largo <br>';
+        die();
         DB::table('ac_orders')->where('id', $id_save_order)->update([
             //'status_order_id' => $locale[$key],
             //'type_payment_id' => $title[$key],

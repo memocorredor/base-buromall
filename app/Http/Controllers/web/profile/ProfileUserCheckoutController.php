@@ -364,14 +364,14 @@ class ProfileUserCheckoutController extends Controller
         $success_data = $data_transaction->success;
         $state_data = $data_transaction->data->estado;
 
-        if ($success_data === 0) {
+        if ($success_data === '0') {
             print_r($data_transaction);
             echo 'false <br>';
         }
 
         $chnage_status_payment = 0;
 
-        if ($success_data === 1) {
+        if ($success_data === '1') {
             print_r($data_transaction);
             echo '<br> estado: <br>';
             print_r($state_data);
@@ -379,7 +379,7 @@ class ProfileUserCheckoutController extends Controller
             print_r($chnage_status_payment);
             die();
 
-            if ($state_data === Aceptada) {
+            if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;
                 print_r($data_transaction);
                 echo '<br> estado: <br>';

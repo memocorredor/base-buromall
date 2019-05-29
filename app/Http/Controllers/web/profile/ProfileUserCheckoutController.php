@@ -390,7 +390,7 @@ class ProfileUserCheckoutController extends Controller
         DB::table('ac_orders')->where('id', $id_save_order)->update([
             //'status_order_id' => $locale[$key],
             //'type_payment_id' => $title[$key],
-            'status_payment_id' => $chnage_status_payment,
+            //'status_payment_id' => $chnage_status_payment,
             'nu_autorization' => $data_transaction['data']['autorizacion'],
             'nu_recibo' => $data_transaction['data']['recibo'],
             'tx_payment' => $result

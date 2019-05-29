@@ -361,8 +361,8 @@ class ProfileUserCheckoutController extends Controller
         curl_close($ch);
 
         $data_transaction = json_decode($result);
-        $success_data = $data_transaction['success'];
-        $state_data = $data_transaction['data']['estado'];
+        $success_data = $data_transaction->success;
+        $state_data = $data_transaction->data->estado;
 
         print_r($data_transaction);
             echo 'estado <br>';

@@ -35,7 +35,7 @@
         </div>
         <div class="px-3 my-3 text-center">
             <div class="cart-item-label">Subtotal</div><span
-                class="text-xl font-weight-medium">{{ $item->price }}</span>
+                class="text-xl font-weight-medium">{{ Buromall\AppCore\corePrice::getItemPrice($item->price) }}</span>
         </div>
         <div class="px-3 my-3 text-center">
             <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">{{ $item->getPriceSum() }}</span>

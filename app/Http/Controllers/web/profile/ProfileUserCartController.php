@@ -26,6 +26,7 @@ class ProfileUserCartController extends Controller
     // Constructor del CONTROLLER
     public function __construct()
     {
+        $this->middleware('auth');
         // Carga del id de la web a usar
         $this->web_sis = env('APP_ID_USE', '1');
         // Carga del idioma en uso

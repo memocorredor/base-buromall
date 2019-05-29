@@ -52,6 +52,7 @@ class ProfileUserCheckoutController extends Controller
     // Constructor del CONTROLLER
     public function __construct()
     {
+        $this->middleware('auth');
         // Carga del id de la web a usar
         $this->web_sis = env('APP_ID_USE', '1');
         // Carga del idioma en uso
@@ -237,127 +238,123 @@ class ProfileUserCheckoutController extends Controller
 
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
+
+            return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
         }
     }
 
     public function makePaymentCC($id_save_order)
     {
-        // $data_item = AcOrder::find($id_save_order);
-        // // Carga los datos del usuario
-        // $user_sis = CoreUser::getUser();
+        $data_item = AcOrder::find($id_save_order);
+        // Carga los datos del usuario
+        $user_sis = CoreUser::getUser();
 
-        // $filter_identification = $data_item->type_identification_id;
-        // $data_identification = TypeIdentification::where('id', $filter_identification)->first();
+        $filter_identification = $data_item->type_identification_id;
+        $data_identification = TypeIdentification::where('id', $filter_identification)->first();
 
-        // $filter_country = $data_item->country_id;
-        // $data_country = LocaleCountry::where('id', $filter_country)->first();
+        $filter_country = $data_item->country_id;
+        $data_country = LocaleCountry::where('id', $filter_country)->first();
 
-        // $filter_state = $data_item->state_id;
-        // $data_state = LocaleState::where('id', $filter_state)->first();
+        $filter_state = $data_item->state_id;
+        $data_state = LocaleState::where('id', $filter_state)->first();
 
-        // $filter_city = $data_item->city_id;
-        // $data_city = LocaleCity::where('id', $filter_city)->first();
+        $filter_city = $data_item->city_id;
+        $data_city = LocaleCity::where('id', $filter_city)->first();
 
-        // $data_send = array(
-        //     'public_key' => $this->pay_key, //env('APP_PAY_KEY'),
-        //     'tipo_doc' => $data_identification->iso,
-        //     'documento' => $data_item->identification,
-        //     'fechaExpedicion' => $data_item->exped_identification,
-        //     'nombres' => $data_item->name,
-        //     'apellidos' => $data_item->lastname,
-        //     'email' => $data_item->email,
-        //     'pais' => $data_country->code,
-        //     'depto' => $data_state->name,
-        //     'ciudad' => $data_city->name,
-        //     'telefono' => $data_item->phone,
-        //     'celular' => $data_item->mobile,
-        //     'direccion' => $data_item->address . ' - Zip:' . $data_item->zipcode,
-        //     'ip' => $user_sis['session_ip'],
-        //     'factura' => '24',
-        //     'descripcion' => 'test de prueba 1',
-        //     'iva' => 0,
-        //     'baseiva' => 0,
-        //     'valor' => $data_item->cart_total, //20.000, PUNTO ES miles y coma decimales.
-        //     'moneda' => 'USD',
-        //     'tarjeta' => $data_item->number_credit,
-        //     'fechaexpiracion' => $data_item->exp_credit, //'2018-06',
-        //     'codigoseguridad' => $data_item->cvv_credit,
-        //     'franquicia' => 'VISA',
-        //     'cuotas' => 1,
-        //     'url_respuesta' => $this->pay_url . $this->pay_url_r,
-        //     'url_confirmacion' => $this->pay_url . $this->pay_url_c,
-        //     'metodoconfirmacion' => $this->pay_acti_sis,
-        //     'lenguaje' => $this->pay_lang_sis,
-        //     'i' => $this->pay_key_enc,
-        //     'enpruebas' => $this->pay_test
-        // );
+        $data_send = array(
+            'public_key' => $this->pay_key, //env('APP_PAY_KEY'),
+            'tipo_doc' => $data_identification->iso,
+            'documento' => $data_item->identification,
+            'fechaExpedicion' => $data_item->exped_identification,
+            'nombres' => $data_item->name,
+            'apellidos' => $data_item->lastname,
+            'email' => $data_item->email,
+            'pais' => $data_country->code,
+            'depto' => $data_state->name,
+            'ciudad' => $data_city->name,
+            'telefono' => $data_item->phone,
+            'celular' => $data_item->mobile,
+            'direccion' => $data_item->address . ' - Zip:' . $data_item->zipcode,
+            'ip' => $user_sis['session_ip'],
+            'factura' => '24',
+            'descripcion' => 'test de prueba 1',
+            'iva' => 0,
+            'baseiva' => 0,
+            'valor' => $data_item->cart_total, //20.000, PUNTO ES miles y coma decimales.
+            'moneda' => 'USD',
+            'tarjeta' => $data_item->number_credit,
+            'fechaexpiracion' => $data_item->exp_credit, //'2018-06',
+            'codigoseguridad' => $data_item->cvv_credit,
+            'franquicia' => 'VISA',
+            'cuotas' => 1,
+            'url_respuesta' => $this->pay_url . $this->pay_url_r,
+            'url_confirmacion' => $this->pay_url . $this->pay_url_c,
+            'metodoconfirmacion' => $this->pay_acti_sis,
+            'lenguaje' => $this->pay_lang_sis,
+            'i' => $this->pay_key_enc,
+            'enpruebas' => $this->pay_test
+        );
 
-        // $op_pay = new Util();
-        // $data = $op_pay->mergeSet($data_send, $this->pay_test, $this->pay_lang_sis, $this->pay_key_pv, $this->pay_key);
+        $op_pay = new Util();
+        $data = $op_pay->mergeSet($data_send, $this->pay_test, $this->pay_lang_sis, $this->pay_key_pv, $this->pay_key);
 
-        // $payload = json_encode($data);
-        // $ch = curl_init('https://secure.payco.co/restpagos/pagos/comercios.json');
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        // curl_setopt(
-        //     $ch,
-        //     CURLOPT_HTTPHEADER,
-        //     array(
-        //         'Content-Type: application/json',
-        //         'Content-Length: ' . strlen($payload)
-        //     )
-        // );
-        //Submit the POST request
-        // $result = curl_exec($ch);
-        //Close cURL session handle
-        // curl_close($ch);
+        $payload = json_encode($data);
+        $ch = curl_init('https://secure.payco.co/restpagos/pagos/comercios.json');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($payload)
+            )
+        );
+        // Submit the POST request
+        $result = curl_exec($ch);
+        // Close cURL session handle
+        curl_close($ch);
 
-        // $data_transaction = json_decode($result, true);
-        // $success_data = $data_transaction['success'];
+        $data_transaction = json_decode($result, true);
+        $success_data = $data_transaction['success'];
 
-        // if ($success_data === 0) {
-        //     print_r($data_transaction);
-        //     echo 'false <br>';
-        // }
+        if ($success_data === 0) {
+            print_r($data_transaction);
+            echo 'false <br>';
+        }
 
-        // if ($success_data === 1) {
+        if ($success_data === 1) {
 
-        // $state_data = $data_transaction['data']['estado'];
-        // $notification = array(
-        //     'message' => $state_data,
-        //     'alert-type' => 'info'
-        // );
+        $state_data = $data_transaction['data']['estado'];
 
-        // if ($state_data === 'Aceptada') {
-        //     $notification = array(
-        //         'message' => 'Pago Aceptado.',
-        //         'alert-type' => 'info'
-        //     );
-        //     $chnage_status_payment = 4;
-        // }
-        // if ($state_data === 'Pendiente') {
-        //     $notification = array(
-        //         'message' => 'Pago Pendiente.',
-        //         'alert-type' => 'info'
-        //     );
-        //     $chnage_status_payment = 2;
-        // }
-        // if ($state_data === 'Rechazada') {
-        //     $notification = array(
-        //         'message' => 'Pago Rechazado.',
-        //         'alert-type' => 'info'
-        //     );
-        //     $chnage_status_payment = 3;
-        // }
-        //if ($state_data === 'Fallida') {
-        // $notification = array(
-        //     'message' => 'Pago Fallido.',
-        //     'alert-type' => 'info'
-        // );
-        //$chnage_status_payment = 3;
-        //}
+        if ($state_data === 'Aceptada') {
+            $notification = array(
+                'message' => 'Pago Aceptado.',
+                'alert-type' => 'info'
+            );
+            $chnage_status_payment = 4;
+        }
+        if ($state_data === 'Pendiente') {
+            $notification = array(
+                'message' => 'Pago Pendiente.',
+                'alert-type' => 'info'
+            );
+            $chnage_status_payment = 2;
+        }
+        if ($state_data === 'Rechazada') {
+            $notification = array(
+                'message' => 'Pago Rechazado.',
+                'alert-type' => 'info'
+            );
+            $chnage_status_payment = 3;
+        }
+        if ($state_data === 'Fallida') {
+        $notification = array(
+            'message' => 'Pago Fallido.',
+            'alert-type' => 'info'
+        );
+        $chnage_status_payment = 3;
+        }
 
 
         // $data_pay = AcOrder::find($id_save_order);
@@ -370,14 +367,14 @@ class ProfileUserCheckoutController extends Controller
         // //Accion de guardar la info
         // $data_pay->save();
 
-        //return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
-        // }
+        // return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
+        }
 
         $notification = array(
             'message' => 'Pago Fallido.',
             'alert-type' => 'info'
         );
-        return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
+
     }
 
     //Para calga del index home

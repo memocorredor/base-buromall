@@ -369,6 +369,7 @@ class ProfileUserCheckoutController extends Controller
 
         if ($success_data === 1) {
             $state_data = $data_transaction['data']['estado'];
+            dd($state_data);
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;

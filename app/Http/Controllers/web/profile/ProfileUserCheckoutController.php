@@ -363,7 +363,7 @@ class ProfileUserCheckoutController extends Controller
         $data_transaction = json_decode($result, true);
         $success_data = $data_transaction['success'];
         $state_data = $data_transaction['data']['estado'];
-        print_r($data_transaction);
+        print_r($success_data);
         die();
 
 
@@ -400,7 +400,7 @@ class ProfileUserCheckoutController extends Controller
             'tx_payment' => $result
         ]);
 
-        //return $data_transaction;
+        return $data_transaction;
     }
 
     //Para calga del index home

@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Buromall\AppCore\CoreUser;
+use Buromall\AppCore\corePrice;
 use Darryldecode\Cart\Cart;
 use Epayco\Util;
 use Auth;
@@ -263,12 +264,12 @@ class ProfileUserCheckoutController extends Controller
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_data_stotal = $cart_stotal;
-        $data_field->cart_stotal = $data_cart_stotal;
+        $data_field->cart_data_stotal = \Cart::getSubTotal();
+        $data_field->cart_stotal = corePrice::getSubTotalCart();
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-        $data_field->cart_data_total = $cart_total;
-        $data_field->cart_total = $data_cart_total;
+        $data_field->cart_data_total = \Cart::getTotal();
+        $data_field->cart_total = corePrice::getTotalCart();
         $data_field->token = $request->get('_token');
 
         //Accion de guardar la info

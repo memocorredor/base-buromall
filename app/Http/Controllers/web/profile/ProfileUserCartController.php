@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
 use Buromall\AppCore\CoreUser;
+use Buromall\AppCore\corePrice;
 use Darryldecode\Cart\CartCondition;
 use Buromall\Models\UserStoreProduct;
 use Auth;
@@ -59,9 +60,6 @@ class ProfileUserCartController extends Controller
         $this->seo_keywords = '';
         //Get cart
         $items = \Cart::getContent();
-
-        $get_stotal = \Cart::getSubTotal();
-        $get_total = \Cart::getTotal();
         //Carga los metas en las variables
         $this->setMeta();
         //Carga los datos de la web
@@ -74,8 +72,8 @@ class ProfileUserCartController extends Controller
             'meta_sis' => $for_meta_sis,
             'user_sis' => $this->user_sis,
             'items' => $items,
-            'get_stotal' => $get_stotal,
-            'get_total' => $get_total
+            'get_stotal' => corePrice::getSubTotalCart(),
+            'get_total' => corePrice::getTotalCart()
         ]);
     }
 

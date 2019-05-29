@@ -36,8 +36,12 @@ php artisan config:clear
 php artisan route:cache
 php artisan config:cache
 - php artisan websockets:serve /ws-site-app
-- php artisan trm:hora
 
+## CRON JOB
+- php artisan trm:hora
+- * * * * * php /var/www/buromall/artisan schedule:run >> /dev/null 2>&1
+
+## ARREGLO CARPETAS
 sudo chgrp -R www-data storage bootstrap/cache
 sudo chmod -R ug+rwx storage bootstrap/cache
 

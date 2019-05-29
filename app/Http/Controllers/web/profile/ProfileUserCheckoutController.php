@@ -361,9 +361,12 @@ class ProfileUserCheckoutController extends Controller
         curl_close($ch);
 
         $data_transaction = json_decode($result, true);
-
-
         $success_data = $data_transaction['success'];
+        $state_data = $data_transaction['data']['estado'];
+        print_r($data_transaction);
+        die();
+
+
         if ($success_data === 0) {
             print_r($data_transaction);
             echo 'false <br>';
@@ -372,8 +375,7 @@ class ProfileUserCheckoutController extends Controller
         $chnage_status_payment = 0;
 
         if ($success_data === 1) {
-            $state_data = $data_transaction['data']['estado'];
-            dd($state_data);
+
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;

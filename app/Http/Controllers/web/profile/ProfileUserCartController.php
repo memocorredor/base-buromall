@@ -72,8 +72,8 @@ class ProfileUserCartController extends Controller
             'meta_sis' => $for_meta_sis,
             'user_sis' => $this->user_sis,
             'items' => $items,
-            'get_stotal' => corePrice::getSubTotalCart(),
-            'get_total' => corePrice::getTotalCart()
+            'get_stotal' => formatCurrency(corePrice::getSubTotalCart(), 'COP'),
+            'get_total' => formatCurrency(corePrice::getTotalCart(), 'COP')
         ]);
     }
 

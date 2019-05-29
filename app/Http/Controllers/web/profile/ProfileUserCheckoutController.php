@@ -360,9 +360,14 @@ class ProfileUserCheckoutController extends Controller
         // Close cURL session handle
         curl_close($ch);
 
-        $data_transaction = json_decode($result, true);
+        $data_transaction = json_encode($result);
         $success_data = $data_transaction['success'];
         $state_data = $data_transaction['data']['estado'];
+
+        print_r($data_transaction);
+            echo 'estado <br>';
+            print_r($state_data);
+            die();
 
 
 

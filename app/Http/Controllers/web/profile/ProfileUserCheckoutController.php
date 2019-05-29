@@ -404,6 +404,9 @@ class ProfileUserCheckoutController extends Controller
                 $chnage_status_payment = 5;
             }
 
+            //guarda el carrito en bd
+            //borra el carrito
+
             DB::table('ac_orders')->where('id', $id_save_order)->update([
                 'status_order_id' => $chnage_status_order,
                 'status_payment_id' => $chnage_status_payment,
@@ -414,7 +417,7 @@ class ProfileUserCheckoutController extends Controller
                 'ref_procesor' => $data_transaction->data->ref_payco
             ]);
 
-            // hacer descuentos y envio al monediero los saldos
+            // hacer descuentos y envio al monediero los saldos\
         }
 
         return $data_transaction;

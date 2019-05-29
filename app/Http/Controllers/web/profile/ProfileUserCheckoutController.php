@@ -244,8 +244,8 @@ class ProfileUserCheckoutController extends Controller
 
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
-            $success_data = $result_data['success'];
-            $state_data = $result_data['data']['estado'];
+            $success_data = $result_data->success;
+            $state_data = $result_data->data->estado;
 
             if ($success_data === false) {
                 print_r($result_data);

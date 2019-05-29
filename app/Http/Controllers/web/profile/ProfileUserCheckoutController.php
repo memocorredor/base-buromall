@@ -372,15 +372,21 @@ class ProfileUserCheckoutController extends Controller
         $chnage_status_payment = 0;
 
         if ($success_data === 1) {
+            print_r($data_transaction);
+            echo '<br> estado: <br>';
+            print_r($state_data);
+            echo '<br> a satus: <br>';
+            print_r($chnage_status_payment);
+            die();
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;
                 print_r($data_transaction);
-            echo '<br> estado: <br>';
-            print_r($state_data);
-            echo '<br> sattus: <br>';
-            print_r($chnage_status_payment);
-            die();
+                echo '<br> estado: <br>';
+                print_r($state_data);
+                echo '<br> b satus: <br>';
+                print_r($chnage_status_payment);
+                die();
             }
             if ($state_data === 'Pendiente') {
                 $chnage_status_payment = 2;
@@ -392,12 +398,14 @@ class ProfileUserCheckoutController extends Controller
                 $chnage_status_payment = 3;
             }
         }
+
         print_r($data_transaction);
-            echo '<br> estado: <br>';
-            print_r($state_data);
-            echo '<br> sattus: <br>';
-            print_r($chnage_status_payment);
-            die();
+        echo '<br> estado: <br>';
+        print_r($state_data);
+        echo '<br> c satus: <br>';
+        print_r($chnage_status_payment);
+        die();
+
         DB::table('ac_orders')->where('id', $id_save_order)->update([
             //'status_order_id' => $locale[$key],
             //'type_payment_id' => $title[$key],

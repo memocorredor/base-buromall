@@ -27,6 +27,7 @@ use Buromall\AppCore\CoreUser;
 use Darryldecode\Cart\Cart;
 use Epayco\Util;
 use Auth;
+use DB;
 
 class ProfileUserCheckoutController extends Controller
 {

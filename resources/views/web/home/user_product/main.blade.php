@@ -27,8 +27,8 @@
             $descount_apply = $row_items->descount;
             $price_to_operation = $row_items->price;
             $price_operation = $price_to_operation - ($price_to_operation * ($descount_apply / 100));
-            $price_to_apply = number_format($row_items->price, 2, ',', '.');
-            $price_descount = number_format($price_operation, 2, ',', '.');
+            $price_to_apply = Buromall\AppCore\corePrice::getItemPrice($item->price);
+            $price_descount = Buromall\AppCore\corePrice::getItemPrice($price_operation);
             @endphp
             <div class="col-12 col-sm-8 col-md-6 col-lg-4">
 

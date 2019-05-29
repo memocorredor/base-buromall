@@ -363,6 +363,7 @@ class ProfileUserCheckoutController extends Controller
         $data_transaction = json_decode($result);
         $success_data = $data_transaction->success;
         $state_data = $data_transaction->data->estado;
+        $state_data_msg = $data_transaction->data->respuesta;
 
         if ($success_data === false) {
             print_r($data_transaction);
@@ -398,6 +399,8 @@ class ProfileUserCheckoutController extends Controller
         print_r($state_data);
         echo '<br> c satus: <br>';
         print_r($chnage_status_payment);
+        echo '<br> respuesta: <br>';
+        print_r($state_data_msg);
         die();
 
         DB::table('ac_orders')->where('id', $id_save_order)->update([

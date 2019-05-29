@@ -239,6 +239,41 @@ class ProfileUserCheckoutController extends Controller
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
 
+            $success_data = $result_data['success'];
+            if ($success_data === 0) {
+                print_r($data_transaction);
+                echo 'false <br>';
+            }
+
+            if ($success_data === 1) {
+
+                $state_data = $result_data['data']['estado'];
+
+                if ($state_data === 'Aceptada') {
+                    $notification = array(
+                        'message' => 'Pago Aceptado.',
+                        'alert-type' => 'info'
+                    );
+                }
+                if ($state_data === 'Pendiente') {
+                    $notification = array(
+                        'message' => 'Pago Pendiente.',
+                        'alert-type' => 'info'
+                    );
+                }
+                if ($state_data === 'Rechazada') {
+                    $notification = array(
+                        'message' => 'Pago Rechazado.',
+                        'alert-type' => 'info'
+                    );
+                }
+                if ($state_data === 'Fallida') {
+                    $notification = array(
+                        'message' => 'Pago Fallido.',
+                        'alert-type' => 'info'
+                    );
+                }
+            }
             return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
         }
     }
@@ -304,7 +339,9 @@ class ProfileUserCheckoutController extends Controller
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
             array(
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($payload)
@@ -316,65 +353,42 @@ class ProfileUserCheckoutController extends Controller
         curl_close($ch);
 
         $data_transaction = json_decode($result, true);
-        $success_data = $data_transaction['success'];
 
+
+        $success_data = $data_transaction['success'];
         if ($success_data === 0) {
             print_r($data_transaction);
             echo 'false <br>';
         }
 
         if ($success_data === 1) {
+            $state_data = $data_transaction['data']['estado'];
 
-        $state_data = $data_transaction['data']['estado'];
-
-        if ($state_data === 'Aceptada') {
-            $notification = array(
-                'message' => 'Pago Aceptado.',
-                'alert-type' => 'info'
-            );
-            $chnage_status_payment = 4;
-        }
-        if ($state_data === 'Pendiente') {
-            $notification = array(
-                'message' => 'Pago Pendiente.',
-                'alert-type' => 'info'
-            );
-            $chnage_status_payment = 2;
-        }
-        if ($state_data === 'Rechazada') {
-            $notification = array(
-                'message' => 'Pago Rechazado.',
-                'alert-type' => 'info'
-            );
-            $chnage_status_payment = 3;
-        }
-        if ($state_data === 'Fallida') {
-        $notification = array(
-            'message' => 'Pago Fallido.',
-            'alert-type' => 'info'
-        );
-        $chnage_status_payment = 3;
+            if ($state_data === 'Aceptada') {
+                $chnage_status_payment = 4;
+            }
+            if ($state_data === 'Pendiente') {
+                $chnage_status_payment = 2;
+            }
+            if ($state_data === 'Rechazada') {
+                $chnage_status_payment = 3;
+            }
+            if ($state_data === 'Fallida') {
+                $chnage_status_payment = 3;
+            }
         }
 
+        DB::table('ac_orders')->where('id', $id_save_order)->update([
+            //'status_order_id' => $locale[$key],
+            //'type_payment_id' => $title[$key],
+            'status_payment_id' => chnage_status_payment,
+            'nu_autorization' => $data_transaction['data']['autorizacion'],
+            'nu_recibo' => $data_transaction['data']['recibo'],
+            'tx_payment' => $result
+        ]);
 
-        // $data_pay = AcOrder::find($id_save_order);
-        // //$data_resultado->status_order_id = $data_result;
-        // //$data_resultado->type_payment_id = $data_result;
-        // $data_pay->status_payment_id = $chnage_status_payment;
-        // $data_pay->nu_autorization = $data_transaction['data']['autorizacion'];
-        // //$data_resultado->nu_recibo = $data_transaction['data']['recibo'];
-        // $data_pay->tx_payment = $result;
-        // //Accion de guardar la info
-        // $data_pay->save();
 
-        // return redirect()->route('profile_user_checkout_confirm', $id_save_order)->with($notification);
-        }
-
-        $notification = array(
-            'message' => 'Pago Fallido.',
-            'alert-type' => 'info'
-        );
-
+        return $data_transaction;
     }
 
     //Para calga del index home

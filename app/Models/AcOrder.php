@@ -39,6 +39,7 @@ class AcOrder extends Model
         'cvv_credit',
         'exp_credit',
         'nu_autorization',
+        'nu_recibo',
         'error_vpos_id',
         'error_avs_vpos_id',
         'error_cvv_vpos_id',

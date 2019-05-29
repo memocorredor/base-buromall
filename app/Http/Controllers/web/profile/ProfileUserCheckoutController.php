@@ -244,16 +244,18 @@ class ProfileUserCheckoutController extends Controller
 
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
-
             $success_data = $result_data['success'];
+            $state_data = $result_data['data']['estado'];
+
+            print_r($success_data);
+            print_r($state_data);
+
             if ($success_data === 0) {
-                print_r($data_transaction);
+                print_r($result_data);
                 echo 'false <br>';
             }
 
             if ($success_data === 1) {
-
-                $state_data = $result_data['data']['estado'];
 
                 if ($state_data === 'Aceptada') {
                     $notification = array(
@@ -280,7 +282,7 @@ class ProfileUserCheckoutController extends Controller
                     );
                 }
             }
-            return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
+            //return redirect()->route('profile.user_checkout.confirm', $id_save_order)->with($notification);
         }
     }
 
@@ -371,7 +373,7 @@ class ProfileUserCheckoutController extends Controller
 
         if ($success_data === 1) {
             $state_data = $data_transaction['data']['estado'];
-            print_r($state_data);
+            dd($state_data);
 
             if ($state_data === 'Aceptada') {
                 $chnage_status_payment = 4;

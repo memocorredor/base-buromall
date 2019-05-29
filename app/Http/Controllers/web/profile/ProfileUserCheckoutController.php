@@ -205,6 +205,8 @@ class ProfileUserCheckoutController extends Controller
         $cart_total = \Cart::getTotal();
         $data_currency = CurrencyDay::latest()->first();
 
+        $data_currency_id = $data_currency->id;
+
         $data_currency_usd = $data_currency->usd_usd;
         $currency_usd = $data_currency_usd - 0.05;
 
@@ -255,6 +257,7 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_avs_id = 1;
         $data_field->pay_errors_cvv_id = 1;
         $data_field->currency = $currency_user;
+        $data_field->trm_id = $data_currency_id;
         $data_field->trm_usd = $currency_usd;
         $data_field->trm = $currency_cop;
         $data_field->wallet_saldo_debit = '';

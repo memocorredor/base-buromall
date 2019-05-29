@@ -57,6 +57,7 @@ class CreateAcOrdersTable extends Migration
             $table->integer('pay_errors_avs_id')->unsigned()->default('0');
             $table->integer('pay_errors_cvv_id')->unsigned()->default('0');
             $table->string('currency', 10)->nullable()->default('');
+            $table->string('trm_id', 100)->nullable()->default('');
             $table->string('trm_usd', 60)->nullable()->default('');
             $table->string('trm', 60)->nullable()->default('');
             $table->string('wallet_saldo_debit', 100)->nullable()->default('');

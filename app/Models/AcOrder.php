@@ -47,6 +47,7 @@ class AcOrder extends Model
         'error_avs_vpos_id',
         'error_cvv_vpos_id',
         'currency',
+        'trm_id',
         'trm_usd',
         'trm',
         'wallet_saldo_debit',

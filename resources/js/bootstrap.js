@@ -272,11 +272,6 @@ $(function () {
 
 
 
-
-
-
-
-
 var map, infoWindow;
 function initMap() {
     var lat_user = document.getElementById('info-user-lat').innerHTML;

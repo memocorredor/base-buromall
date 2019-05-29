@@ -20,6 +20,7 @@ use Buromall\Models\AcNoRequest;
 use Buromall\Models\PayErrorAvs;
 use Buromall\Models\PayErrorCvv;
 use Buromall\Models\PayError;
+use Buromall\Models\CurrencyDay;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
@@ -199,6 +200,26 @@ class ProfileUserCheckoutController extends Controller
         //Accion de guardar la info
         $data_norequest->save();
 
+        //Manejo de precios
+        $cart_stotal = \Cart::getSubTotal();
+        $cart_total = \Cart::getTotal();
+        $data_currency = CurrencyDay::latest()->first();
+
+        $data_currency_usd = $data_currency->usd_usd;
+        $currency_usd = $data_currency_usd - 0.50;
+
+        $data_currency_cop = $data_currency->usd_cop;
+        $currency_cop = $data_currency_cop - 200;
+
+        $currency_user = $order_user_sis['currency_user_sale'];
+        if($currency_user === 'COP'){
+            $data_cart_stotal = $cart_stotal * $currency_cop;
+            $data_cart_total = $cart_total * $currency_cop;
+        } else {
+            $data_cart_stotal= $cart_stotal;
+            $data_cart_total = $cart_total;
+        }
+
         $data_field = new AcOrder();
         $data_field->user_id = Auth::user()->id;
         $data_field->status_order_id = 1; //Orden iniciada
@@ -233,15 +254,16 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_id = 1;
         $data_field->pay_errors_avs_id = 1;
         $data_field->pay_errors_cvv_id = 1;
-        $data_field->currency = $order_user_sis['currency_user_sale'];
-        $data_field->trm = 1;
+        $data_field->currency = $currency_user;
+        $data_field->trm_usd = $data_currency_usd;
+        $data_field->trm = $data_currency_cop;
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_stotal = \Cart::getSubTotal();
+        $data_field->cart_stotal = $data_cart_stotal;
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-        $data_field->cart_total = \Cart::getTotal();
+        $data_field->cart_total = $data_cart_total;
         $data_field->token = $request->get('_token');
 
         //Accion de guardar la info

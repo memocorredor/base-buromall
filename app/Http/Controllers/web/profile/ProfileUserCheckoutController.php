@@ -148,6 +148,14 @@ class ProfileUserCheckoutController extends Controller
 
     public function iniOrden(Request $request)
     {
+        $this->validate($request, [
+            'type_identification_id' => 'required',
+            'identification_user' => 'required',
+            'exped_identification' => 'required',
+            'name' => 'required',
+            'number' => 'required',
+            'cvc' => 'required'
+        ]);
         //carga la informacion de usaurio
         $order_user_sis = CoreUser::getUser();
         //carga si hay una primera orden
@@ -161,7 +169,6 @@ class ProfileUserCheckoutController extends Controller
         $data_expire_cc = explode("/", $request->get('expiry'));
         $format_expire_cc_sp = $data_expire_cc[1] . '-' . $data_expire_cc[0];
         $format_expire_cc = str_replace(' ', '', $format_expire_cc_sp);
-
 
         // OJO CON ESTA
         //TODO: verificar como podemos hacer esto mejor.
@@ -250,6 +257,11 @@ class ProfileUserCheckoutController extends Controller
             if ($success_data === false) {
                 print_r($result_data);
                 echo 'false <br>';
+                $notification = array(
+                    'message' => 'error en el formulario.',
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('profile.user_checkout')->with($notification);
             }
 
             if ($success_data === true) {
@@ -259,6 +271,9 @@ class ProfileUserCheckoutController extends Controller
                         'message' => 'Pago Aceptado.',
                         'alert-type' => 'success'
                     );
+
+                    // envio del correo al usuario
+                    // envio del correo al proveedor
                 }
                 if ($state_data === 'Pendiente') {
                     $notification = array(

@@ -167,7 +167,7 @@ class ProfileUserCheckoutController extends Controller
         //TODO: verificar como podemos hacer esto mejor.
         // Crea nuevo numero de factura
         $data_nobill = new AcNoBill();
-        $data_nobill->status = 2;
+        $data_nobill->status = 1;
         $data_nobill->order_num = $id_ac_order_new;
         $data_nobill->no_item = 1; //supuesto no de factura
         $data_nobill->token = $request->get('_token');
@@ -176,7 +176,7 @@ class ProfileUserCheckoutController extends Controller
 
         // Crea nuevo numero de orden
         $data_noorder = new AcNoOrder();
-        $data_noorder->status = 2;
+        $data_noorder->status = 1;
         $data_noorder->order_num = $id_ac_order_new;
         $data_noorder->no_item = 1;
         $data_noorder->token = $request->get('_token');
@@ -185,7 +185,7 @@ class ProfileUserCheckoutController extends Controller
 
         // Crea nuevo numero de orden
         $data_norequest = new AcNoRequest();
-        $data_norequest->status = 2;
+        $data_norequest->status = 1;
         $data_norequest->order_num = $id_ac_order_new;
         $data_norequest->no_item = 1;
         $data_norequest->token = $request->get('_token');
@@ -194,12 +194,12 @@ class ProfileUserCheckoutController extends Controller
 
         $data_field = new AcOrder();
         $data_field->user_id = Auth::user()->id;
-        $data_field->status_order_id = 2; //Orden iniciada
+        $data_field->status_order_id = 1; //Orden iniciada
         $data_field->type_payment_id = 3; //Tarjeta de credito
         $data_field->no_order_id = $data_noorder->id;
         $data_field->no_bill_id = $data_nobill->id;
         $data_field->no_request_id = $data_norequest->id;
-        $data_field->status_payment_id = 2; //Pago pendiente
+        $data_field->status_payment_id = 1; //Pago en curso
         $data_field->status_refund_id = 2; //Sin devoluciones
         $data_field->status_shipping_id = 2; //En espera del pago
         $data_field->name = $request->get('name_user');
@@ -370,27 +370,26 @@ class ProfileUserCheckoutController extends Controller
             echo 'false <br>';
         }
 
-        $chnage_status_payment = 0;
+        $chnage_status_order = 1;
+        $chnage_status_payment = 1;
 
         if ($success_data === true) {
 
             if ($state_data === 'Aceptada') {
-                $chnage_status_payment = 4;
-                print_r($data_transaction);
-                echo '<br> estado: <br>';
-                print_r($state_data);
-                echo '<br> b satus: <br>';
-                print_r($chnage_status_payment);
-                die();
-            }
-            if ($state_data === 'Pendiente') {
+                $chnage_status_order = 2;
                 $chnage_status_payment = 2;
             }
-            if ($state_data === 'Rechazada') {
+            if ($state_data === 'Pendiente') {
+                $chnage_status_order = 3;
                 $chnage_status_payment = 3;
             }
+            if ($state_data === 'Rechazada') {
+                $chnage_status_order = 4;
+                $chnage_status_payment = 4;
+            }
             if ($state_data === 'Fallida') {
-                $chnage_status_payment = 3;
+                $chnage_status_order = 5;
+                $chnage_status_payment = 5;
             }
         }
 
@@ -404,9 +403,9 @@ class ProfileUserCheckoutController extends Controller
         die();
 
         DB::table('ac_orders')->where('id', $id_save_order)->update([
-            //'status_order_id' => $locale[$key],
+            'status_order_id' => $chnage_status_order,
             //'type_payment_id' => $title[$key],
-            //'status_payment_id' => $chnage_status_payment,
+            'status_payment_id' => $chnage_status_payment,
             'nu_autorization' => $data_transaction['data']['autorizacion'],
             'nu_recibo' => $data_transaction['data']['recibo'],
             'tx_payment' => $result

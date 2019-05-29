@@ -362,7 +362,7 @@ class ProfileUserCheckoutController extends Controller
 
         $data_transaction = json_decode($result, true);
         $success_data = $data_transaction['success'];
-        $state_data = $data_transaction['data']->estado;
+        $state_data = $data_transaction['data']['estado'];
 
 
 

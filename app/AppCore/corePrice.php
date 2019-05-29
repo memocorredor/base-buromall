@@ -18,7 +18,7 @@ class corePrice
 {
 
     // Numeros con finalizaciones en las cifras
-    public static function getTotalCart()
+    public static function getTotalCart($format = null)
     {
         //carga la informacion de usaurio y segun el pais la moneda a usar
         $order_user_sis = CoreUser::getUser();
@@ -34,17 +34,25 @@ class corePrice
         $currency_cop = $data_currency_cop - env('APP_MIN_COP', '200');
         // envio de la variable y la operacion
         if ($currency_user === 'COP') {
+            $range_dg = 0;
             $data_cart_total = $cart_total * $currency_cop;
         } else {
+            $range_dg = 2;
             $data_cart_total = $cart_total * $currency_usd;
         }
 
-        return $data_cart_total;
+        if($format === 'f'){
+            $return_data = $currency_user . ' $' . number_format($data_cart_total, $range_dg,",",".");
+        } else {
+            $return_data = $data_cart_total;
+        }
+
+        return $return_data;
     }
 
 
     // Numeros con finalizaciones en las cifras
-    public static function getSubTotalCart()
+    public static function getSubTotalCart($format = null)
     {
         //carga la informacion de usaurio y segun el pais la moneda a usar
         $order_user_sis = CoreUser::getUser();
@@ -60,11 +68,19 @@ class corePrice
         $currency_cop = $data_currency_cop - env('APP_MIN_COP', '200');
         // envio de la variable y la operacion
         if ($currency_user === 'COP') {
+            $range_dg = 0;
             $data_cart_stotal = $cart_stotal * $currency_cop;
         } else {
+            $range_dg = 2;
             $data_cart_stotal = $cart_stotal * $currency_usd;
         }
 
-        return $data_cart_stotal;
+        if($format === 'f'){
+            $return_data = $currency_user . ' $' . number_format($data_cart_stotal, $range_dg,",",".");
+        } else {
+            $return_data = $data_cart_stotal;
+        }
+
+        return $return_data;
     }
 }

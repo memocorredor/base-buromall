@@ -206,7 +206,7 @@ class ProfileUserCheckoutController extends Controller
         $data_currency = CurrencyDay::latest()->first();
 
         $data_currency_usd = $data_currency->usd_usd;
-        $currency_usd = $data_currency_usd - 0.50;
+        $currency_usd = $data_currency_usd - 0.05;
 
         $data_currency_cop = $data_currency->usd_cop;
         $currency_cop = $data_currency_cop - 200;
@@ -216,8 +216,8 @@ class ProfileUserCheckoutController extends Controller
             $data_cart_stotal = $cart_stotal * $currency_cop;
             $data_cart_total = $cart_total * $currency_cop;
         } else {
-            $data_cart_stotal= $cart_stotal;
-            $data_cart_total = $cart_total;
+            $data_cart_stotal= $cart_stotal * $currency_usd;
+            $data_cart_total = $cart_total * $currency_usd;
         }
 
         $data_field = new AcOrder();
@@ -255,14 +255,16 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_avs_id = 1;
         $data_field->pay_errors_cvv_id = 1;
         $data_field->currency = $currency_user;
-        $data_field->trm_usd = $data_currency_usd;
-        $data_field->trm = $data_currency_cop;
+        $data_field->trm_usd = $currency_usd;
+        $data_field->trm = $currency_cop;
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
+        $data_field->cart_data_stotal = $cart_stotal;
         $data_field->cart_stotal = $data_cart_stotal;
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
+        $data_field->cart_data_total = $cart_total;
         $data_field->cart_total = $data_cart_total;
         $data_field->token = $request->get('_token');
 

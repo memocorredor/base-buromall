@@ -413,6 +413,8 @@ class ProfileUserCheckoutController extends Controller
                 'tx_payment_anz' => $state_data_msg,
                 'ref_procesor' => $data_transaction->data->ref_payco
             ]);
+
+            // hacer descuentos y envio al monediero los saldos
         }
 
         return $data_transaction;

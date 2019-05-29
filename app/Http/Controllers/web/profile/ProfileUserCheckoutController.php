@@ -392,11 +392,11 @@ class ProfileUserCheckoutController extends Controller
             DB::table('ac_orders')->where('id', $id_save_order)->update([
                 'status_order_id' => $chnage_status_order,
                 'status_payment_id' => $chnage_status_payment,
-                'nu_autorization' => $data_transaction['data']['autorizacion'],
-                'nu_recibo' => $data_transaction['data']['recibo'],
+                'nu_autorization' => $data_transaction->data->autorizacion,
+                'nu_recibo' => $data_transaction->data->recibo,
                 'tx_payment' => $result,
                 'tx_payment_anz' => $state_data_msg,
-                'ref_procesor' => $data_transaction['data']['ref_payco']
+                'ref_procesor' => $data_transaction->data->ref_payco
             ]);
         }
 

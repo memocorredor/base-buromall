@@ -410,6 +410,7 @@ class ProfileUserCheckoutController extends Controller
 
             //guarda el carrito en bd
             //borra el carrito
+            // 2.68% + $900
 
             DB::table('ac_orders')->where('id', $id_save_order)->update([
                 'status_order_id' => $chnage_status_order,

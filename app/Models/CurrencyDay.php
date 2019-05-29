@@ -12,6 +12,7 @@ class CurrencyDay extends Model
         'usd_eur',
         'usd_usd',
         'usd_cop',
-        'usd_brl'
+        'usd_brl',
+        'timestamp'
     ];
 }

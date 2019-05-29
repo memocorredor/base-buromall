@@ -36,6 +36,7 @@ php artisan config:clear
 php artisan route:cache
 php artisan config:cache
 - php artisan websockets:serve /ws-site-app
+- php artisan trm:hora
 
 sudo chgrp -R www-data storage bootstrap/cache
 sudo chmod -R ug+rwx storage bootstrap/cache

@@ -19,6 +19,7 @@ class CreateCurrencyDaysTable extends Migration
             $table->string('usd_usd', 60)->nullable()->default('');
             $table->string('usd_cop', 60)->nullable()->default('');
             $table->string('usd_brl', 60)->nullable()->default('');
+            $table->string('timestamp', 60)->nullable()->default('');
             $table->timestamps();
         });
     }

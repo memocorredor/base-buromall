@@ -277,37 +277,6 @@ $(function () {
 
 
 
-
-function tick() {
-    //get the mins of the current time
-    var mins = new Date().getMinutes();
-    var second = new Date().getSeconds();
-    if (mins == "00") {
-        // set endpoint and your API key
-        endpoint = 'live';
-        access_key = 'a5c9db90b76a9b96b7afa2c6f9070b74';
-        // execute the conversion using the "convert" endpoint:
-        if (second == "00") {
-            $.ajax({
-                url: 'http://apilayer.net/api/live?access_key=a5c9db90b76a9b96b7afa2c6f9070b74&currencies=EUR,USD,COP,BRL&source=USD&format=1',
-                dataType: 'jsonp',
-                success: function (json) {
-                    $.ajax({
-                        url: 'new-currnecy',
-                        type: 'post',
-                        data: { usd_eur: json.quotes.USDEUR, usd_usd: json.quotes.USDUSD, usd_cop: json.quotes.USDCOP, usd_brl: json.quotes.USDBRL },
-                        success: function (response) {
-
-                        }
-                    });
-                }
-            });
-        }
-    }
-}
-
-setInterval(function () { tick(); }, 1000);
-
 var map, infoWindow;
 function initMap() {
     var lat_user = document.getElementById('info-user-lat').innerHTML;

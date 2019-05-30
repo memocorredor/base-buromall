@@ -10,226 +10,318 @@
 
 namespace Buromall\AppCore;
 
-use Buromall\Models\CurrencyDay;
+use Buromall\Models\PayCurrencyDay;
 use Buromall\AppCore\CoreUser;
 use Darryldecode\Cart\Cart;
 
 class corePrice
 {
-    // Precio item con TRM
-    public static function getItemPrice($Value)
+    // SUB-TOTAL, que tiene el carrito en el momento de la compra
+    public static function getSisSubTotalCart()
     {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
-        $data_currency_cop = $data_currency->usd_cop;
-        // envio de la variable
-        if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_total = $Value * $data_currency_cop;
-        } else {
-            $range_dg = 2;
-            $data_cart_total = $Value * $data_currency_usd;
-        }
-
-        $return_data = $currency_user . ' $' . number_format($data_cart_total, $range_dg, ",", ".");
-
-        return $return_data;
+        // rango de formateo
+        $range_dg = 2;
+        // carga de la variable del total del carrito
+        $cart_stotal = \Cart::getSubTotal();
+        // retorno de la informacion
+        return number_format($cart_stotal, $range_dg, ",", ".");
     }
 
-    // Precio item con TRM liquidado
-    public static function getItemPriceTrm($Value)
+    // TOTAL, que tiene el carrito en el momento de la compra
+    public static function getSisTotalCart()
     {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
+        // rango de formateo
+        $range_dg = 2;
+        // carga de la variable del total del carrito
+        $cart_stotal = \Cart::getTotal();
+        // retorno de la informacion
+        return number_format($cart_stotal, $range_dg, ",", ".");
+    }
+
+    // TOTAL cobro procesador que tiene el carrito en el momento de la compra
+    public static function getSisCostoProce()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        $percentage = env('APP_PORCENT_PROC', '2.68');
+        $costo = env('APP_CENT_PROC', '900');
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
         $data_currency_cop = $data_currency->usd_cop;
-        //operacion para ganancias sobre el cambio
-        $currency_usd = $data_currency_usd - env('APP_MIN_USD', '0.05');
-        $currency_cop = $data_currency_cop - env('APP_MIN_COP', '200');
         // envio de la variable y la operacion
-        if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_total = $Value * $currency_cop;
-        } else {
-            $range_dg = 2;
-            $data_cart_total = $Value * $currency_usd;
-        }
-
-        $return_data = $currency_user . ' $' . number_format($data_cart_total, $range_dg, ",", ".");
-
-        return $return_data;
+        $op_ini = $costo / $data_currency_cop;
+        $data_cart_total = (($percentage / 100) * $cart_total) - $op_ini;
+        // retorno de la informacion
+        return number_format($data_cart_total, $range_dg, ",", ".");
     }
 
-    // SUB-TOTAL item con TRM
+    // SUB-TOTAL, no importa si son dolares o pesos
     public static function getSubTotalCart($format = null)
     {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
         $order_user_sis = CoreUser::getUser();
         $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la variable del total del carrito
+        // carga de la variable del total del carrito
         $cart_stotal = \Cart::getSubTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
         $data_currency_cop = $data_currency->usd_cop;
         // envio de la variable y la operacion
         if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_stotal = $cart_stotal * $data_currency_cop;
+            $res_cart_stotal = $cart_stotal * $data_currency_cop;
         } else {
-            $range_dg = 2;
-            $data_cart_stotal = $cart_stotal * $data_currency_usd;
+            $res_cart_stotal = $cart_stotal;
         }
-
+        // formatea el numero
+        $data_cart_stotal = number_format($res_cart_stotal, $range_dg, ",", ".");
         if ($format === 'f') {
-            $return_data = $currency_user . ' $' . number_format($data_cart_stotal, $range_dg, ",", ".");
+            $return_data = $currency_user . ' $' . $data_cart_stotal;
         } else {
             $return_data = $data_cart_stotal;
         }
-
+        // retorno de la informacion
         return $return_data;
     }
 
-    // SUB-TOTAL item con TRM liquidado
-    public static function getSubTotalCartTrm($format = null)
-    {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la variable del total del carrito
-        $cart_stotal = \Cart::getSubTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
-        $data_currency_cop = $data_currency->usd_cop;
-        //operacion para ganancias sobre el cambio
-        $currency_usd = $data_currency_usd - env('APP_MIN_USD', '0.05');
-        $currency_cop = $data_currency_cop - env('APP_MIN_COP', '200');
-        // envio de la variable y la operacion
-        if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_stotal = $cart_stotal * $currency_cop;
-        } else {
-            $range_dg = 2;
-            $data_cart_stotal = $cart_stotal * $currency_usd;
-        }
-
-        if ($format === 'f') {
-            $return_data = $currency_user . ' $' . number_format($data_cart_stotal, $range_dg, ",", ".");
-        } else {
-            $return_data = $data_cart_stotal;
-        }
-
-        return $return_data;
-    }
-
-    // Total cobro procesador
-    public static function getTotalProcesor()
-    {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        $percentage = env('APP_PORCENT_PROC', '2.68');
-        //carga de la variable del total del carrito
-        $cart_total = \Cart::getTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_cop = $data_currency->usd_cop;
-
-        // envio de la variable y la operacion
-        $op_ini_total = $cart_total * $data_currency_cop;
-        $data_cart_total = (($percentage / 100) * $op_ini_total) - env('APP_CENT_PROC', '900');
-
-        return number_format($data_cart_total, 2, ",", ".");
-    }
-
-    // Total cobro procesador
-    public static function getTotalWeb()
-    {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        $percentage = env('APP_PORCENT_PAY', '3.10');
-        //carga de la variable del total del carrito
-        $cart_total = \Cart::getTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_cop = $data_currency->usd_cop;
-
-        // envio de la variable y la operacion
-        $op_ini_total = $cart_total * $data_currency_cop;
-        $data_cart_total = (($percentage / 100) * $op_ini_total) - env('APP_CENT_PAY', '1000');
-
-        return number_format($data_cart_total, 2, ",", ".");
-    }
-
-    // SUB-TOTAL item con TRM
+    // TOTAL que se envia al procesador, no importa si son dolares o pesos
     public static function getTotalCart($format = null)
     {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la variable del total del carrito
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // carga de la variable del total del carrito
         $cart_total = \Cart::getTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
         $data_currency_cop = $data_currency->usd_cop;
         // envio de la variable y la operacion
         if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_total = $cart_total * $data_currency_cop;
+            $res_cart_total = $cart_total * $data_currency_cop;
         } else {
-            $range_dg = 2;
-            $data_cart_total = $cart_total * $data_currency_usd;
+            $res_cart_total = $cart_total;
         }
-
+        // formatea el numero
+        $data_cart_total = number_format($res_cart_total, $range_dg, ",", ".");
         if ($format === 'f') {
-            $return_data = $currency_user . ' $' . number_format($data_cart_total, $range_dg, ",", ".");
+            $return_data = $currency_user . ' $' . $data_cart_total;
         } else {
             $return_data = $data_cart_total;
         }
-
+        // retorno de la informacion
         return $return_data;
     }
 
-    // SUB-TOTAL item con TRM
-    public static function getTotalCartTrm($format = null)
+    // TOTAL costo procesador en pesos
+    public static function getTotalCostoProce()
     {
-        //carga la informacion de usaurio y segun el pais la moneda a usar
-        $order_user_sis = CoreUser::getUser();
-        $currency_user = $order_user_sis['currency_user_sale'];
-        //carga de la variable del total del carrito
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // costos
+        $percentage = env('APP_PORCENT_PROC', '2.68');
+        $costo = env('APP_CENT_PROC', '900');
+        // carga de la variable del total del carrito
         $cart_total = \Cart::getTotal();
-        //carga de la base de datos el ultimo TRM
-        $data_currency = CurrencyDay::latest()->first();
-        $data_currency_usd = $data_currency->usd_usd;
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
         $data_currency_cop = $data_currency->usd_cop;
-        //operacion para ganancias sobre el cambio
-        $currency_usd = $data_currency_usd - env('APP_MIN_USD', '0.05');
-        $currency_cop = $data_currency_cop - env('APP_MIN_COP', '200');
         // envio de la variable y la operacion
         if ($currency_user === 'COP') {
-            $range_dg = 0;
-            $data_cart_total = $cart_total * $currency_cop;
+            $op_ini_total = $cart_total * $data_currency_cop;
+            $data_cart_total = (($percentage / 100) * $op_ini_total) - $costo;
         } else {
-            $range_dg = 2;
-            $data_cart_total = $cart_total * $currency_usd;
+            $op_ini = $costo / $data_currency_cop;
+            $data_cart_total = (($percentage / 100) * $cart_total) - $op_ini;
         }
-
-        if ($format === 'f') {
-            $return_data = $currency_user . ' $' . number_format($data_cart_total, $range_dg, ",", ".");
-        } else {
-            $return_data = $data_cart_total;
-        }
-
+        // formatea el numero
+        $return_data = number_format($data_cart_total, $range_dg, ",", ".");
+        // retorno de la informacion
         return $return_data;
     }
+
+    // TOTAL costo procesador en pesos
+    public static function getTotalResult()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // costos
+        $percentage = env('APP_PORCENT_PROC', '2.68');
+        $costo = env('APP_CENT_PROC', '900');
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        $data_currency_cop = $data_currency->usd_cop;
+        // envio de la variable y la operacion
+        $op_ini_total = $cart_total * $data_currency_cop;
+        $op_porcent = (($percentage / 100) * $op_ini_total) - $costo;
+        $op_result = $op_ini_total - $op_porcent;
+        // formatea el numero
+        $return_data = number_format($op_result, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $return_data;
+    }
+
+    // TOTAL costo procesador en pesos
+    public static function getTotalResultTrm()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // costos
+        $percentage = env('APP_PORCENT_PROC', '2.68');
+        $costo = env('APP_CENT_PROC', '900');
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        // cambia este valor por el de TRM de liquidacion
+        $data_currency_cop = $data_currency->usd_cop_sis;
+        // envio de la variable y la operacion
+        $op_ini_total = $cart_total * $data_currency_cop;
+        $op_porcent = (($percentage / 100) * $op_ini_total) - $costo;
+        $op_result = $op_ini_total - $op_porcent;
+        // formatea el numero
+        $return_data = number_format($op_result, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $return_data;
+    }
+
+    // SUB-TOTAL, no importa si son dolares o pesos
+    public static function getUsrSubTotalCart()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $order_user_sis = CoreUser::getUser();
+        $currency_user = $order_user_sis['currency_user_sale'];
+        // carga de la variable del total del carrito
+        $cart_stotal = \Cart::getSubTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        $data_currency_cop = $data_currency->usd_cop_sis;
+        // envio de la variable y la operacion
+        if ($currency_user === 'COP') {
+            $res_cart_stotal = $cart_stotal * $data_currency_cop;
+        } else {
+            $res_cart_stotal = $cart_stotal;
+        }
+        // formatea el numero
+        $data_cart_stotal = number_format($res_cart_stotal, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $data_cart_stotal;
+    }
+
+    // TOTAL que se envia al procesador, no importa si son dolares o pesos
+    public static function getUsrTotalCart()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        $data_currency_cop = $data_currency->usd_cop_sis;
+        // envio de la variable y la operacion
+        if ($currency_user === 'COP') {
+            $res_cart_total = $cart_total * $data_currency_cop;
+        } else {
+            $res_cart_total = $cart_total;
+        }
+        // formatea el numero
+        $data_cart_total = number_format($res_cart_total, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $data_cart_total;
+    }
+
+    // TOTAL costo procesador en pesos
+    public static function getUsrTotalProc()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // costos
+        $percentage_procesor = env('APP_PORCENT_PROC', '2.68');
+        $percentage_web = env('APP_PORCENT_PAY', '3.10');
+        $trans_procesor = env('APP_CENT_PROC', '900');
+        $trans_web = env('APP_CENT_PAY', '1000');
+        // para sacar la porcion del porcentaje
+        $percentage =  $percentage_web - $percentage_procesor;
+        // para sacar la porcion del costo
+        $costo = $trans_web - $trans_procesor;
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        $data_currency_cop = $data_currency->usd_cop_sis;
+        // envio de la variable y la operacion
+        if ($currency_user === 'COP') {
+            $op_ini_total = $cart_total * $data_currency_cop;
+            $data_cart_total = (($percentage / 100) * $op_ini_total) - $costo;
+        } else {
+            $op_ini = $costo / $data_currency_cop;
+            $data_cart_total = (($percentage / 100) * $cart_total) - $op_ini;
+        }
+        // formatea el numero
+        $return_data = number_format($data_cart_total, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $return_data;
+    }
+
+    // TOTAL costo procesador en pesos
+    public static function getUsrTotalResult()
+    {
+        // rango de formateo
+        $range_dg = 2;
+        // carga la informacion de usaurio y segun el pais la moneda a usar
+        $currency_user_sis = CoreUser::getUser();
+        $currency_user = $currency_user_sis['currency_user_sale'];
+        // costos
+        $percentage = env('APP_PORCENT_PROC', '2.68');
+        $costo = env('APP_CENT_PROC', '900');
+        // carga de la variable del total del carrito
+        $cart_total = \Cart::getTotal();
+        // carga de la base de datos el ultimo TRM
+        $data_currency = PayCurrencyDay::latest()->first();
+        $data_currency_cop = $data_currency->usd_cop_sis;
+        // envio de la variable y la operacion
+        $op_ini_total = $cart_total * $data_currency_cop;
+        $op_porcent = (($percentage / 100) * $op_ini_total) - $costo;
+        $op_result = $op_ini_total - $op_porcent;
+        // formatea el numero
+        $return_data = number_format($op_result, $range_dg, ",", ".");
+        // retorno de la informacion
+        return $return_data;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

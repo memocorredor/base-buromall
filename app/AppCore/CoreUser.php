@@ -14,7 +14,7 @@ use Buromall\Models\User;
 use Buromall\Models\UserFriend;
 use Buromall\Models\UserStore;
 use Buromall\Models\UserStoreProduct;
-use Buromall\Models\CurrencyDay;
+use Buromall\Models\PayCurrencyDay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PragmaRX\Countries\Package\Countries;

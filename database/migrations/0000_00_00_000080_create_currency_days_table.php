@@ -13,11 +13,12 @@ class CreateCurrencyDaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('currency_days', function (Blueprint $table) {
+        Schema::create('pay_currency_days', function (Blueprint $table) {
             $table->increments('id');
             $table->string('usd_eur', 60)->nullable()->default('');
             $table->string('usd_usd', 60)->nullable()->default('');
             $table->string('usd_cop', 60)->nullable()->default('');
+            $table->string('usd_cop_sis', 60)->nullable()->default('');
             $table->string('usd_brl', 60)->nullable()->default('');
             $table->string('timestamp', 60)->nullable()->default('');
             $table->timestamps();

@@ -20,7 +20,7 @@ use Buromall\Models\AcNoRequest;
 use Buromall\Models\PayErrorAvs;
 use Buromall\Models\PayErrorCvv;
 use Buromall\Models\PayError;
-use Buromall\Models\CurrencyDay;
+use Buromall\Models\PayCurrencyDay;
 use Illuminate\Http\Request;
 use Buromall\Models\WebSite;
 use Buromall\AppCore\CoreMeta;
@@ -203,10 +203,21 @@ class ProfileUserCheckoutController extends Controller
 
         //Manejo de precios
         $currency_user = $order_user_sis['currency_user_sale'];
-        $data_currency = CurrencyDay::latest()->first();
+        $data_currency = PayCurrencyDay::latest()->first();
         $data_currency_id = $data_currency->id;
-        $data_currency_usd = $data_currency->usd_usd;
-        $data_currency_cop = $data_currency->usd_cop;
+        $data_trm_usd = $data_currency->usd_usd;
+        $data_trm_cop = $data_currency->usd_cop;
+        $data_trml_usd = $data_currency->usd_usd;
+        $data_trml_cop = $data_currency->usd_cop;
+        $data_trml_cop_sis = $data_currency->usd_cop_sis;
+
+
+
+        $data_cart_total_cop = corePrice::getTotalCartCop();
+        $data_total_proc = corePrice::getTotalProc();
+
+        $data_total_web = corePrice::getTotalWeb();
+        $data_total_user = $data_cart_total_cop - $data_total_proc - $data_total_web;
 
         $data_field = new AcOrder();
         $data_field->user_id = Auth::user()->id;
@@ -244,29 +255,44 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_cvv_id = 1;
         $data_field->currency = $currency_user;
         $data_field->trm_id = $data_currency_id;
-        $data_field->trm_usd = $data_currency_usd;
-        $data_field->trm = $data_currency_cop;
-        $data_field->wallet_saldo_debit = '';
-        $data_field->wallet_saldo_credit = '';
-        $data_field->wallet_total = '';
-        $data_field->cart_data_stotal = corePrice::getSubTotalCartTrm();
+        $data_field->trm_usd = $data_trm_usd;
+        $data_field->trm_cop = $data_trm_cop;
+        $data_field->trml_usd = $data_trml_usd;
+        $data_field->trml_cop = $data_trml_cop;
+        $data_field->trm_cop_sis = $data_trml_cop_sis;
+        // datos reales sin convertir del carrito (USD)
+        $data_field->sis_cart_stotal = corePrice::getSisSubTotalCart();
+        $data_field->sis_cart_tax = '';
+        $data_field->sis_cart_shipping = '';
+        $data_field->sis_cart_total = corePrice::getSisTotalCart();
+        $data_field->sis_costo_proce = corePrice::getSisCostoProce();
+        // sis envia a pocesador de pago (USD o COP) sobre trm (valores reales)
         $data_field->cart_stotal = corePrice::getSubTotalCart();
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-
-        $data_field->cart_data_total = corePrice::getTotalCartTrm();
         $data_field->cart_total = corePrice::getTotalCart();
-        $data_field->procesor_total = corePrice::getTotalProcesor();
-        $data_field->web_total = corePrice::getTotalWeb();
-        $data_field->user_total = '';
-
+        $data_field->cart_costo_proce = corePrice::getTotalProc();
+        // este valor siempre sera en pesos (usado tambien para verificacion)
+        $data_field->cart_result_sistem = corePrice::getTotalResult();
+        // este valor siempre sera en pesos (usado tambien para verificacion)
+        $data_field->cart_result_trm = corePrice::getTotalResultTrm();
+        // sis liquida el pago a -trm
+        $data_field->usr_stotal = corePrice::getUsrSubTotalCart();
+        $data_field->usr_tax = '';
+        $data_field->usr_shipping = '';
+        $data_field->usr_total = corePrice::getUsrTotalCart();
+        $data_field->usr_costo_proce = corePrice::getUsrTotalProc();
+        // este valor siempre sera en pesos (usado tambien para verificacion)
+        $data_field->usr_result_sistem = corePrice::getUsrTotalResult();
+        // wallet
+        $data_field->wallet_saldo_debit = '';
+        $data_field->wallet_saldo_credit = '';
+        $data_field->wallet_total = '';
+        // token
         $data_field->token = $request->get('_token');
-
         //Accion de guardar la info
         $saved = $data_field->save();
-
         $id_save_order = $data_field->id;
-
         if ($saved) {
             $result_data = $this->makePaymentCC($id_save_order);
             $success_data = $result_data->success;
@@ -381,9 +407,7 @@ class ProfileUserCheckoutController extends Controller
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
+        curl_setopt($ch, CURLOPT_HTTPHEADER,
             array(
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($payload)
@@ -428,7 +452,6 @@ class ProfileUserCheckoutController extends Controller
 
             //guarda el carrito en bd
             //borra el carrito
-            // 2.68% + $900
 
             DB::table('ac_orders')->where('id', $id_save_order)->update([
                 'status_order_id' => $chnage_status_order,
@@ -437,7 +460,8 @@ class ProfileUserCheckoutController extends Controller
                 'nu_recibo' => $data_transaction->data->recibo,
                 'tx_payment' => $result,
                 'tx_payment_anz' => $state_data_msg,
-                'ref_procesor' => $data_transaction->data->ref_payco
+                'ref_procesor' => $data_transaction->data->ref_payco,
+                'cart_result_check' => '' //este valor debe ser llamado a la plataforma para verificacion de la informacion de valores
             ]);
 
             // hacer descuentos y envio al monediero los saldos\

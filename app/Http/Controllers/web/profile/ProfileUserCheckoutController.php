@@ -202,26 +202,11 @@ class ProfileUserCheckoutController extends Controller
         $data_norequest->save();
 
         //Manejo de precios
-        $cart_stotal = \Cart::getSubTotal();
-        $cart_total = \Cart::getTotal();
-        $data_currency = CurrencyDay::latest()->first();
-
-        $data_currency_id = $data_currency->id;
-
-        $data_currency_usd = $data_currency->usd_usd;
-        $currency_usd = $data_currency_usd - 0.05;
-
-        $data_currency_cop = $data_currency->usd_cop;
-        $currency_cop = $data_currency_cop - 200;
-
         $currency_user = $order_user_sis['currency_user_sale'];
-        if($currency_user === 'COP'){
-            $data_cart_stotal = $cart_stotal * $currency_cop;
-            $data_cart_total = $cart_total * $currency_cop;
-        } else {
-            $data_cart_stotal= $cart_stotal * $currency_usd;
-            $data_cart_total = $cart_total * $currency_usd;
-        }
+        $data_currency = CurrencyDay::latest()->first();
+        $data_currency_id = $data_currency->id;
+        $data_currency_usd = $data_currency->usd_usd;
+        $data_currency_cop = $data_currency->usd_cop;
 
         $data_field = new AcOrder();
         $data_field->user_id = Auth::user()->id;
@@ -259,17 +244,22 @@ class ProfileUserCheckoutController extends Controller
         $data_field->pay_errors_cvv_id = 1;
         $data_field->currency = $currency_user;
         $data_field->trm_id = $data_currency_id;
-        $data_field->trm_usd = $currency_usd;
-        $data_field->trm = $currency_cop;
+        $data_field->trm_usd = $data_currency_usd;
+        $data_field->trm = $data_currency_cop;
         $data_field->wallet_saldo_debit = '';
         $data_field->wallet_saldo_credit = '';
         $data_field->wallet_total = '';
-        $data_field->cart_data_stotal = \Cart::getSubTotal();
+        $data_field->cart_data_stotal = corePrice::getSubTotalCartTrm();
         $data_field->cart_stotal = corePrice::getSubTotalCart();
         $data_field->cart_tax = '';
         $data_field->cart_shipping = '';
-        $data_field->cart_data_total = \Cart::getTotal();
+
+        $data_field->cart_data_total = corePrice::getTotalCartTrm();
         $data_field->cart_total = corePrice::getTotalCart();
+        $data_field->procesor_total = corePrice::getTotalProcesor();
+        $data_field->web_total = corePrice::getTotalWeb();
+        $data_field->user_total = '';
+
         $data_field->token = $request->get('_token');
 
         //Accion de guardar la info

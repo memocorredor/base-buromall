@@ -59,6 +59,9 @@ class AcOrder extends Model
         'cart_shipping',
         'cart_data_total',
         'cart_total',
+        'procesor_total',
+        'web_total',
+        'user_total',
         'info_user',
         'token'
     ];

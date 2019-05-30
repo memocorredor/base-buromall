@@ -69,6 +69,9 @@ class CreateAcOrdersTable extends Migration
             $table->string('cart_shipping', 100)->nullable()->default('');
             $table->string('cart_data_total', 100)->nullable()->default('');
             $table->string('cart_total', 100)->nullable()->default('');
+            $table->string('procesor_total', 100)->nullable()->default('');
+            $table->string('web_total', 100)->nullable()->default('');
+            $table->string('user_total', 100)->nullable()->default('');
             $table->text('info_user')->nullable();
             $table->text('token');
             $table->timestamps();

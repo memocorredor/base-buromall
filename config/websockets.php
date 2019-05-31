@@ -3,7 +3,6 @@
 use BeyondCode\LaravelWebSockets\Dashboard\Http\Middleware\Authorize;
 
 return [
-
     /*
      * This package comes with multi tenancy out of the box. Here you can
      * configure the different apps that can use the webSockets server.
@@ -21,7 +20,6 @@ return [
             'enable_statistics' => true,
         ],
     ],
-
     /*
      * This class is responsible for finding the apps. The default provider
      * will use the apps defined in this config file.
@@ -30,7 +28,6 @@ return [
      * `AppProvider` interface.
      */
     'app_provider' => BeyondCode\LaravelWebSockets\Apps\ConfigAppProvider::class,
-
     /*
      * This array contains the hosts of which you want to allow incoming requests.
      * Leave this empty if you want to accept requests from all hosts.
@@ -38,17 +35,14 @@ return [
     'allowed_origins' => [
         //
     ],
-
     /*
      * The maximum request size in kilobytes that is allowed for an incoming WebSocket request.
      */
     'max_request_size_in_kb' => 250,
-
     /*
      * This path will be used to register the necessary routes for the package.
      */
-    'path' => 'ws-site-app',
-
+    'path' => 'wsburomall',
     /*
      * Dashboard Routes Middleware
      *
@@ -60,7 +54,6 @@ return [
         'web',
         Authorize::class,
     ],
-
     'statistics' => [
         /*
          * This model will be used to store the statistics of the WebSocketsServer.
@@ -68,25 +61,21 @@ return [
          * `WebSocketsStatisticsEntry` provided by this package.
          */
         'model' => \BeyondCode\LaravelWebSockets\Statistics\Models\WebSocketsStatisticsEntry::class,
-
         /*
          * Here you can specify the interval in seconds at which statistics should be logged.
          */
         'interval_in_seconds' => 60,
-
         /*
          * When the clean-command is executed, all recorded statistics older than
          * the number of days specified here will be deleted.
          */
         'delete_statistics_older_than_days' => 60,
-
         /*
          * Use an DNS resolver to make the requests to the statistics logger
          * default is to resolve everything to 127.0.0.1.
          */
         'perform_dns_lookup' => false,
     ],
-
     /*
      * Define the optional SSL context for your WebSocket connections.
      * You can see all available options at: http://php.net/manual/en/context.ssl.php
@@ -98,21 +87,20 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => env('PUSHER_APP_CRT'),
-
+        'local_cert' => '/etc/ssl/private/buromall-bundle.crt',
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
-        'local_pk' => env('PUSHER_APP_CKEY'),
-
+        'local_pk' => '/etc/ssl/private/buromall-server.key',
         /*
          * Passphrase for your local_cert file.
          */
         'passphrase' => null,
-    ],
 
-    /*
+        'verify_peer' => false,
+    ],
+    /*openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout /etc/ssl/private/keywebsocket.pem -out /etc/ssl/private/certwebsocket.pem
      * Channel Manager
      * This class handles how channel persistence is handled.
      * By default, persistence is stored in an array by the running webserver.

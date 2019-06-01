@@ -91,7 +91,7 @@ window.Echo = new Echo({
     //wssPort: process.env.MIX_PUSHER_APP_PORT,
     disableStats: process.env.MIX_PUSHER_APP_STATS,
     encrypted: process.env.MIX_PUSHER_APP_ENCR,
-    //enabledTransports: ['ws', 'wss']
+    enabledTransports: ['ws', 'wss']
 });
 
 

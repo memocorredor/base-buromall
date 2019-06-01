@@ -35,17 +35,19 @@ php artisan view:clear
 php artisan config:clear
 php artisan route:cache
 php artisan config:cache
+## ARREGLO CARPETAS
+sudo chgrp -R www-data storage bootstrap
+sudo chmod -R ug+rwx storage bootstrap
+sudo chgrp -R www-data storage bootstrap/cache
+sudo chmod -R ug+rwx storage bootstrap/cache
+## WEBSOCKET
 - php artisan websockets:serve /ws-site-app
 
 ## CRON JOB
 - php artisan trm:hora
 - * * * * * php /var/www/buromall/artisan schedule:run >> /dev/null 2>&1
 
-## ARREGLO CARPETAS
-sudo chgrp -R www-data storage bootstrap
-sudo chmod -R ug+rwx storage bootstrap
-sudo chgrp -R www-data storage bootstrap/cache
-sudo chmod -R ug+rwx storage bootstrap/cache
+
 
 
 

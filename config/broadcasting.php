@@ -41,10 +41,10 @@ return [
                 'port' => env('PUSHER_APP_PORT'),
                 'encrypted' => env('PUSHER_APP_ENCR'),
                 'scheme' => env('PUSHER_APP_SHEM'),
-                // 'curl_options' => [
-                //     CURLOPT_SSL_VERIFYHOST => 0,
-                //     CURLOPT_SSL_VERIFYPEER => 0,
-                // ]
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ]
             ],
         ],
 

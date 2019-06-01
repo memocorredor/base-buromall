@@ -1,3 +1,8 @@
+map $http_upgrade $type {
+  default "web";
+  websocket "ws";
+}
+
 server {
        listen 80;
        listen [::]:80 ipv6only=on;
@@ -19,8 +24,16 @@ server {
 
   # SERVER LOCATION
   location / {
+    try_files /nonexistent @$type;
+  }
+
+  location @web {
     try_files $uri $uri/ /index.php?$query_string;
   }
+
+  #location / {
+    #try_files $uri $uri/ /index.php?$query_string;
+  #}
 
   location = /favicon.ico {
     access_log off; log_not_found off;
@@ -35,7 +48,7 @@ server {
   }
 
   # SERVER LOCATION WS
-  location /ws/ {
+  location @ws {
     proxy_pass             http://127.0.0.1:6001;
     proxy_set_header Host  $host;
     proxy_read_timeout     60;
@@ -83,4 +96,5 @@ server {
 
 
 sudo systemctl restart nginx
+sudo systemctl reload nginx
 sudo nginx -t

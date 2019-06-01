@@ -119,7 +119,7 @@
                             <div class="layout-footer-counter">
                                 <i class="fas fa-users"></i>
                                 @lang('web_layout.local_users_footer')
-
+                                <user-counter></user-counter>
                             </div>
                         </li>
                         @guest

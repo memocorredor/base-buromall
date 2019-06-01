@@ -87,12 +87,12 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => '/etc/ssl/private/certwebsocket.pem',///var/www/inisites/buromall-bundle.crt
+        'local_cert' => '/var/www/inisites/buromall-bundle.crt',
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
-        'local_pk' => '/etc/ssl/private/keywebsocket.pem',///var/www/inisites/buromall-server.key
+        'local_pk' => '/var/www/inisites/buromall-server.key',
         /*
          * Passphrase for your local_cert file.
          */

@@ -42,6 +42,8 @@ php artisan config:cache
 - * * * * * php /var/www/buromall/artisan schedule:run >> /dev/null 2>&1
 
 ## ARREGLO CARPETAS
+sudo chgrp -R www-data storage bootstrap
+sudo chmod -R ug+rwx storage bootstrap
 sudo chgrp -R www-data storage bootstrap/cache
 sudo chmod -R ug+rwx storage bootstrap/cache
 
